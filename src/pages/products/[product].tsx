@@ -1,40 +1,36 @@
-import { Container, Grid } from '@mui/material';
 import React from 'react';
-import MediaCard from '../../components/Products/Card';
-import style from './Index.module.css';
 import type { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { Container, Grid } from '@mui/material';
 import Product from '../../models/product-model';
+import Image from 'next/image';
 
-const Index: NextPage | React.FC<Product> = (props) => {
+const product: NextPage | React.FC<Product> = (props) => {
+	const router = useRouter();
+	const id: string = router.query.product.toString();
 	return (
-		<Container>
-			<Grid container className={style.main}>
-				{props.products.map((item) => (
-					<Grid
-						item
-						xs={6}
-						sm={5}
-						md={3}
-						lg={3}
-						key={item.id}
-						className={style.card}
-					>
-						<MediaCard
-							id={item.id}
-							img={item.img}
-							title={item.name}
-							description={item.description}
-							price={item.price}
-							rating={item.rating}
-						></MediaCard>
-					</Grid>
-				))}
-			</Grid>
+		<Container maxWidth="lg">
+			{router.isFallback && <p>Loading...</p>}
+			{!router.isFallback && (
+				<Grid container>
+					<Grid item></Grid>
+					<img src={props.products[id].img} height={500} width={500} />
+
+					<Grid item>{props.products[id].name} </Grid>
+				</Grid>
+			)}
 		</Container>
 	);
 };
 
-export default Index;
+export default product;
+
+export async function getStaticPaths() {
+	return {
+		paths: [{ params: { product: '1' } }],
+		fallback: true,
+	};
+}
 
 export async function getStaticProps() {
 	const products: {

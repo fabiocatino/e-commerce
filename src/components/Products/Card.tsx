@@ -8,14 +8,9 @@ import Typography from '@mui/material/Typography';
 import style from './Card.module.css';
 import ProductRating from './ProductRating';
 import Product from '../../models/product-model';
+import Link from 'next/link'
 
-const MediaCard: React.FC<{
-	img: string;
-	title: string;
-	description: string;
-	price: number;
-	rating: number;
-}> = (props) => {
+const MediaCard: React.FC<Product> = (props) => {
 	return (
 		<Card elevation={1} sx={{ maxWidth: 300 }}>
 			<CardMedia component="img" height="140" image={props.img} alt="img" />
@@ -34,7 +29,7 @@ const MediaCard: React.FC<{
 				</div>
 			</CardContent>
 			<CardActions>
-				<Button size="small">Learn More</Button>
+				<Link href={`/products/${props.id}`}><Button size="small">Learn More</Button></Link>
 				<Button size="small">ADD TO CART</Button>
 			</CardActions>
 		</Card>
