@@ -1,0 +1,11 @@
+.main {
+    margin-top: 100px;
+    /* background-color: rgb(192, 192, 192); */
+    gap: 40px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+/* 
+.card {
+} */
