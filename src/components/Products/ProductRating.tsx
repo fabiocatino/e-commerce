@@ -2,7 +2,7 @@ import * as React from 'react';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 
-const ProductRating: React.FC<{ rating: number }> = (props) => {
+const ProductRating: React.FC<{ rating: number, readOnly: boolean }> = (props) => {
 	return (
 		<Stack spacing={1}>
 			<Rating
@@ -11,6 +11,7 @@ const ProductRating: React.FC<{ rating: number }> = (props) => {
 				defaultValue={2.5}
 				precision={0.5}
 				value={props.rating}
+				readOnly={props.readOnly ? true : false}
 			/>
 		</Stack>
 	);

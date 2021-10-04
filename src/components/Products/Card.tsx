@@ -9,11 +9,13 @@ import style from './Card.module.css';
 import ProductRating from './ProductRating';
 import Product from '../../models/product-model';
 import Link from 'next/link'
+import Image from 'next/image'
 
 const MediaCard: React.FC<Product> = (props) => {
+	// console.log(parseFloat(props.rating))
 	return (
 		<Card elevation={1} sx={{ maxWidth: 300 }}>
-			<CardMedia component="img" height="140" image={props.img} alt="img" />
+			<CardMedia component="img" height="140" image={`http://127.0.0.1:8000${props.image}`} alt="img" />
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="div">
 					{props.title}
@@ -22,9 +24,9 @@ const MediaCard: React.FC<Product> = (props) => {
 					{props.description}
 				</Typography>
 				<div className={style.price}>
-					<ProductRating rating={props.rating} />
+					<ProductRating  readOnly={true} rating={parseFloat(props.rating)} />
 					<Typography variant="h5" color="text.primary">
-						£{props.price.toFixed(2)}
+						£{props.price}
 					</Typography>
 				</div>
 			</CardContent>
