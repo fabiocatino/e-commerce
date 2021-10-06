@@ -1,21 +1,21 @@
 import { Container, Grid } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import MediaCard from '../../components/Products/Card';
 import style from './Index.module.css';
-import type { NextPage } from 'next';
-import Product from '../../models/product-model';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useGetAllProductsQuery } from '../../services/productsApi';
 import Spinner from '../../components/Layout/Spinner';
+import { cartActions } from '../../services/cartSlice';
 
+const Index = () => {
+	const dispatch = useDispatch();
 
-const Index: NextPage | React.FC<Product> = () => {
-	const { data, isFetching, error } = useGetAllProductsQuery('');
+	const { data, isLoading, error } = useGetAllProductsQuery('');
 	return (
 		<Container>
 			{error && <p>Something went wrong. Try again later.</p>}
-			{isFetching && <Spinner/>}
-			{!isFetching && !error && (
+			{isLoading && <Spinner />}
+			{!isLoading && !error && (
 				<Grid container className={style.main}>
 					{data.map((item) => (
 						<Grid

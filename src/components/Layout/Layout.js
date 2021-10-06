@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import StickyFooter from './Footer'
 
-const Layout: React.FC = (props) => {
+const Layout = (props) => {
 	return (
 		<div>
 			<Navbar />

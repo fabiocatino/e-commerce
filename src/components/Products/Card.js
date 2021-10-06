@@ -7,15 +7,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import style from './Card.module.css';
 import ProductRating from './ProductRating';
-import Product from '../../models/product-model';
 import Link from 'next/link'
 import Image from 'next/image'
 
-const MediaCard: React.FC<Product> = (props) => {
-	// console.log(parseFloat(props.rating))
+const MediaCard = (props) => {
+
 	return (
 		<Card elevation={1} sx={{ maxWidth: 300 }}>
-			<CardMedia component="img" height="140" image={`http://127.0.0.1:8000${props.image}`} alt="img" />
+			<CardMedia component="img" height="140" image={props.image} alt="img" />
 			<CardContent>
 				<Typography gutterBottom variant="h5" component="div">
 					{props.title}
@@ -32,7 +31,7 @@ const MediaCard: React.FC<Product> = (props) => {
 			</CardContent>
 			<CardActions>
 				<Link href={`/products/${props.id}`}><Button size="small">Learn More</Button></Link>
-				<Button size="small">ADD TO CART</Button>
+				<Button  size="small">ADD TO CART</Button>
 			</CardActions>
 		</Card>
 	);

@@ -1,11 +1,19 @@
 import { Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Navbar.module.css';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import PersonIcon from '@mui/icons-material/Person';
 import Link from 'next/link';
+import CustomizedBadges from '../Products/Badge';
+import { useSelector } from 'react-redux';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
+	const items = useSelector((state) => state.cart.cart.cartItems.length);
+	const [cartItems, setCartItems] = useState(0);
+
+	useEffect(() => {
+		setCartItems(items);
+	}, [items, cartItems]);
+
 	return (
 		<nav className={styles.navbar}>
 			<Link href="/">
@@ -14,9 +22,9 @@ const Navbar: React.FC = () => {
 				</Typography>
 			</Link>
 			<ul className={styles['navbar-items']}>
-				<Link href="/">
+				<Link href="/cart">
 					<Typography variant="h6">
-						<ShoppingBasketIcon /> Cart
+						<CustomizedBadges value={cartItems}></CustomizedBadges>
 					</Typography>
 				</Link>
 				<Link href="/">

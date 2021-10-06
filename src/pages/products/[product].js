@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { Container, Divider, Grid, Typography } from '@mui/material';
-import Product from '../../models/product-model';
 import Image from 'next/image';
 import styles from './Product.module.css';
 import ProductRating from '../../components/Products/ProductRating';
@@ -11,29 +9,34 @@ import ColorButtons from '../../components/Button';
 import { useGetProductQuery } from '../../services/productsApi';
 import ImageGallery from 'react-image-gallery';
 import Spinner from '../../components/Layout/Spinner';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions } from '../../services/cartSlice';
+import BasicSelect from '../../components/Products/Select';
 
-const product: NextPage | React.FC<Product> = () => {
+const product = () => {
 	const router = useRouter();
-	const itemId: any = router.query.product;
-	const { data, isFetching, error } = useGetProductQuery(itemId);
+	const itemId = router.query.product;
+	const { data, isLoading, error } = useGetProductQuery(itemId);
+	const dispatch = useDispatch();
+
+	const addToCartHandler = () => {
+		dispatch(cartActions.addItem({ ...data, quantity: 1 }));
+	};
+
 	return (
 		<Container maxWidth="lg">
 			{error && <p>Something went wrong. Try again later.</p>}
-			{isFetching && <Spinner/>}
-			{!isFetching && !error && (
+			{isLoading && <Spinner />}
+			{!isLoading && !error && (
 				<Grid container>
-					<Grid item xs={12} sm={12} md={12} lg={6} className={styles.left}>
-						<Image
-							src={`http://127.0.0.1:8000${data.image}`}
-							height={500}
-							width={500}
-						/>
+					<Grid item xs={12} sm={12} md={6} lg={6} className={styles.left}>
+						<Image src={data.image} height={500} width={500} />
 						{/* <ImageGallery
 							items={[{ original: `http://127.0.0.1:8000${data.image}` }]}
 						></ImageGallery> */}
 					</Grid>
 
-					<Grid item xs={12} sm={12} md={12} lg={6} className={styles.right}>
+					<Grid item xs={12} sm={12} md={6} lg={6} className={styles.right}>
 						<Typography className={styles['product-name']} variant="h4">
 							{data.name}
 						</Typography>
@@ -43,10 +46,9 @@ const product: NextPage | React.FC<Product> = () => {
 						></ProductRating>
 						<Typography variant="h4">£{data.price}</Typography>
 						<Typography variant="body1">{data.description}</Typography>
-						{/* <Divider sx={{ paddingTop: 5 }} /> */}
-						<ColorButtons></ColorButtons>
+						<BasicSelect stock={data.countInStock}></BasicSelect>
+						<ColorButtons onClick={addToCartHandler}></ColorButtons>
 					</Grid>
-
 					<Container className={styles['bottom-section']}>
 						<TabPanel></TabPanel>
 					</Container>

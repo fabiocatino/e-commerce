@@ -1,14 +1,16 @@
 import '../styles/globals.css';
 import { Provider } from 'react-redux';
-import type { AppProps } from 'next/app';
 import Layout from '../components/Layout/Layout';
 import store from '../store/store';
 import { StyledEngineProvider } from '@mui/styled-engine';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+import { CssBaseline } from '@mui/material';
+
+export default function MyApp({ Component, pageProps }) {
 	return (
 		<StyledEngineProvider injectFirst>
 			<Provider store={store}>
+				<CssBaseline />
 				<Layout>
 					<Component {...pageProps} />
 				</Layout>
@@ -16,3 +18,4 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 		</StyledEngineProvider>
 	);
 }
+
