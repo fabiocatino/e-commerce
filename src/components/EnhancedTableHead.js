@@ -64,6 +64,12 @@ const headCells = [
 		disablePadding: false,
 		label: 'Price',
 	},
+	{
+		id: 'action',
+		numeric: true,
+		disablePadding: false,
+		label: 'Action',
+	},
 ];
 
 export default function EnhancedTableHead(props) {

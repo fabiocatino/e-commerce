@@ -1,13 +1,9 @@
+import Head from 'next/head';
 
-import Head from 'next/head'
-
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 
 const IndexPage = () => {
-  return (
-    <div className={styles.container}>
-    </div>
-  )
-}
+	return <div className={styles.container}></div>;
+};
 
-export default IndexPage
+export default IndexPage;

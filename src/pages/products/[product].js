@@ -17,10 +17,15 @@ const product = () => {
 	const router = useRouter();
 	const itemId = router.query.product;
 	const { data, isLoading, error } = useGetProductQuery(itemId);
+	const [quantity, setQuantity] = useState(0);
 	const dispatch = useDispatch();
 
+	const setItemQuantity = (quantity) => {
+		setQuantity(quantity);
+	};
+
 	const addToCartHandler = () => {
-		dispatch(cartActions.addItem({ ...data, quantity: 1 }));
+		dispatch(cartActions.addItem({ ...data, quantity: quantity }));
 	};
 
 	return (
@@ -46,7 +51,10 @@ const product = () => {
 						></ProductRating>
 						<Typography variant="h4">£{data.price}</Typography>
 						<Typography variant="body1">{data.description}</Typography>
-						<BasicSelect stock={data.countInStock}></BasicSelect>
+						<BasicSelect
+							onGetQuantity={setItemQuantity}
+							stock={data.countInStock}
+						></BasicSelect>
 						<ColorButtons onClick={addToCartHandler}></ColorButtons>
 					</Grid>
 					<Container className={styles['bottom-section']}>

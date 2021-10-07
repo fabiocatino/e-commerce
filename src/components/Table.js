@@ -9,29 +9,34 @@ import {
 	TableRow,
 	Paper,
 	Checkbox,
+	MenuItem,
+	Button,
 } from '@mui/material/';
-
-import { useSelector } from 'react-redux';
 import Image from 'next/image';
 import EnhancedTableHead, {
 	getComparator,
 	stableSort,
 } from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
+import BasicSelect from './Products/Select';
+import Select from '@mui/material/Select';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartActions } from '../services/cartSlice';
 
 export default function EnhancedTable() {
-	const [order, setOrder] = React.useState('asc');
-	const [orderBy, setOrderBy] = React.useState('Product');
-	const [selected, setSelected] = React.useState([]);
-	const [page, setPage] = React.useState(0);
-	const [dense, setDense] = React.useState(false);
-	const [rowsPerPage, setRowsPerPage] = React.useState(10);
+	const [order, setOrder] = useState('asc');
+	const [orderBy, setOrderBy] = useState('Product');
+	const [selected, setSelected] = useState([]);
+	const [page, setPage] = useState(0);
+	const [dense, setDense] = useState(false);
+	const [rowsPerPage, setRowsPerPage] = useState(10);
 	const items = useSelector((state) => state.cart.cart.cartItems);
 	const [rows, setRows] = useState([]);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setRows(items);
-	}, [rows]);
+	}, [rows, items]);
 
 	const handleRequestSort = (event, property) => {
 		const isAsc = orderBy === property && order === 'asc';
@@ -48,13 +53,13 @@ export default function EnhancedTable() {
 		setSelected([]);
 	};
 
-	const handleClick = (event, name, row) => {
-		const selectedIndex = selected.indexOf(name);
+	const handleClick = (event, row) => {
+		const selectedIndex = selected.indexOf(row);
 
 		let newSelected = [];
 
 		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, name, row);
+			newSelected = newSelected.concat(selected, row);
 		} else if (selectedIndex === 0) {
 			newSelected = newSelected.concat(selected.slice(1));
 		} else if (selectedIndex === selected.length - 1) {
@@ -68,27 +73,35 @@ export default function EnhancedTable() {
 
 		setSelected(newSelected);
 	};
-
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
 	};
-
-	console.log(selected)
-
 	const handleChangeRowsPerPage = (event) => {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
 
-
 	const handleChangeDense = (event) => {
 		setDense(event.target.checked);
 	};
+	const isSelected = (row) => selected.indexOf(row) !== -1;
 
-	const isSelected = (name) => selected.indexOf(name) !== -1;
+	const changeQuantityHandler = (index) => (e) => {
+		dispatch(
+			cartActions.addItem({
+				...items[index],
+				quantity: parseInt(e.target.innerText),
+			})
+		);
+	};
 
 	const emptyRows =
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+	const deleteItemHandler = (index) => () => {
+		console.log(items[index]);
+		dispatch(cartActions.deleteItem(items[index]));
+	};
 
 	return (
 		<Box sx={{ width: '100%' }}>
@@ -115,13 +128,12 @@ export default function EnhancedTable() {
 							{stableSort(rows, getComparator(order, orderBy))
 								.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 								.map((row, index) => {
-									const isItemSelected = isSelected(row.name);
+									const isItemSelected = isSelected(row);
 									const labelId = `enhanced-table-checkbox-${index}`;
 
 									return (
 										<TableRow
 											hover
-											onClick={(event) => handleClick(event, row.name, row)}
 											role="checkbox"
 											aria-checked={isItemSelected}
 											tabIndex={-1}
@@ -130,6 +142,7 @@ export default function EnhancedTable() {
 										>
 											<TableCell padding="checkbox">
 												<Checkbox
+													onClick={(event) => handleClick(event, row, index)}
 													color="primary"
 													checked={isItemSelected}
 													inputProps={{
@@ -146,8 +159,31 @@ export default function EnhancedTable() {
 												<Image src={row.image} height={100} width={100}></Image>
 											</TableCell>
 											<TableCell align="right">{row.name}</TableCell>
-											<TableCell align="right">{row.quantity}</TableCell>
-											<TableCell align="right">{row.price}</TableCell>
+											<TableCell align="right">
+												<Select value="">
+													{[...Array(row.countInStock).keys()].map((item) => (
+														<MenuItem
+															onClick={changeQuantityHandler(index)}
+															key={item + 1}
+															value={item ? item + 1 : 0}
+														>
+															{item + 1}
+														</MenuItem>
+													))}
+												</Select>
+												{row.quantity}
+											</TableCell>
+
+											<TableCell align="right">£{row.price}</TableCell>
+											<TableCell align="right">
+												<Button
+													variant="contained"
+													color="error"
+													onClick={deleteItemHandler(index)}
+												>
+													REMOVE
+												</Button>
+											</TableCell>
 										</TableRow>
 									);
 								})}

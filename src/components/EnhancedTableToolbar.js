@@ -10,10 +10,8 @@ import { cartActions } from '../services/cartSlice';
 
 const EnhancedTableToolbar = (props) => {
 	const dispatch = useDispatch();
-	const deleteItemHandler = (e) => {
-		dispatch(cartActions.removeItem(props.selectedItems));
-	};
-	// console.log(props.selectedItems)
+	const deleteItemHandler = (e) => {};
+
 	const { numSelected } = props;
 
 	return (

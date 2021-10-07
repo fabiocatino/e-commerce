@@ -3,23 +3,19 @@ import { Container, Grid, Typography, Box, Button } from '@mui/material';
 import styles from './Cart.module.css';
 import EnhancedTable from '../components/Table';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const Cart = () => {
-	const [total, setTotal] = useState({});
+	const router = useRouter();
+	const [totalPrice, setTotalPrice] = useState(0);
+	const [totalQuantity, setTotalQuantity] = useState(0);
 
-	const myTotal = useSelector((state) => {
-		let totalPrice = 0;
-		let totalQuantity = 0;
-		for (let item in state.cart.cart.cartItems) {
-			totalPrice += state.cart.cart.cartItems[item].price;
-			totalQuantity += state.cart.cart.cartItems[item].quantity;
-		}
-		return { totalPrice, totalQuantity };
-	});
+	const cartItems = useSelector((state) => state.cart.cart.cartItems);
 
 	useEffect(() => {
-		setTotal(myTotal);
-	}, []);
+		setTotalPrice(cartItems.reduce((a, c) => a + c.quantity * c.price, 0));
+		setTotalQuantity(cartItems.reduce((a, c) => a + c.quantity, 0));
+	}, [totalPrice, totalQuantity, cartItems]);
 
 	const pluralize = (val, word, plural = word + 's') => {
 		const _pluralize = (num, word, plural = word + 's') =>
@@ -30,29 +26,34 @@ const Cart = () => {
 	};
 
 	return (
-		<Container>
+		<div className={styles.container}>
 			<section className={styles.title}>
 				<Typography variant="h3">Shopping Cart</Typography>
+				<Button onClick={() => router.back()}>Go back</Button>
 			</section>
-			<section className={styles.checkout}>
-				<EnhancedTable></EnhancedTable>
-
-				<Box className={styles['checkout-box']}>
-					<Typography variant="h5">
-						{`Subtotal (${pluralize(total.totalQuantity, 'item')}):  £${
-							total.totalPrice
-						}`}
-					</Typography>
-					<Button
-						className={styles['checkout-button']}
-						variant="contained"
-						color="success"
-					>
-						Checkout
-					</Button>
-				</Box>
-			</section>
-		</Container>
+			<div className={styles.checkout}>
+				{/* <Grid item lg={8}> */}
+					<EnhancedTable></EnhancedTable>
+				{/* </Grid>
+				<Grid item lg={12}> */}
+					<Box className={styles['checkout-box']}>
+						<Typography variant="h5">
+							{`Subtotal (${totalQuantity} ${' '} ${pluralize(
+								totalQuantity,
+								'item'
+							)}):  £${totalPrice}`}
+						</Typography>
+						<Button
+							className={styles['checkout-button']}
+							variant="contained"
+							color="success"
+						>
+							Checkout
+						</Button>
+					</Box>
+				{/* </Grid> */}
+			</div>
+		</div>
 	);
 };
 

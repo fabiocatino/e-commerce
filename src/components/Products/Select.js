@@ -4,8 +4,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../services/cartSlice';
 import { useGetProductQuery } from '../../services/productsApi';
 import { useRouter } from 'next/router';
 
@@ -14,15 +12,13 @@ export default function BasicSelect(props) {
 	const itemId = router.query.product;
 	const { data } = useGetProductQuery(itemId);
 
-	const dispatch = useDispatch();
-	const stock = useSelector((state) => state.cart.cart.cartItems);
 	const [number, setNumber] = useState(0);
 
 	const handleChange = (e) => {
-		dispatch(cartActions.addItem({ ...data, quantity: e.target.value }));
+		props.onGetQuantity(e.target.value);
 		setNumber(e.target.value);
 	};
-    
+
 	return (
 		<Box sx={{ minWidth: 120 }}>
 			<FormControl fullWidth>
@@ -34,7 +30,7 @@ export default function BasicSelect(props) {
 					label="Quantity"
 					onChange={handleChange}
 				>
-					{[...Array(props.stock).keys()].map((item) => (
+					{[...Array(data.countInStock).keys()].map((item) => (
 						<MenuItem key={item + 1} value={item ? item + 1 : 0}>
 							{item + 1}
 						</MenuItem>

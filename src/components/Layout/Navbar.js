@@ -7,11 +7,15 @@ import CustomizedBadges from '../Products/Badge';
 import { useSelector } from 'react-redux';
 
 const Navbar = () => {
-	const items = useSelector((state) => state.cart.cart.cartItems.length);
+	const items = useSelector((state) => state.cart.cart.cartItems);
 	const [cartItems, setCartItems] = useState(0);
 
 	useEffect(() => {
-		setCartItems(items);
+		let temp = 0;
+		items.map((item) => {
+			temp += [item].reduce((a, c) => a + c.quantity, 0);
+		});
+		setCartItems(temp);
 	}, [items, cartItems]);
 
 	return (

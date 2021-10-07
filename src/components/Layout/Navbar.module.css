@@ -5,7 +5,6 @@
 	align-items: center;
 	padding: 0px 15px;
 	height: 80px;
-
 }
 
 .navbar-items {
@@ -17,5 +16,5 @@
 .navbar-items h6 {
 	display: flex;
 	align-items: center;
-    gap: 5px;
+	gap: 5px;
 }

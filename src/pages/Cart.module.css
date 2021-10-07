@@ -1,12 +1,16 @@
+.container {
+	padding: 0 5rem;
+}
+
 .title {
-	margin-top: 2rem;
+	margin-top: 3rem;
 }
 
 .checkout {
 	margin-top: 5rem;
 	display: flex;
 	flex-direction: row;
-    flex-wrap: wrap;
+	/* flex-wrap: wrap; */
 	justify-content: space-between;
 	gap: 5rem;
 }
@@ -20,6 +24,6 @@
 }
 
 .checkout-button {
-    margin: 1rem 0rem;
-    border-radius: 10%;
+	margin: 1rem 0rem;
+	border-radius: 10%;
 }
