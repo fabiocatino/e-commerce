@@ -25,6 +25,11 @@ const Navbar = () => {
 					SHOP
 				</Typography>
 			</Link>
+			<Link href="/products">
+				<Typography variant="h5" className={styles['navbar-logo']}>
+					PRODUCTS
+				</Typography>
+			</Link>
 			<ul className={styles['navbar-items']}>
 				<Link href="/cart">
 					<Typography variant="h6">

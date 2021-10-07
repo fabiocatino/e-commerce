@@ -11,7 +11,6 @@ export default function BasicSelect(props) {
 	const router = useRouter();
 	const itemId = router.query.product;
 	const { data } = useGetProductQuery(itemId);
-
 	const [number, setNumber] = useState(0);
 
 	const handleChange = (e) => {
@@ -26,12 +25,12 @@ export default function BasicSelect(props) {
 				<Select
 					labelId="demo-simple-select-label"
 					id="demo-simple-select"
-					value={number}
+					value={number ? number : 1}
 					label="Quantity"
 					onChange={handleChange}
 				>
 					{[...Array(data.countInStock).keys()].map((item) => (
-						<MenuItem key={item + 1} value={item ? item + 1 : 0}>
+						<MenuItem key={item + 1} value={item + 1}>
 							{item + 1}
 						</MenuItem>
 					))}

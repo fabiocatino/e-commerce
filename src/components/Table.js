@@ -11,6 +11,7 @@ import {
 	Checkbox,
 	MenuItem,
 	Button,
+	Typography,
 } from '@mui/material/';
 import Image from 'next/image';
 import EnhancedTableHead, {
@@ -48,6 +49,7 @@ export default function EnhancedTable() {
 		if (event.target.checked) {
 			const newSelecteds = rows.map((n) => n.name);
 			setSelected(newSelecteds);
+
 			return;
 		}
 		setSelected([]);
@@ -99,7 +101,6 @@ export default function EnhancedTable() {
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
 	const deleteItemHandler = (index) => () => {
-		console.log(items[index]);
 		dispatch(cartActions.deleteItem(items[index]));
 	};
 
@@ -110,6 +111,7 @@ export default function EnhancedTable() {
 					selectedItems={selected}
 					numSelected={selected.length}
 				/>
+
 				<TableContainer>
 					<Table
 						sx={{ minWidth: 750 }}
@@ -124,6 +126,7 @@ export default function EnhancedTable() {
 							onRequestSort={handleRequestSort}
 							rowCount={rows.length}
 						/>
+
 						<TableBody>
 							{stableSort(rows, getComparator(order, orderBy))
 								.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -150,6 +153,7 @@ export default function EnhancedTable() {
 													}}
 												/>
 											</TableCell>
+
 											<TableCell
 												component="th"
 												id={labelId}

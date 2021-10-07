@@ -5,11 +5,8 @@ import { Toolbar, Typography, Tooltip } from '@mui/material/';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../services/cartSlice';
 
 const EnhancedTableToolbar = (props) => {
-	const dispatch = useDispatch();
 	const deleteItemHandler = (e) => {};
 
 	const { numSelected } = props;

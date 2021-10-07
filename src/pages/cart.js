@@ -11,7 +11,7 @@ const Cart = () => {
 	const [totalQuantity, setTotalQuantity] = useState(0);
 
 	const cartItems = useSelector((state) => state.cart.cart.cartItems);
-
+	console.log(cartItems);
 	useEffect(() => {
 		setTotalPrice(cartItems.reduce((a, c) => a + c.quantity * c.price, 0));
 		setTotalQuantity(cartItems.reduce((a, c) => a + c.quantity, 0));
@@ -31,10 +31,15 @@ const Cart = () => {
 				<Typography variant="h3">Shopping Cart</Typography>
 				<Button onClick={() => router.back()}>Go back</Button>
 			</section>
-			<div className={styles.checkout}>
-				{/* <Grid item lg={8}> */}
+			{totalQuantity=== 0 && (
+				<Typography variant="h3">Your basket is empty.</Typography>
+			)}
+
+			{totalQuantity >= 1 && (
+				<div className={styles.checkout}>
+					{/* <Grid item lg={8}> */}
 					<EnhancedTable></EnhancedTable>
-				{/* </Grid>
+					{/* </Grid>
 				<Grid item lg={12}> */}
 					<Box className={styles['checkout-box']}>
 						<Typography variant="h5">
@@ -51,8 +56,9 @@ const Cart = () => {
 							Checkout
 						</Button>
 					</Box>
-				{/* </Grid> */}
-			</div>
+					{/* </Grid> */}
+				</div>
+			)}
 		</div>
 	);
 };

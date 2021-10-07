@@ -17,7 +17,7 @@ const product = () => {
 	const router = useRouter();
 	const itemId = router.query.product;
 	const { data, isLoading, error } = useGetProductQuery(itemId);
-	const [quantity, setQuantity] = useState(0);
+	const [quantity, setQuantity] = useState(1);
 	const dispatch = useDispatch();
 
 	const setItemQuantity = (quantity) => {

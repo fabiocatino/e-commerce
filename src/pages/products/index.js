@@ -17,7 +17,7 @@ const Index = () => {
 			{isLoading && <Spinner />}
 			{!isLoading && !error && (
 				<Grid container className={style.main}>
-					{data.map((item) => (
+					{data.map((item, index) => (
 						<Grid
 							item
 							xs={6}
@@ -28,7 +28,7 @@ const Index = () => {
 							className={style.card}
 						>
 							<MediaCard
-								id={item._id}
+								_id={item._id}
 								image={item.image}
 								title={item.name}
 								description={item.description}
