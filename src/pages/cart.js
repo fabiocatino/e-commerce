@@ -11,7 +11,6 @@ const Cart = () => {
 	const [totalQuantity, setTotalQuantity] = useState(0);
 
 	const cartItems = useSelector((state) => state.cart.cart.cartItems);
-	console.log(cartItems);
 	useEffect(() => {
 		setTotalPrice(cartItems.reduce((a, c) => a + c.quantity * c.price, 0));
 		setTotalQuantity(cartItems.reduce((a, c) => a + c.quantity, 0));
@@ -31,7 +30,7 @@ const Cart = () => {
 				<Typography variant="h3">Shopping Cart</Typography>
 				<Button onClick={() => router.back()}>Go back</Button>
 			</section>
-			{totalQuantity=== 0 && (
+			{totalQuantity === 0 && (
 				<Typography variant="h3">Your basket is empty.</Typography>
 			)}
 

@@ -177,7 +177,7 @@ export default function EnhancedTable() {
 												</Select>
 												{row.quantity}
 											</TableCell>
-
+														
 											<TableCell align="right">£{row.price}</TableCell>
 											<TableCell align="right">
 												<Button

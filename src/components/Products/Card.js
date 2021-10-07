@@ -10,18 +10,13 @@ import ProductRating from './ProductRating';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../services/cartSlice';
-import { useGetAllProductsQuery } from '../../services/productsApi';
+import { useGetProductQuery } from '../../services/productsApi';
 
 const MediaCard = (props) => {
 	const dispatch = useDispatch();
-	const items = useGetAllProductsQuery();
-
+	const item = useGetProductQuery(props._id);
 	const addToCartHandler = () => {
-		items.data.forEach((i) => {
-			if (i._id === props._id) {
-				dispatch(cartActions.addItem({ ...i, quantity: 1 }));
-			}
-		});
+		dispatch(cartActions.addItem({ ...item.data, quantity: 1 }));
 	};
 
 	return (
