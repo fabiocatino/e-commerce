@@ -1,6 +1,8 @@
 import nc from 'next-connect';
 import db from '../../utils/db';
 import Product from '../../models/Product';
+import bcrypt from 'bcryptjs';
+import User from '../../models/User';
 
 const handler = nc();
 
@@ -79,10 +81,27 @@ const products = [
 	},
 ];
 
+const users = [
+	{
+		name: 'admin',
+		email: 'admin@gmail.com',
+		password: bcrypt.hashSync('admin'),
+		isAdmin: true,
+	},
+	{
+		name: 'Summer',
+		email: 'Summer@gmail.com',
+		password: bcrypt.hashSync('summer'),
+		isAdmin: false,
+	},
+];
+
 handler.get(async (req, res) => {
 	await db.connect();
 	await Product.deleteMany();
 	await Product.insertMany(products);
+	await User.deleteMany();
+	await User.insertMany(users);
 	await db.disconnect();
 	res.send({ message: 'seeded successfully' });
 });

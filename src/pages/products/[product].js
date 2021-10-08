@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Container, Divider, Grid, Typography } from '@mui/material';
+import {
+	Container,
+	Divider,
+	Grid,
+	Stack,
+	Typography,
+	Button,
+} from '@mui/material';
 import Image from 'next/image';
 import styles from './Product.module.css';
 import ProductRating from '../../components/Products/ProductRating';
 import TabPanel from '../../components/Products/Tabs';
-import ColorButtons from '../../components/Button';
 import { useGetProductQuery } from '../../services/productsApi';
 import ImageGallery from 'react-image-gallery';
 import Spinner from '../../components/Layout/Spinner';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { cartActions } from '../../services/cartSlice';
 import BasicSelect from '../../components/Products/Select';
 
@@ -55,7 +61,17 @@ const product = () => {
 							onGetQuantity={setItemQuantity}
 							stock={data.countInStock}
 						></BasicSelect>
-						<ColorButtons onClick={addToCartHandler}></ColorButtons>
+						<Stack direction="row" spacing={2}>
+							<Button
+								variant="contained"
+								color="success"
+								size="large"
+								sx={{ borderRadius: 50 }}
+								onClick={addToCartHandler}
+							>
+								ADD TO CART
+							</Button>
+						</Stack>
 					</Grid>
 					<Container className={styles['bottom-section']}>
 						<TabPanel></TabPanel>

@@ -1,11 +1,9 @@
 import { Container, Grid } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import MediaCard from '../../components/Products/Card';
 import style from './Index.module.css';
-import { useDispatch, useSelector } from 'react-redux';
 import { useGetAllProductsQuery } from '../../services/productsApi';
 import Spinner from '../../components/Layout/Spinner';
-import { cartActions } from '../../services/cartSlice';
 
 const Index = () => {
 	const { data, isLoading, error } = useGetAllProductsQuery('');
@@ -33,15 +31,5 @@ const Index = () => {
 		</Container>
 	);
 };
-
-// export async function getStaticProps() {
-
-// 	return {
-// 		props: {
-// 			products: data,
-// 		},
-// 		revalidate: 1,
-// 	};
-// }
 
 export default Index;

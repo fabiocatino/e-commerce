@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, Link as MLink } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import styles from './Navbar.module.css';
 import PersonIcon from '@mui/icons-material/Person';
@@ -20,26 +20,34 @@ const Navbar = () => {
 
 	return (
 		<nav className={styles.navbar}>
-			<Link href="/">
+			<Link href="/" passHref={true}>
+			<MLink underline="hover" color="none">
 				<Typography variant="h5" className={styles['navbar-logo']}>
 					SHOP
 				</Typography>
+				</MLink>
 			</Link>
-			<Link href="/products">
+			<Link href="/products" passHref={true}>
+			<MLink underline="hover" color="none">
 				<Typography variant="h5" className={styles['navbar-logo']}>
 					PRODUCTS
 				</Typography>
+				</MLink>
 			</Link>
 			<ul className={styles['navbar-items']}>
-				<Link href="/cart">
+				<Link href="/cart" passHref={true}>
+				<MLink underline="hover" color="none">
 					<Typography variant="h6">
 						<CustomizedBadges value={cartItems}></CustomizedBadges>
 					</Typography>
+					</MLink>
 				</Link>
-				<Link href="/">
-					<Typography variant="h6">
-						<PersonIcon /> Login
-					</Typography>
+				<Link href="/login" passHref={true}>
+					<MLink underline="hover" color="none">
+						<Typography variant="h6">
+							<PersonIcon /> Login
+						</Typography>
+					</MLink>
 				</Link>
 			</ul>
 		</nav>

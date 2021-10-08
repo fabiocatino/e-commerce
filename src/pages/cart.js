@@ -36,10 +36,8 @@ const Cart = () => {
 
 			{totalQuantity >= 1 && (
 				<div className={styles.checkout}>
-					{/* <Grid item lg={8}> */}
 					<EnhancedTable></EnhancedTable>
-					{/* </Grid>
-				<Grid item lg={12}> */}
+
 					<Box className={styles['checkout-box']}>
 						<Typography variant="h5">
 							{`Subtotal (${totalQuantity} ${' '} ${pluralize(
@@ -51,11 +49,11 @@ const Cart = () => {
 							className={styles['checkout-button']}
 							variant="contained"
 							color="success"
+							onClick={() => router.push('/login')}
 						>
 							Checkout
 						</Button>
 					</Box>
-					{/* </Grid> */}
 				</div>
 			)}
 		</div>
