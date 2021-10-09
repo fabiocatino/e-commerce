@@ -1,5 +1,5 @@
 import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import db from '../../../utils/db';
 import User from '../../../models/User';
 import { verifyPassword } from '../../../utils/auth';
@@ -10,7 +10,7 @@ export default NextAuth({
 		maxAge: 30 * 24 * 60 * 60,
 	},
 	providers: [
-		Providers.Credentials({
+		CredentialsProvider({
 			async authorize(credentials) {
 				await db.connect();
 				const exsistingUser = await User.findOne({ email: credentials.email });

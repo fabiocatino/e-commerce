@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import CustomizedBadges from '../Products/Badge';
 import { useSelector } from 'react-redux';
-import { useSession, signOut } from 'next-auth/client';
+import { useSession, signOut } from 'next-auth/react';
 
 import {
 	Typography,
@@ -14,11 +14,10 @@ import {
 import PersonIcon from '@mui/icons-material/Person';
 import styles from './Navbar.module.css';
 
-
 const Navbar = () => {
 	const items = useSelector((state) => state.cart.cart.cartItems);
 	const [cartItems, setCartItems] = useState(0);
-	const [session, loading] = useSession();
+	const { data: session, status } = useSession()
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	useEffect(() => {
@@ -38,8 +37,8 @@ const Navbar = () => {
 	};
 
 	const logoutHandler = () => {
-		signOut()
-	}
+		signOut();
+	};
 
 	return (
 		<nav className={styles.navbar}>
@@ -58,7 +57,7 @@ const Navbar = () => {
 				</MLink>
 			</Link>
 			<ul className={styles['navbar-items']}>
-				{!session && !loading && (
+				{!session && status !== 'loading' && (
 					<Link href="/login" passHref={true}>
 						<MLink underline="hover" color="none">
 							<Typography variant="h6">
@@ -88,7 +87,7 @@ const Navbar = () => {
 							<Typography variant="h6">Hello, {session.user.name}</Typography>
 						</Button>
 						<Menu
-							sx={{marginTop: 7}}
+							sx={{ marginTop: 7 }}
 							id="menu-appbar"
 							anchorEl={anchorEl}
 							anchorOrigin={{

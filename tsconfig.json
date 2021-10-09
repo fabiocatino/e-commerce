@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -14,6 +18,12 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Layout/Spinner.js", "src/components/Layout/Navbar.js", "src/components/Layout/Layout.js", "src/components/Layout/Footer.js", "src/pages/index.js", "src/pages/products/[product].js", "src/pages/products/index.js", "src/components/Button.js", "src/pages/api/counter.js", "src/services/productsApi.js", "src/store/store.js", "src/components/Products/ProductRating.js", "src/components/Products/Card.js", "src/pages/_app.js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

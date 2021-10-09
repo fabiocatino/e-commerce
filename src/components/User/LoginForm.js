@@ -9,7 +9,7 @@ import {
 import styles from './LoginForm.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { signIn } from 'next-auth/client';
+import { signIn } from 'next-auth/react';
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('');

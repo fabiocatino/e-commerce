@@ -2,8 +2,9 @@ import nc from 'next-connect';
 import db from '../../../utils/db';
 import User from '../../../models/User';
 import { HashPassword } from '../../../utils/auth';
+import Cors from 'cors';
 
-const handler = nc();
+const handler = nc().use(Cors());
 
 handler.post(async (req, res) => {
 	if (req.method === 'POST') {
