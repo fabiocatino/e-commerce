@@ -6,24 +6,30 @@ import {
 	Button,
 	Link as Mlink,
 } from '@mui/material';
-import styles from './Form.module.css';
+import styles from './SignupForm.module.css';
 import Link from 'next/link';
 import { useAddUserMutation } from '../../services/userApi';
 
-const Form = () => {
+const SignupForm = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password1, setPassword1] = useState('');
 	const [password2, setPassword2] = useState(undefined);
 
-	const [addUser] = useAddUserMutation();
-	function submitHandler(e) {
+	const [addUser, { isLoading, isSuccess, error }] = useAddUserMutation();
+
+	async function submitHandler(e) {
 		e.preventDefault();
-		addUser({
-			name,
-			email,
-			password1,
-		});
+
+		try {
+			await addUser({
+				name,
+				email,
+				password1,
+			}).unwrap();
+		} catch (error) {
+			console.log(error.data);
+		}
 	}
 
 	return (
@@ -79,9 +85,9 @@ const Form = () => {
 					Submit
 				</Button>
 				<Typography variant="subtitle1" className={styles.subtitle}>
-					Don't have an account?
-					<Link href="/register" passHref={true}>
-						<Mlink>Register</Mlink>
+					Already have an account?
+					<Link href="/login" passHref={true}>
+						<Mlink>Log in</Mlink>
 					</Link>
 				</Typography>
 			</form>
@@ -89,4 +95,4 @@ const Form = () => {
 	);
 };
 
-export default Form;
+export default SignupForm;

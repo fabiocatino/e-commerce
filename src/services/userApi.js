@@ -6,12 +6,6 @@ export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: (build) => ({
-		// getAllProducts: build.query({
-		// 	query: () => baseUrl,
-		// }),
-		// getProduct: build.query({
-		// 	query: (_id) => `${baseUrl}/${_id}`,
-		// }),
 		addUser: build.mutation({
 			query: (body) => ({
 				url: `${baseUrl}/signup`,

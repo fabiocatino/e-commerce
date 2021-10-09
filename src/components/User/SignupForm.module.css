@@ -1,0 +1,30 @@
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	margin-top: 10rem;
+	justify-content: center;
+	align-items: center;
+}
+
+.textfield {
+	width: 500px;
+}
+
+.button {
+	border-radius: 50px;
+	display: flex;
+	align-self: start;
+}
+
+.subtitle {
+	display: flex;
+	align-self: start;
+	gap: 10px;
+}
