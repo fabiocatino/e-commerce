@@ -1,20 +1,30 @@
-import React, { useState, useEffect, useCallBack } from 'react';
-import { Container, Grid, Typography, Box, Button } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Typography, Box, Button } from '@mui/material';
 import styles from './Cart.module.css';
 import EnhancedTable from '../components/Table';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { cartActions } from '../services/cartSlice';
 
 const Cart = () => {
 	const router = useRouter();
+	const dispatch = useDispatch();
 	const [totalPrice, setTotalPrice] = useState(0);
-	const [totalQuantity, setTotalQuantity] = useState(0);
+	const [totalQuantity, setTotalQuantity] = useState(null);
+	const [cartItems, setCartItems] = useState([]);
 
-	const cartItems = useSelector((state) => state.cart.cart.cartItems);
+	const items = useSelector((state) => state.cart.cart.cartItems);
+
 	useEffect(() => {
+		setCartItems(items);
 		setTotalPrice(cartItems.reduce((a, c) => a + c.quantity * c.price, 0));
 		setTotalQuantity(cartItems.reduce((a, c) => a + c.quantity, 0));
-	}, [totalPrice, totalQuantity, cartItems]);
+	}, [totalPrice, totalQuantity, cartItems, items]);
+
+	const checkoutHandler = () => {
+		router.push('/checkout');
+		dispatch(cartActions.addItem({...cartItems[0],  totalPrice: totalPrice }));
+	};
 
 	const pluralize = (val, word, plural = word + 's') => {
 		const _pluralize = (num, word, plural = word + 's') =>
@@ -49,7 +59,7 @@ const Cart = () => {
 							className={styles['checkout-button']}
 							variant="contained"
 							color="success"
-							onClick={() => router.push('/login')}
+							onClick={checkoutHandler}
 						>
 							Checkout
 						</Button>

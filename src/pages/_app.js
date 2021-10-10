@@ -18,6 +18,8 @@ export default function App({
 					<CssBaseline />
 					<Layout>
 						<Head>
+							<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpQ2VKWv8pIxNINgWXBe9kWSCZRutk7S0&libraries=places"></script>
+
 							<title>E-commerce</title>
 							<meta
 								name="viewport"
@@ -32,5 +34,3 @@ export default function App({
 		</StyledEngineProvider>
 	);
 }
-
-

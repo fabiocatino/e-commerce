@@ -4,7 +4,6 @@ import MediaCard from '../../components/Products/Card';
 import style from './Index.module.css';
 import { useGetAllProductsQuery } from '../../services/productsApi';
 import Spinner from '../../components/Layout/Spinner';
-import { useSession, getSession } from 'next-auth/react';
 
 const Index = () => {
 	const { data, isLoading, error } = useGetAllProductsQuery('');

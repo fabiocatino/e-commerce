@@ -83,9 +83,7 @@ export default function EnhancedTable() {
 		setPage(0);
 	};
 
-	const handleChangeDense = (event) => {
-		setDense(event.target.checked);
-	};
+
 	const isSelected = (row) => selected.indexOf(row) !== -1;
 
 	const changeQuantityHandler = (index) => (e) => {
@@ -177,7 +175,7 @@ export default function EnhancedTable() {
 												</Select>
 												{row.quantity}
 											</TableCell>
-														
+
 											<TableCell align="right">£{row.price}</TableCell>
 											<TableCell align="right">
 												<Button

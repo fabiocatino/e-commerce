@@ -1,0 +1,9 @@
+.container div {
+	display: flex;
+	gap: 2rem;
+	padding-top: 10px;
+}
+
+.select {
+	min-width: 221.17px;
+}

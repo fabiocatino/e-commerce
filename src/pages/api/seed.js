@@ -3,6 +3,7 @@ import db from '../../utils/db';
 import Product from '../../models/Product';
 import bcrypt from 'bcryptjs';
 import User from '../../models/User';
+import Order from '../../models/Order';
 
 const handler = nc();
 
@@ -96,12 +97,39 @@ const users = [
 	},
 ];
 
+const order = [
+	{
+		user: '6162b72f3a582dc631d513ac',
+		orderItems: [
+			{
+				name: ' Playstation 5',
+				image: '/images/ps5-1060x663.jpg',
+				price: 499.0,
+			},
+		],
+		shippingInfo: {
+			fullName: 'Fabio',
+			address: 'Torre Tresca',
+			city: 'Bari',
+			postalCode: '70124',
+			country: 'Italy',
+		},
+		number: '#2928329',
+		totalPrice: 200.55,
+		paymentMethod: 'Credit Card',
+		isPaid: true,
+		isDelivered: true,
+	},
+];
+
 handler.get(async (req, res) => {
 	await db.connect();
-	await Product.deleteMany();
-	await Product.insertMany(products);
-	await User.deleteMany();
-	await User.insertMany(users);
+	// await Product.deleteMany();
+	// await Product.insertMany(products);
+	// await User.deleteMany();
+	// await User.insertMany(users);
+	await Order.deleteMany();
+	await Order.insertMany(order);
 	await db.disconnect();
 	res.send({ message: 'seeded successfully' });
 });
