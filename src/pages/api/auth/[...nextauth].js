@@ -9,6 +9,16 @@ export default NextAuth({
 		jwt: true,
 		maxAge: 30 * 24 * 60 * 60,
 	},
+	jwt: {
+		secret: `${process.env.SECRET}`,
+		// signingKey: {
+		// 	kty: "oct",
+		// 	kid: "9esMHG2p8vUkwOHNeeTNaGtIaC4MEJeQBt4sAlD72B0",
+		// 	alg: "HS512",
+		// 	k: "zhiQ6XmVdJ2_HOrOAFyxUCnAGmibKLHY5LkAYd3HDwcPKPojkcpMZWfc9UrevU8x8pB3RMhwujjNn2vikbTxSw",
+		// },
+	},
+
 	providers: [
 		CredentialsProvider({
 			async authorize(credentials) {
@@ -34,6 +44,7 @@ export default NextAuth({
 
 				return {
 					name: exsistingUser.name.split(' ')[0],
+					// name: exsistingUser.name,
 					email: exsistingUser.email,
 				};
 			},

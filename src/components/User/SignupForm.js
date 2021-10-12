@@ -20,7 +20,7 @@ const SignupForm = () => {
 
 	async function submitHandler(e) {
 		e.preventDefault();
-
+	
 		try {
 			await addUser({
 				name,

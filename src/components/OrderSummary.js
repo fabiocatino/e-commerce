@@ -7,11 +7,10 @@ const OrderSummary = () => {
 	const cart = useSelector((state) => state.cart.cart.cartItems);
 	const [basket, setBasket] = useState([]);
 	const [totalPrice, setTotalPrice] = useState(0);
-	console.log(basket);
 
 	useEffect(() => {
 		setBasket(cart);
-		setTotalPrice(cart[0].totalPrice);
+		setTotalPrice(cart[0].totalPrice.toFixed(2));
 	}, []);
 
 	return (
@@ -45,7 +44,7 @@ const OrderSummary = () => {
 								</li>
 							</div>
 							<li>
-								<Typography variant="body1">{item.price}</Typography>
+								<Typography variant="body1">£{item.price}</Typography>
 							</li>
 						</ul>
 					))}

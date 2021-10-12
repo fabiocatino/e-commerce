@@ -1,8 +1,7 @@
-import { Container, Box, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import React from 'react';
 import CheckoutForm from '../components/CheckoutForm';
 import OrderSummary from '../components/OrderSummary';
-
 import styles from './Checkout.module.css';
 
 const Checkout = () => {
@@ -15,7 +14,7 @@ const Checkout = () => {
 				</div>
 			</Grid>
 			<Grid item xs={12} sm={12} md={12} lg={5}>
-            <OrderSummary></OrderSummary>
+				<OrderSummary></OrderSummary>
 			</Grid>
 		</Grid>
 	);
