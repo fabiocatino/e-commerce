@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Box, Button } from '@mui/material';
 import styles from './Cart.module.css';
-import EnhancedTable from '../components/Table';
+import EnhancedTable from '../components/Order/Table';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { cartActions } from '../services/cartSlice';
@@ -23,7 +23,7 @@ const Cart = () => {
 
 	const checkoutHandler = () => {
 		router.push('/checkout');
-		dispatch(cartActions.addItem({...cartItems[0],  totalPrice: totalPrice }));
+		dispatch(cartActions.addItem({ ...cartItems[0], totalPrice: totalPrice }));
 	};
 
 	const pluralize = (val, word, plural = word + 's') => {
@@ -53,7 +53,7 @@ const Cart = () => {
 							{`Subtotal (${totalQuantity} ${' '} ${pluralize(
 								totalQuantity,
 								'item'
-							)}):  £${totalPrice}`}
+							)}):  £${totalPrice.toFixed(2)}`}
 						</Typography>
 						<Button
 							className={styles['checkout-button']}

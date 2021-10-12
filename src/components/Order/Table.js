@@ -19,10 +19,10 @@ import EnhancedTableHead, {
 	stableSort,
 } from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
-import BasicSelect from './Products/Select';
+// import BasicSelect from '../Products/Select';
 import Select from '@mui/material/Select';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../services/cartSlice';
+import { cartActions } from '../../services/cartSlice';
 
 export default function EnhancedTable() {
 	const [order, setOrder] = useState('asc');
