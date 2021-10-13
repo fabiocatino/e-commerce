@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import style from './Card.module.css';
 import ProductRating from './ProductRating';
 import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { cartActions } from '../../services/cartSlice';
 import { useGetProductQuery } from '../../services/productsApi';
 
@@ -18,7 +18,6 @@ const MediaCard = (props) => {
 	const addToCartHandler = () => {
 		dispatch(cartActions.addItem({ ...item.data, quantity: 1 }));
 	};
-
 	return (
 		<Card elevation={1} sx={{ maxWidth: 300 }}>
 			<CardMedia component="img" height="140" image={props.image} alt="img" />

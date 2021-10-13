@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import CustomizedBadges from '../Products/Badge';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useSession, signOut } from 'next-auth/react';
-
 import {
 	Typography,
 	Link as MLink,
@@ -17,7 +16,7 @@ import styles from './Navbar.module.css';
 const Navbar = () => {
 	const items = useSelector((state) => state.cart.cart.cartItems);
 	const [cartItems, setCartItems] = useState(0);
-	const { data: session, status } = useSession()
+	const { data: session, status } = useSession();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	useEffect(() => {
@@ -66,23 +65,13 @@ const Navbar = () => {
 						</MLink>
 					</Link>
 				)}
-				{/* <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton> */}
+
 				{session && (
 					<>
 						<Button
 							disableElevation={true}
 							color="inherit"
 							onClick={handleMenu}
-							// onMouseOver={() => setAnchorEl(true)}
 						>
 							<Typography variant="h6">Hello, {session.user.name}</Typography>
 						</Button>

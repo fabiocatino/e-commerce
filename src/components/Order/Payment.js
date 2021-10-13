@@ -1,10 +1,16 @@
+import { Button } from '@mui/material';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
+import styles from './Payment.module.css';
 
 const Payment = () => {
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.step.currentStep);
+
+	const onClickHandler = () => {
+		dispatch(checkoutAction.nextStep(step + 1));
+	};
 
 	return (
 		<div>
@@ -19,6 +25,16 @@ const Payment = () => {
 			saepe nulla dolore harum voluptas delectus eos consectetur sequi
 			dignissimos qui. Laudantium blanditiis quo, magni animi adipisci dolor
 			voluptas sequi maxime?
+			<Button
+				onClick={onClickHandler}
+				type="submit"
+				variant="contained"
+				color="success"
+				className={styles['submit-button']}
+				size="large"
+			>
+				REVIEW YOUR ORDER
+			</Button>
 		</div>
 	);
 };

@@ -19,7 +19,6 @@ handler.post(async (req, res) => {
 	if (req.method === 'POST') {
 		await db.connect();
 		const exsistingUser = await User.findOne({ email: email });
-
 		if (!exsistingUser) {
 			db.disconnect();
 			throw new Error('No user associated with this email address.');

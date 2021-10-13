@@ -3,9 +3,9 @@ import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
+import { Button } from '@mui/material';
 
 const steps = ['Billing Details', 'Payment Method', 'Review Order'];
 
@@ -18,12 +18,12 @@ export default function HorizontalLinearStepper() {
 		setActiveStep(step);
 	}, [step]);
 
-	const handleNext = () => {
-		dispatch(checkoutAction.nextStep(step + 1));
-	};
-
 	const handleBack = () => {
-		dispatch(checkoutAction.prevStep(step - 1));
+		if (activeStep === 2) {
+			dispatch(checkoutAction.prevStep(2 - 1));
+		} else if (activeStep === 1) {
+			dispatch(checkoutAction.prevStep(1 - 1));
+		}
 	};
 
 	return (
@@ -35,29 +35,13 @@ export default function HorizontalLinearStepper() {
 
 					return (
 						<Step key={label} {...stepProps}>
-							<StepLabel {...labelProps}>{label}</StepLabel>
+							<StepLabel {...labelProps}>
+								<Button onClick={handleBack}>{label}</Button>
+							</StepLabel>
 						</Step>
 					);
 				})}
 			</Stepper>
-
-			<React.Fragment>
-				<Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-					<Button
-						color="inherit"
-						disabled={activeStep === 0}
-						onClick={handleBack}
-						sx={{ mr: 1 }}
-					>
-						Back
-					</Button>
-					<Box sx={{ flex: '1 1 auto' }} />
-
-					<Button onClick={handleNext}>
-						{activeStep === steps.length - 1 ? 'Place order' : 'Next'}
-					</Button>
-				</Box>
-			</React.Fragment>
 		</Box>
 	);
 }

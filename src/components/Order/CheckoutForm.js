@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { TextField, Grid, Button } from '@mui/material';
 import styles from './CheckoutForm.module.css';
-import { useAddOrderMutation } from '../../services/ordersApi';
 import { useSelector, useDispatch } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
 
 export default function CheckoutForm() {
-	const [addOrder, { isLoading }] = useAddOrderMutation();
 	const dispatch = useDispatch();
-	const orderItems = useSelector((state) => state.cart.cart.cartItems);
 	const step = useSelector((state) => state.checkout.step.currentStep);
 
 	const {
@@ -19,16 +16,16 @@ export default function CheckoutForm() {
 	} = useForm();
 
 	const onSubmit = async (data) => {
-		try {
-			await addOrder({
+		// if (Object.values(data).length < 8) {
+		// 	return;
+		// }
+
+		dispatch(checkoutAction.nextStep(step + 1));
+		dispatch(
+			checkoutAction.addShippingInfo({
 				shippingInfo: data,
-				number: Math.random(),
-				orderItems: orderItems,
-				totalPrice: orderItems[0].totalPrice.toFixed(2),
-			}).unwrap();
-		} catch (error) {
-			console.log(error);
-		}
+			})
+		);
 	};
 
 	return (
@@ -272,6 +269,15 @@ export default function CheckoutForm() {
 						</div>
 					</>
 				)}
+				<Button
+					type="submit"
+					variant="contained"
+					color="success"
+					className={styles['submit-button']}
+					size="large"
+				>
+					SELECT PAYMENT METHOD
+				</Button>
 			</form>
 			{/* // 	type="submit"
 				// 	variant="contained"
@@ -281,16 +287,6 @@ export default function CheckoutForm() {
 				// >
 				// 	PLACE YOUR ORDER
 				// </Button>  */}
-			<Button
-				onClick={() => dispatch(checkoutAction.nextStep(step + 1))}
-				type="submit"
-				variant="contained"
-				color="success"
-				className={styles['submit-button']}
-				size="large"
-			>
-				SELECT PAYMENT METHOD
-			</Button>
 		</Grid>
 	);
 }

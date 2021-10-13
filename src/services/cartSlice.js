@@ -18,6 +18,7 @@ const cartSlice = createSlice({
 			const existItem = state.cart.cartItems.find(
 				(item) => item._id === newItem._id
 			);
+
 			const cartItems = existItem
 				? state.cart.cartItems.map((item) =>
 						item._id === existItem._id ? newItem : item
@@ -31,6 +32,10 @@ const cartSlice = createSlice({
 				(item) => item._id !== action.payload._id
 			);
 			Cookies.set('cartItems', JSON.stringify(cartItems));
+			return { ...state, cart: { ...state.cart, cartItems } };
+		},
+		deleteCart: (state) => {
+			Cookies.remove('cartItems');
 			return { ...state, cart: { ...state.cart, cartItems } };
 		},
 	},
