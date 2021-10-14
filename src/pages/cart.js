@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Typography, Box, Button } from '@mui/material';
-import styles from './Cart.module.css';
-import EnhancedTable from '../components/Order/Table';
-import { useSelector, useDispatch } from 'react-redux';
+import { Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-import { cartActions } from '../services/cartSlice';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import EnhancedTable from '../components/Order/Table';
+import {
+	cartActions,
+	useTotalQuantity,
+	useTotalPrice,
+} from '../services/cartSlice';
+import styles from './Cart.module.css';
 
 const Cart = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
-	const [totalPrice, setTotalPrice] = useState(0);
-	const [totalQuantity, setTotalQuantity] = useState(null);
-	const [cartItems, setCartItems] = useState([]);
 
-	const items = useSelector((state) => state.cart.cart.cartItems);
-
-	useEffect(() => {
-		setCartItems(items);
-		setTotalPrice(cartItems.reduce((a, c) => a + c.quantity * c.price, 0));
-		setTotalQuantity(cartItems.reduce((a, c) => a + c.quantity, 0));
-	}, [totalPrice, totalQuantity, cartItems, items]);
+	const itemsQuantity = useTotalQuantity();
+	const totalPrice = useTotalPrice();
 
 	const checkoutHandler = () => {
 		router.push('/checkout');
-		dispatch(cartActions.addItem({ ...cartItems[0], totalPrice: totalPrice }));
 	};
 
 	const pluralize = (val, word, plural = word + 's') => {
@@ -40,18 +35,18 @@ const Cart = () => {
 				<Typography variant="h3">Shopping Cart</Typography>
 				<Button onClick={() => router.back()}>Go back</Button>
 			</section>
-			{totalQuantity === 0 && (
+			{itemsQuantity === 0 && (
 				<Typography variant="h3">Your basket is empty.</Typography>
 			)}
 
-			{totalQuantity >= 1 && (
+			{itemsQuantity >= 1 && (
 				<div className={styles.checkout}>
 					<EnhancedTable></EnhancedTable>
 
 					<Box className={styles['checkout-box']}>
 						<Typography variant="h5">
-							{`Subtotal (${totalQuantity} ${' '} ${pluralize(
-								totalQuantity,
+							{`Subtotal (${itemsQuantity} ${' '} ${pluralize(
+								itemsQuantity,
 								'item'
 							)}):  £${totalPrice.toFixed(2)}`}
 						</Typography>

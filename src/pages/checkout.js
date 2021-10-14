@@ -7,14 +7,15 @@ import styles from './Checkout.module.css';
 import { useSelector } from 'react-redux';
 import Payment from '../components/Order/Payment';
 import ReviewOrder from '../components/Order/ReviewOrder';
+import { useTotalQuantity, useTotalPrice, useCartItems } from '../services/cartSlice';
 
 const Checkout = () => {
 	const step = useSelector((state) => state.checkout.step.currentStep);
-	const cartItems = useSelector((state) => state.cart.cart.cartItems);
+	const cartItems = useCartItems()
 
 	return (
 		<div>
-			{cartItems <= 0 && <p>No items in your basket.</p> }
+			{cartItems <= 0 && <p>No items in your basket.</p>}
 			{cartItems.length > 0 && (
 				<Grid container className={styles.container}>
 					<HorizontalLinearStepper></HorizontalLinearStepper>

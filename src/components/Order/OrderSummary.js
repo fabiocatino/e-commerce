@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import styles from './OrderSummary.module.css';
 import { useSelector } from 'react-redux';
 import { Typography, Avatar } from '@mui/material';
+import { useCartItems } from '../../services/cartSlice';
 
 const OrderSummary = () => {
-	const cart = useSelector((state) => state.cart.cart.cartItems);
+	const cart = useCartItems()
 	const [basket, setBasket] = useState([]);
 	const [totalPrice, setTotalPrice] = useState(0);
 
 	useEffect(() => {
 		setBasket(cart);
-		setTotalPrice(cart[0].totalPrice.toFixed(2));
+		// setTotalPrice(cart[0].totalPrice.toFixed(2));
 	}, []);
 
 	return (

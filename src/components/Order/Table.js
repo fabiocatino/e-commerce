@@ -11,7 +11,6 @@ import {
 	Checkbox,
 	MenuItem,
 	Button,
-	Typography,
 } from '@mui/material/';
 import Image from 'next/image';
 import EnhancedTableHead, {
@@ -19,21 +18,23 @@ import EnhancedTableHead, {
 	stableSort,
 } from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
-// import BasicSelect from '../Products/Select';
 import Select from '@mui/material/Select';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions } from '../../services/cartSlice';
+import { cartActions, useCartItems } from '../../services/cartSlice';
 
 export default function EnhancedTable() {
 	const [order, setOrder] = useState('asc');
 	const [orderBy, setOrderBy] = useState('Product');
 	const [selected, setSelected] = useState([]);
 	const [page, setPage] = useState(0);
-	const [dense, setDense] = useState(false);
 	const [rowsPerPage, setRowsPerPage] = useState(10);
-	const items = useSelector((state) => state.cart.cart.cartItems);
+	const items = useCartItems()
 	const [rows, setRows] = useState([]);
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		console.log(items);
+	});
 
 	useEffect(() => {
 		setRows(items);
@@ -83,7 +84,6 @@ export default function EnhancedTable() {
 		setPage(0);
 	};
 
-
 	const isSelected = (row) => selected.indexOf(row) !== -1;
 
 	const changeQuantityHandler = (index) => (e) => {
@@ -91,9 +91,12 @@ export default function EnhancedTable() {
 			cartActions.addItem({
 				...items[index],
 				quantity: parseInt(e.target.innerText),
-			})
+			}),
+			// cartActions.addTotalQuantity()
 		);
 	};
+
+	
 
 	const emptyRows =
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -111,11 +114,7 @@ export default function EnhancedTable() {
 				/>
 
 				<TableContainer>
-					<Table
-						sx={{ minWidth: 750 }}
-						aria-labelledby="tableTitle"
-						size={dense ? 'small' : 'medium'}
-					>
+					<Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
 						<EnhancedTableHead
 							numSelected={selected.length}
 							order={order}

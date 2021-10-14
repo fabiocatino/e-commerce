@@ -12,21 +12,12 @@ import {
 } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import styles from './Navbar.module.css';
+import { useTotalQuantity } from '../../services/cartSlice';
 
 const Navbar = () => {
-	const items = useSelector((state) => state.cart.cart.cartItems);
-	const [cartItems, setCartItems] = useState(0);
+	const itemsQuantity = useTotalQuantity();
 	const { data: session, status } = useSession();
 	const [anchorEl, setAnchorEl] = React.useState(null);
-
-	useEffect(() => {
-		let temp = 0;
-		items.map((item) => {
-			temp += [item].reduce((a, c) => a + c.quantity, 0);
-		});
-		setCartItems(temp);
-	}, [items, cartItems]);
-
 	const handleMenu = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -39,20 +30,17 @@ const Navbar = () => {
 		signOut();
 	};
 
+
 	return (
 		<nav className={styles.navbar}>
 			<Link href="/" passHref={true}>
 				<MLink underline="hover" color="none">
-					<Typography variant="h5" className={styles['navbar-logo']}>
-						SHOP
-					</Typography>
+					<Typography variant="h5">SHOP</Typography>
 				</MLink>
 			</Link>
 			<Link href="/products" passHref={true}>
 				<MLink underline="hover" color="none">
-					<Typography variant="h5" className={styles['navbar-logo']}>
-						PRODUCTS
-					</Typography>
+					<Typography variant="h5">PRODUCTS</Typography>
 				</MLink>
 			</Link>
 			<ul className={styles['navbar-items']}>
@@ -100,7 +88,7 @@ const Navbar = () => {
 				<Link href="/cart" passHref={true}>
 					<MLink underline="hover" color="none">
 						<Typography variant="h6">
-							<CustomizedBadges value={cartItems}></CustomizedBadges>
+							<CustomizedBadges></CustomizedBadges>
 						</Typography>
 					</MLink>
 				</Link>

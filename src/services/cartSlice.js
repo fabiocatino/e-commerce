@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
+import { useSelector } from 'react-redux';
 
 const initialState = {
-	cart: {
-		cartItems: Cookies.get('cartItems')
-			? JSON.parse(Cookies.get('cartItems'))
-			: [],
-	},
+	cartItems: Cookies.get('cartItems')
+		? JSON.parse(Cookies.get('cartItems'))
+		: [],
 };
 
 const cartSlice = createSlice({
@@ -15,34 +14,48 @@ const cartSlice = createSlice({
 	reducers: {
 		addItem(state, action) {
 			const newItem = action.payload;
-			const existItem = state.cart.cartItems.find(
+			const existItem = state.cartItems.find(
 				(item) => item._id === newItem._id
 			);
-
 			const cartItems = existItem
-				? state.cart.cartItems.map((item) =>
+				? state.cartItems.map((item) =>
 						item._id === existItem._id ? newItem : item
 				  )
-				: [...state.cart.cartItems, newItem];
+				: [...state.cartItems, newItem];
 			Cookies.set('cartItems', JSON.stringify(cartItems));
-			return { ...state, cart: { ...state.cart, cartItems } };
+			return { ...state, cartItems };
 		},
+
 		deleteItem(state, action) {
-			const cartItems = state.cart.cartItems.filter(
+			const cartItems = state.cartItems.filter(
 				(item) => item._id !== action.payload._id
 			);
 			Cookies.set('cartItems', JSON.stringify(cartItems));
-			return { ...state, cart: { ...state.cart, cartItems } };
+			return { ...state, cartItems };
 		},
 		deleteCart: (state) => {
 			Cookies.remove('cartItems');
-			return { ...state, cart: { ...state.cart, cartItems } };
+			return { ...state, cartItems };
 		},
 	},
 });
 
 const { actions, reducer } = cartSlice;
-
+export const useCartItems = () => useSelector((state) => state.cart.cartItems);
+export const useTotalQuantity = () =>
+	useSelector((state) => {
+		return state.cart.cartItems.reduce(
+			(a, cartItem) => a + cartItem.quantity,
+			0
+		);
+	});
+export const useTotalPrice = () =>
+	useSelector((state) => {
+		return state.cart.cartItems.reduce(
+			(a, cartItem) => a + cartItem.quantity * cartItem.price,
+			0
+		);
+	});
 export const cartActions = cartSlice.actions;
 
 export default reducer;
