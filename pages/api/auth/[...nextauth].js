@@ -1,8 +1,8 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import db from '../../../utils/db';
-import User from '../../../models/User';
-import { verifyPassword } from '../../../utils/auth';
+import db from '../../../src/utils/db';
+import User from '../../../src/models/User';
+import { verifyPassword } from '../../../src/utils/auth';
 
 export default NextAuth({
 	sessions: {

@@ -1,21 +1,21 @@
 import { Box, Button, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import EnhancedTable from '../components/Order/Table';
-import {
-	cartActions,
-	useTotalQuantity,
-	useTotalPrice,
-} from '../services/cartSlice';
+import React, { useEffect, useState } from 'react';
+import EnhancedTable from '../src/components/Order/Table';
+import { useTotalPrice, useTotalQuantity } from '../src/services/cartSlice';
 import styles from './Cart.module.css';
 
 const Cart = () => {
 	const router = useRouter();
-	const dispatch = useDispatch();
+	const fetchedItemsQuantity = useTotalQuantity();
+	const fetchedTotalPrice = useTotalPrice();
+	const [itemsQuantity, setItemsQuantity] = useState();
+	const [totalPrice, setTotalPrice] = useState();
 
-	const itemsQuantity = useTotalQuantity();
-	const totalPrice = useTotalPrice();
+	useEffect(() => {
+		setItemsQuantity(fetchedItemsQuantity);
+		setTotalPrice(fetchedTotalPrice);
+	}, [fetchedItemsQuantity, fetchedTotalPrice]);
 
 	const checkoutHandler = () => {
 		router.push('/checkout');

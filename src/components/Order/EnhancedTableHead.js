@@ -1,15 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
 import {
-	TableCell,
+	Checkbox, TableCell,
 	TableHead,
 	TableRow,
-	TableSortLabel,
-	Checkbox,
+	TableSortLabel
 } from '@mui/material/';
-
+import Box from '@mui/material/Box';
 import { visuallyHidden } from '@mui/utils';
+import PropTypes from 'prop-types';
+import React from 'react';
+
 
 function descendingComparator(a, b, orderBy) {
 	if (b[orderBy] < a[orderBy]) {
@@ -136,3 +135,4 @@ EnhancedTableHead.propTypes = {
 };
 
 export { descendingComparator, getComparator, stableSort };
+

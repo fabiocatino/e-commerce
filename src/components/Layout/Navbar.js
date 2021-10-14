@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import CustomizedBadges from '../Products/Badge';
-import { useSelector, useDispatch } from 'react-redux';
-import { useSession, signOut } from 'next-auth/react';
-import {
-	Typography,
-	Link as MLink,
-	Menu,
-	MenuItem,
-	Button,
-} from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
+import {
+	Button, Link as MLink,
+	Menu,
+	MenuItem, Typography
+} from '@mui/material';
+import { signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
+import React from 'react';
+import CustomizedBadges from '../Products/Badge';
 import styles from './Navbar.module.css';
-import { useTotalQuantity } from '../../services/cartSlice';
 
 const Navbar = () => {
-	const itemsQuantity = useTotalQuantity();
 	const { data: session, status } = useSession();
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const handleMenu = (event) => {
@@ -29,7 +24,6 @@ const Navbar = () => {
 	const logoutHandler = () => {
 		signOut();
 	};
-
 
 	return (
 		<nav className={styles.navbar}>

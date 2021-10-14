@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Table from '@mui/material/Table';
 import {
-	TableBody,
+	Button, Checkbox,
+	MenuItem, Paper, TableBody,
 	TableCell,
 	TableContainer,
 	TablePagination,
-	TableRow,
-	Paper,
-	Checkbox,
-	MenuItem,
-	Button,
+	TableRow
 } from '@mui/material/';
+import Box from '@mui/material/Box';
+import Select from '@mui/material/Select';
+import Table from '@mui/material/Table';
 import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { cartActions, useCartItems } from '../../services/cartSlice';
 import EnhancedTableHead, {
 	getComparator,
-	stableSort,
+	stableSort
 } from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
-import Select from '@mui/material/Select';
-import { useDispatch, useSelector } from 'react-redux';
-import { cartActions, useCartItems } from '../../services/cartSlice';
 
 export default function EnhancedTable() {
 	const [order, setOrder] = useState('asc');
@@ -28,13 +25,9 @@ export default function EnhancedTable() {
 	const [selected, setSelected] = useState([]);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(10);
-	const items = useCartItems()
+	const items = useCartItems();
 	const [rows, setRows] = useState([]);
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		console.log(items);
-	});
 
 	useEffect(() => {
 		setRows(items);
@@ -91,12 +84,10 @@ export default function EnhancedTable() {
 			cartActions.addItem({
 				...items[index],
 				quantity: parseInt(e.target.innerText),
-			}),
+			})
 			// cartActions.addTotalQuantity()
 		);
 	};
-
-	
 
 	const emptyRows =
 		page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;

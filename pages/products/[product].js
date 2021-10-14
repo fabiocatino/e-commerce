@@ -10,14 +10,14 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import styles from './Product.module.css';
-import ProductRating from '../../components/Products/ProductRating';
-import TabPanel from '../../components/Products/Tabs';
-import { useGetProductQuery } from '../../services/productsApi';
+import ProductRating from '../../src/components/Products/ProductRating';
+import TabPanel from '../../src/components/Products/Tabs';
+import { useGetProductQuery } from '../../src/services/productsApi';
 import ImageGallery from 'react-image-gallery';
-import Spinner from '../../components/Layout/Spinner';
+import Spinner from '../../src/components/Layout/Spinner';
 import { useDispatch } from 'react-redux';
-import { cartActions } from '../../services/cartSlice';
-import BasicSelect from '../../components/Products/Select';
+import { cartActions } from '../../src/services/cartSlice';
+import BasicSelect from '../../src/components/Products/Select';
 
 const product = () => {
 	const router = useRouter();

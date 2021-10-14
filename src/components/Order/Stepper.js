@@ -11,7 +11,7 @@ const steps = ['Billing Details', 'Payment Method', 'Review Order'];
 
 export default function HorizontalLinearStepper() {
 	const dispatch = useDispatch();
-	const step = useSelector((state) => state.checkout.step.currentStep);
+	const step = useSelector((state) => state.checkout.currentStep);
 	const [activeStep, setActiveStep] = useState(0);
 
 	useEffect(() => {

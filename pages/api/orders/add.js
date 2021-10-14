@@ -1,9 +1,9 @@
 import nc from 'next-connect';
-import db from '../../../utils/db';
-import Order from '../../../models/Order';
+import db from '../../../src/utils/db';
+import Order from '../../../src/models/Order';
 import Cors from 'cors';
 import { getSession } from 'next-auth/react';
-import User from '../../../models/User';
+import User from '../../../src/models/User';
 
 const handler = nc().use(Cors());
 

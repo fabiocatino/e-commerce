@@ -1,9 +1,9 @@
 import { Container, Grid } from '@mui/material';
 import React from 'react';
-import MediaCard from '../../components/Products/Card';
+import MediaCard from '../../src/components/Products/Card';
 import style from './Index.module.css';
-import { useGetAllProductsQuery } from '../../services/productsApi';
-import Spinner from '../../components/Layout/Spinner';
+import { useGetAllProductsQuery } from '../../src/services/productsApi';
+import Spinner from '../../src/components/Layout/Spinner';
 
 const Index = () => {
 	const { data, isLoading, error } = useGetAllProductsQuery('');

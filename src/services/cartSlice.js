@@ -35,7 +35,8 @@ const cartSlice = createSlice({
 		},
 		deleteCart: (state) => {
 			Cookies.remove('cartItems');
-			return { ...state, cartItems };
+			Cookies.remove('shippingInfo');
+			return { ...state, cartItems: [] };
 		},
 	},
 });

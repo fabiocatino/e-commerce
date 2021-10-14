@@ -1,11 +1,11 @@
-import '../styles/globals.css';
-import { Provider } from 'react-redux';
-import Layout from '../components/Layout/Layout';
-import store from '../store/store';
-import { StyledEngineProvider } from '@mui/styled-engine';
-import Head from 'next/head';
-import { SessionProvider } from 'next-auth/react';
 import { CssBaseline } from '@mui/material';
+import { StyledEngineProvider } from '@mui/styled-engine';
+import { SessionProvider } from 'next-auth/react';
+import Head from 'next/head';
+import { Provider } from 'react-redux';
+import Layout from '../src/components/Layout/Layout';
+import store from '../src/store/store';
+import './globals.css';
 
 export default function App({
 	Component,

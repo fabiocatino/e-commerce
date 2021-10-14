@@ -1,9 +1,9 @@
 import nc from 'next-connect';
-import db from '../../utils/db';
-import Product from '../../models/Product';
+import db from '../../src/utils/db';
+import Product from '../../models/src/Product';
 import bcrypt from 'bcryptjs';
-import User from '../../models/User';
-import Order from '../../models/Order';
+import User from '../../models/src/User';
+import Order from '../../models/src/Order';
 
 const handler = nc();
 

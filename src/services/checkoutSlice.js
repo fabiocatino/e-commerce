@@ -2,14 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
 const initialState = {
-	step: {
-		currentStep: 0,
-	},
-	shipping: {
-		shippingInfo: Cookies.get('shippingInfo')
-			? JSON.parse(Cookies.get('shippingInfo'))
-			: [],
-	},
+	currentStep: 0,
+
+	shippingInfo: Cookies.get('shippingInfo')
+		? JSON.parse(Cookies.get('shippingInfo'))
+		: [],
 };
 
 const checkoutSlice = createSlice({
@@ -19,20 +16,20 @@ const checkoutSlice = createSlice({
 		addShippingInfo: (state, action) => {
 			const shippingInfo = action.payload;
 			Cookies.set('shippingInfo', JSON.stringify(shippingInfo));
-			return { ...state, shipping: { ...state.shipping, shippingInfo } };
+			return {
+				...state,
+				shippingInfo: { ...state.shippingInfo, shippingInfo },
+			};
 		},
 
-		deleteOrder: () => {
-			Cookies.remove('shippingInfo');
-		},
 		nextStep: (state) => {
 			if (state.currentStep > 2) {
 				return;
 			}
-			state.step.currentStep += 1;
+			state.currentStep += 1;
 		},
 		prevStep: (state) => {
-			state.step.currentStep -= 1;
+			state.currentStep -= 1;
 		},
 	},
 });

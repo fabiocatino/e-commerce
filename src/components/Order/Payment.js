@@ -1,12 +1,12 @@
 import { Button } from '@mui/material';
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
 import styles from './Payment.module.css';
 
 const Payment = () => {
 	const dispatch = useDispatch();
-	const step = useSelector((state) => state.checkout.step.currentStep);
+	const step = useSelector((state) => state.checkout.currentStep);
 
 	const onClickHandler = () => {
 		dispatch(checkoutAction.nextStep(step + 1));

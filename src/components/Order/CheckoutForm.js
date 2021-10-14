@@ -1,14 +1,13 @@
+import { Button, Grid, TextField } from '@mui/material';
 import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import { TextField, Grid, Button } from '@mui/material';
-import styles from './CheckoutForm.module.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
+import styles from './CheckoutForm.module.css';
 
 export default function CheckoutForm() {
 	const dispatch = useDispatch();
-	const step = useSelector((state) => state.checkout.step.currentStep);
-
+	const step = useSelector((state) => state.checkout.currentStep);
 	const {
 		control,
 		handleSubmit,
@@ -16,10 +15,6 @@ export default function CheckoutForm() {
 	} = useForm();
 
 	const onSubmit = async (data) => {
-		// if (Object.values(data).length < 8) {
-		// 	return;
-		// }
-
 		dispatch(checkoutAction.nextStep(step + 1));
 		dispatch(
 			checkoutAction.addShippingInfo({

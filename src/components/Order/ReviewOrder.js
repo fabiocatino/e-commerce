@@ -2,20 +2,22 @@ import { Button } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartActions, useCartItems, useTotalPrice } from '../../services/cartSlice';
-import { checkoutAction } from '../../services/checkoutSlice';
+import {
+	cartActions, useCartItems,
+	useTotalPrice
+} from '../../services/cartSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
 import styles from './ReviewOrder.module.css';
 
 const ReviewOrder = () => {
-	const totalPrice = useTotalPrice()		
+	const totalPrice = useTotalPrice();
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const [addOrder, { isLoading }] = useAddOrderMutation();
 	const shippingInfo = useSelector(
-		(state) => state.checkout.shipping.shippingInfo.shippingInfo
+		(state) => state.checkout.shippingInfo.shippingInfo.shippingInfo
 	);
-	const orderItems = useCartItems()
+	const orderItems = useCartItems();
 
 	const submitOrderHandler = async () => {
 		try {
@@ -25,7 +27,6 @@ const ReviewOrder = () => {
 				totalPrice,
 				number: Math.random(),
 			}).unwrap();
-			dispatch(checkoutAction.deleteOrder());
 			dispatch(cartActions.deleteCart());
 		} catch (error) {
 			console.log(error);
