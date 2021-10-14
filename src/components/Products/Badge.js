@@ -3,7 +3,7 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useTotalQuantity } from '../../services/cartSlice';
+import { useTotalQuantity} from '../../services/cartSlice';
 import Cookies from 'js-cookie';
 
 const StyledBadge = styled(Badge)(({ theme }) => ({

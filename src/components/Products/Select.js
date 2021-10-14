@@ -29,7 +29,7 @@ export default function BasicSelect(props) {
 					label="Quantity"
 					onChange={handleChange}
 				>
-					{[...Array(data.countInStock).keys()].map((item) => (
+					{[...Array(data.countInStock >= 10 ? 10 : data.countInStock).keys()].map((item) => (
 						<MenuItem key={item + 1} value={item + 1}>
 							{item + 1}
 						</MenuItem>

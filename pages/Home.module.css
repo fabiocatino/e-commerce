@@ -1,5 +1,11 @@
 .container {
   text-align: center;
+  background-color: rgb(189, 189, 189);
+  margin-top: 5rem;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
