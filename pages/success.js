@@ -1,19 +1,7 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { cartActions, useTotalQuantity } from '../src/services/cartSlice'
+import React from 'react';
 
 const success = () => {
+	return <div>success</div>;
+};
 
-    // const dispatch = useDispatch() 
-
-    // useEffect(() => {
-    //     dispatch(cartActions.addItem({quantity: 0}))
-    // },[])
-    return (
-        <div>
-            success
-        </div>
-    )
-}
-
-export default success
+export default success;

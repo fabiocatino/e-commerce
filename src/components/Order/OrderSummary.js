@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import styles from './OrderSummary.module.css';
-import { useSelector } from 'react-redux';
-import { Typography, Avatar } from '@mui/material';
+import { Avatar, NoSsr, Typography } from '@mui/material';
+import React from 'react';
 import { useCartItems, useTotalPrice } from '../../services/cartSlice';
+import styles from './OrderSummary.module.css';
 
 const OrderSummary = () => {
-	const cart = useCartItems()
-	const [basket, setBasket] = useState([]);
-	const totalPrice = useTotalPrice()
-
-	useEffect(() => {
-		setBasket(cart);
-	}, []);
+	const cart = useCartItems();
+	const totalPrice = useTotalPrice();
 
 	return (
 		<div>
@@ -32,23 +26,25 @@ const OrderSummary = () => {
 						</li>
 					</ul>
 				</div>
-				<div className={styles.products}>
-					{basket.map((item) => (
-						<ul key={item._id}>
-							<div className={styles['product-description']}>
+				<NoSsr>
+					<div className={styles.products}>
+						{cart.map((item) => (
+							<ul key={item._id}>
+								<div className={styles['product-description']}>
+									<li>
+										<Avatar src={item.image} variant="square"></Avatar>
+									</li>
+									<li>
+										<Typography variant="body1">{item.name}</Typography>
+									</li>
+								</div>
 								<li>
-									<Avatar src={item.image} variant="square"></Avatar>
+									<Typography variant="body1">£{item.price}</Typography>
 								</li>
-								<li>
-									<Typography variant="body1">{item.name}</Typography>
-								</li>
-							</div>
-							<li>
-								<Typography variant="body1">£{item.price}</Typography>
-							</li>
-						</ul>
-					))}
-				</div>
+							</ul>
+						))}
+					</div>
+				</NoSsr>
 				<div className={styles.shipping}>
 					<ul>
 						<li>

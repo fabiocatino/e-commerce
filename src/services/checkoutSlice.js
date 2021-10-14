@@ -21,7 +21,14 @@ const checkoutSlice = createSlice({
 				shippingInfo: { ...state.shippingInfo, shippingInfo },
 			};
 		},
-
+		currStep: (state, action) => {
+			if (state.currentStep === 0 && action.payload === 1) {
+				return;
+			} else if (state.currentStep === 1 && action.payload === 2) {
+				return;
+			}
+			state.currentStep = action.payload;
+		},
 		nextStep: (state) => {
 			if (state.currentStep > 2) {
 				return;

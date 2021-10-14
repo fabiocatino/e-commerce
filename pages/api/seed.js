@@ -1,9 +1,9 @@
 import nc from 'next-connect';
 import db from '../../src/utils/db';
-import Product from '../../models/src/Product';
+import Product from '../../src/models/Product';
 import bcrypt from 'bcryptjs';
-import User from '../../models/src/User';
-import Order from '../../models/src/Order';
+import User from '../../src/models/User';
+import Order from '../../src/models/Order';
 
 const handler = nc();
 
@@ -124,10 +124,10 @@ const order = [
 
 handler.get(async (req, res) => {
 	await db.connect();
-	// await Product.deleteMany();
-	// await Product.insertMany(products);
-	// await User.deleteMany();
-	// await User.insertMany(users);
+	await Product.deleteMany();
+	await Product.insertMany(products);
+	await User.deleteMany();
+	await User.insertMany(users);
 	await Order.deleteMany();
 	await Order.insertMany(order);
 	await db.disconnect();

@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
 import {
-	TextField,
-	Container,
-	Typography,
-	Button,
-	Link as Mlink,
+	Button, Container, Link as Mlink, TextField, Typography
 } from '@mui/material';
-import styles from './SignupForm.module.css';
 import Link from 'next/link';
+import React, { useState } from 'react';
 import { useAddUserMutation } from '../../services/userApi';
+import styles from './SignupForm.module.css';
 
 const SignupForm = () => {
 	const [name, setName] = useState('');
@@ -20,7 +16,7 @@ const SignupForm = () => {
 
 	async function submitHandler(e) {
 		e.preventDefault();
-	
+
 		try {
 			await addUser({
 				name,
