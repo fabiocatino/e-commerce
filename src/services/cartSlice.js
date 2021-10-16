@@ -57,6 +57,7 @@ export const useTotalPrice = () =>
 			0
 		);
 	});
+
 export const cartActions = cartSlice.actions;
 
 export default reducer;

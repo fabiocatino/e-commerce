@@ -7,7 +7,7 @@ const handler = nc().use(Cors());
 
 handler.get(async (req, res) => {
 	await db.connect();
-	const product = await Product.findOne({ _id: req.query.product });
+	const product = await Product.findOne({ _id: req.query.product});
 	await db.disconnect();
 	res.send(product);
 });

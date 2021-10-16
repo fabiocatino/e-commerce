@@ -1,0 +1,24 @@
+.main {
+	width: 500px;
+}
+.input {
+	border-radius: 20px;
+}
+
+@media all and (min-width: 911px) and (max-width: 1024px) {
+	.main {
+		width: 400px;
+	}
+}
+
+@media all and (min-width: 481px) and (max-width: 910px) {
+	.main {
+		width: 250px;
+	}
+}
+
+@media all and (min-width: 0px) and (max-width: 480px) {
+	.main {
+		width: 100px;
+	}
+}

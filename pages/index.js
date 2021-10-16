@@ -1,11 +1,15 @@
 import Image from 'next/image';
+import ImageCarousel from '../src/components/Products/ImageCarousel';
 import styles from './Home.module.css';
 
+
+
 const IndexPage = () => {
+
 	return (
 		<div className={styles.container}>
-			{/* <Image height={500} width={800} src='/images/intro-1591972370.webp'></Image> */}
-		</div>
+			 <ImageCarousel ></ImageCarousel>
+	 </div>
 	);
 };
 
