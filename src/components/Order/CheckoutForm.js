@@ -96,7 +96,6 @@ export default function CheckoutForm() {
 								}}
 								render={({ field }) => (
 									<TextField
-										helperText="Please enter your name"
 										required
 										id="street-address"
 										type="text"
@@ -127,7 +126,6 @@ export default function CheckoutForm() {
 								render={({ field }) => (
 									<TextField
 										required
-										type="text"
 										placeholder="Town/City"
 										fullWidth
 										id="city"
@@ -157,7 +155,6 @@ export default function CheckoutForm() {
 								render={({ field }) => (
 									<TextField
 										required
-										type="text"
 										placeholder="Postcode / ZIP"
 										fullWidth
 										id="postCode"
@@ -186,7 +183,6 @@ export default function CheckoutForm() {
 							render={({ field }) => (
 								<TextField
 									required
-									type="text"
 									placeholder="State / Country"
 									fullWidth
 									id="country"
@@ -219,7 +215,6 @@ export default function CheckoutForm() {
 										placeholder="Phone Number"
 										fullWidth
 										id="phoneNumber"
-										type="text"
 										error={Boolean(errors.phoneNumber)}
 										helperText={
 											errors.phoneNumber

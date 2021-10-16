@@ -36,7 +36,7 @@ const MediaCard = (props) => {
 				</div>
 			</CardContent>
 			<CardActions>
-				<Link href={`/products/${props._id}`}>
+				<Link passHref={true} href={`/products/${props._id}`}>
 					<Button size="small">Learn More</Button>
 				</Link>
 				<Button onClick={addToCartHandler} size="small">

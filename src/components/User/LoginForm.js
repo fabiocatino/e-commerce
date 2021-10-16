@@ -61,7 +61,7 @@ const LoginForm = () => {
 					Submit
 				</Button>
 				<Typography variant="subtitle1" className={styles.subtitle}>
-					Don't have an account yet?
+					Don&apos;t have an account yet?
 					<Link href="/signup" passHref={true}>
 						<Mlink>Sign up</Mlink>
 					</Link>

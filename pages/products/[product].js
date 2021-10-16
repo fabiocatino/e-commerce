@@ -19,7 +19,7 @@ import { useDispatch } from 'react-redux';
 import { cartActions } from '../../src/services/cartSlice';
 import BasicSelect from '../../src/components/Products/Select';
 
-const product = () => {
+const Product = () => {
 	const router = useRouter();
 	const itemId = router.query.product;
 	const { data, isLoading, error } = useGetProductQuery(itemId);
@@ -41,7 +41,7 @@ const product = () => {
 			{!isLoading && !error && (
 				<Grid container>
 					<Grid item xs={12} sm={12} md={6} lg={6} className={styles.left}>
-						<Image src={data.image} height={500} width={500} />
+						<Image alt='' src={data.image} height={500} width={500} />
 						{/* <ImageGallery
 							items={[{ original: `http://127.0.0.1:8000${data.image}` }]}
 						></ImageGallery> */}
@@ -82,4 +82,4 @@ const product = () => {
 	);
 };
 
-export default product;
+export default Product;

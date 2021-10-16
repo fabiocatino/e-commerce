@@ -51,7 +51,7 @@ export default function SearchBar() {
 			options={options}
 			loading={loading}
 			renderOption={(props, option) => (
-				<Link href={`/products/${option._id}`}>
+				<Link passHref={true} href={`/products/${option._id}`}>
 					<li {...props}>{option.name}</li>
 				</Link>
 			)}
