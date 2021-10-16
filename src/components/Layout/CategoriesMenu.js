@@ -22,6 +22,8 @@ export default function CategoriesMenu() {
 	return (
 		<div>
 			<Button
+				onMouseEnter={handleClick}
+				onMouseLeave={handleClick}
 				id="basic-button"
 				aria-controls="basic-menu"
 				aria-haspopup="true"
@@ -29,7 +31,8 @@ export default function CategoriesMenu() {
 				onClick={handleClick}
 				color="inherit"
 			>
-				<MenuIcon /> <Typography variant="body1">ALL CATEGORIES</Typography>
+				<MenuIcon />
+				<Typography variant="body1">ALL CATEGORIES</Typography>
 			</Button>
 			<Menu
 				id="basic-menu"
@@ -40,7 +43,7 @@ export default function CategoriesMenu() {
 					'aria-labelledby': 'basic-button',
 				}}
 			>
-				<MenuItem divider={true} >
+				<MenuItem divider={true}>
 					<Link href="/products" passHref={true}>
 						<MLink underline="none" color="none">
 							All Products
@@ -48,27 +51,13 @@ export default function CategoriesMenu() {
 					</Link>
 				</MenuItem>
 				{categories.data?.map((category) => (
-					<MenuItem divider={true}  key={category._id} onClick={handleClose}>
+					<MenuItem
+						onMouseLeave={handleClose}
+						onClick={handleClose}
+						divider={true}
+						key={category._id}
+					>
 						{category.category}
-						{/* <Button
-							id="basic-button"
-							aria-controls="basic-menu"
-							aria-haspopup="true"
-							aria-expanded={open ? 'true' : undefined}
-							onClick={handleClick}
-							color="inherit"
-						>
-							<Button></Button>
-						</Button>
-						<Menu
-							id="basic-menu"
-							anchorEl={anchorEl}
-							open={open}
-							onClose={handleClose}
-							MenuListProps={{
-								'aria-labelledby': 'basic-button',
-							}}
-						></Menu> */}
 					</MenuItem>
 				))}
 			</Menu>
