@@ -1,0 +1,19 @@
+.card {
+	height: 180px;
+	width: 360px;
+	border: 1px solid #0090f0;
+}
+
+.top-card {
+	background-color: #0090f0;
+	height: 90px;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	color: white;
+}
+
+.bottom-card {
+	display: flex;
+	justify-content: center;
+}

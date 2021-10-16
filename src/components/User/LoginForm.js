@@ -62,7 +62,7 @@ const LoginForm = () => {
 				</Button>
 				<Typography variant="subtitle1" className={styles.subtitle}>
 					Don&apos;t have an account yet?
-					<Link href="/signup" passHref={true}>
+					<Link href="/user/signup" passHref={true}>
 						<Mlink>Sign up</Mlink>
 					</Link>
 				</Typography>

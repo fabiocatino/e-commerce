@@ -44,7 +44,6 @@ export default NextAuth({
 
 				return {
 					name: exsistingUser.name.split(' ')[0],
-					// name: exsistingUser.name,
 					email: exsistingUser.email,
 				};
 			},

@@ -32,7 +32,7 @@ export default function CategoriesMenu() {
 				color="inherit"
 			>
 				<MenuIcon />
-				<Typography variant="body1">ALL CATEGORIES</Typography>
+				<Typography variant="body1"><strong>ALL CATEGORIES</strong></Typography>
 			</Button>
 			<Menu
 				id="basic-menu"

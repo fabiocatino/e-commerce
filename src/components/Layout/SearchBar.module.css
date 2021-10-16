@@ -3,6 +3,7 @@
 }
 .input {
 	border-radius: 20px;
+	background-color: white;
 }
 
 @media all and (min-width: 911px) and (max-width: 1024px) {

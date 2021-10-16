@@ -1,6 +1,6 @@
 import { Container } from '@mui/material'
 import React from 'react'
-import SignupForm from '../src/components/User/SignupForm'
+import SignupForm from '../../src/components/User/SignupForm'
 
 const Signup = () => {
     return (

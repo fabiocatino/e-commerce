@@ -1,12 +1,12 @@
 import { Grid, NoSsr } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import CheckoutForm from '../src/components/Order/CheckoutForm';
-import OrderSummary from '../src/components/Order/OrderSummary';
-import Payment from '../src/components/Order/Payment';
-import ReviewOrder from '../src/components/Order/ReviewOrder';
-import HorizontalLinearStepper from '../src/components/Order/Stepper';
-import { useCartItems } from '../src/services/cartSlice';
+import CheckoutForm from '../../src/components/Order/CheckoutForm';
+import OrderSummary from '../../src/components/Order/OrderSummary';
+import Payment from '../../src/components/Order/Payment';
+import ReviewOrder from '../../src/components/Order/ReviewOrder';
+import HorizontalLinearStepper from '../../src/components/Order/Stepper';
+import { useCartItems } from '../../src/services/cartSlice';
 import styles from './Checkout.module.css';
 
 const Checkout = () => {

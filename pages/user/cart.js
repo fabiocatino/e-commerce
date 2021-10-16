@@ -1,8 +1,8 @@
 import { Box, Button, NoSsr, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react';
-import EnhancedTable from '../src/components/Order/Table';
-import { useTotalPrice, useTotalQuantity } from '../src/services/cartSlice';
+import EnhancedTable from '../../src/components/Order/Table';
+import { useTotalPrice, useTotalQuantity } from '../../src/services/cartSlice';
 import styles from './Cart.module.css';
 
 const Cart = () => {
@@ -11,7 +11,7 @@ const Cart = () => {
 	const totalPrice = useTotalPrice();
 
 	const checkoutHandler = () => {
-		router.push('/checkout');
+		router.push('/user/checkout');
 	};
 
 	const pluralize = (val, word, plural = word + 's') => {

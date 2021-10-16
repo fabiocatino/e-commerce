@@ -82,7 +82,7 @@ const SignupForm = () => {
 				</Button>
 				<Typography variant="subtitle1" className={styles.subtitle}>
 					Already have an account?
-					<Link href="/login" passHref={true}>
+					<Link href="/user/login" passHref={true}>
 						<Mlink>Log in</Mlink>
 					</Link>
 				</Typography>

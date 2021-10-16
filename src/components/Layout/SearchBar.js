@@ -41,12 +41,11 @@ export default function SearchBar() {
 	return (
 		<Autocomplete
 			classes={{ root: styles.main, inputRoot: styles.input }}
-			id="asynchronous-demo"
-			sx={{ width: 300 }}
+			id="autocomplete"
 			open={open}
 			onOpen={() => setOpen(true)}
 			onClose={() => setOpen(false)}
-			isOptionEqualToValue={(option, value) => option.name === value.name}
+			// isOptionEqualToValue={(option, value) => option.name === value.name}
 			getOptionLabel={(option) => option.name}
 			options={options}
 			loading={loading}
@@ -57,10 +56,10 @@ export default function SearchBar() {
 			)}
 			renderInput={(params) => (
 				<TextField
-					fullWidth={true}
 					onChange={(e) => setSearch(e.target.value)}
 					{...params}
-					label="Search"
+					placeholder="Search"
+					aria-label="Search"
 					InputProps={{
 						...params.InputProps,
 						endAdornment: (

@@ -4,7 +4,7 @@ import {
 	Link as MLink,
 	Menu,
 	MenuItem,
-	Typography
+	Typography,
 } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -34,11 +34,16 @@ const Navbar = () => {
 		<nav className={styles.navbar}>
 			<div className={styles.leftSide}>
 				<Link href="/" passHref={true}>
-					<MLink underline="hover" color="none">
-						<Typography variant="h5">SHOP</Typography>
+					<MLink variant="h5" underline="none" color="none">
+						SHOP
 					</MLink>
 				</Link>
 				<CategoriesMenu></CategoriesMenu>
+				<Link href="/" passHref={true}>
+					<MLink variant="body1" underline="none" color="none">
+						<strong>Contact Us</strong>
+					</MLink>
+				</Link>
 			</div>
 
 			<div className={styles.searchbar}>
@@ -46,11 +51,9 @@ const Navbar = () => {
 			</div>
 			<ul className={styles['navbar-items']}>
 				{!session && status !== 'loading' && (
-					<Link href="/login" passHref={true}>
-						<MLink underline="hover" color="none">
-							<Typography variant="h6">
-								<PersonIcon /> Login
-							</Typography>
+					<Link href="/user/login" passHref={true}>
+						<MLink variant="h6" underline="none" color="none">
+							<PersonIcon /> Login
 						</MLink>
 					</Link>
 				)}
@@ -83,12 +86,14 @@ const Navbar = () => {
 							onClose={handleClose}
 						>
 							<MenuItem onClick={handleClose}>Profile</MenuItem>
-							<MenuItem onClick={handleClose}>My account</MenuItem>
+							<MenuItem>
+								<Link href="/user/account"> My account</Link>
+							</MenuItem>
 							<MenuItem onClick={logoutHandler}>Logout</MenuItem>
-						</Menu>{' '}
+						</Menu>
 					</>
 				)}
-				<Link href="/cart" passHref={true}>
+				<Link href="/user/cart" passHref={true}>
 					<MLink underline="hover" color="none">
 						<CustomizedBadges></CustomizedBadges>
 					</MLink>
