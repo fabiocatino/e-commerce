@@ -8,15 +8,16 @@ import styles from './Account.module.css';
 import { useSession } from 'next-auth/react';
 
 const Account = () => {
-
-    const { data: session } = useSession()
-    console.log({session})
+	const { data: session, status } = useSession();
+	console.log({ session });
 	return (
 		<Container>
 			<Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-				<Typography className={styles.title} variant="h4">
-					YOUR ACCOUNT, {session.user.name.toUpperCase()}
-				</Typography>
+				{status === 'authenticated' && (
+					<Typography className={styles.title} variant="h4">
+						YOUR ACCOUNT, {session.user.name.toUpperCase()}
+					</Typography>
+				)}
 				<div className={styles.container}>
 					{cardInfo.map((card) => (
 						<Grid item key={card.title} item xs={6} sm={6} md={4} lg={3}>
