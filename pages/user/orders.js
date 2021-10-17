@@ -1,6 +1,6 @@
 import { Container } from '@mui/material';
 import { getSession } from 'next-auth/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Spinner from '../../src/components/Layout/Spinner';
 import OrderCard from '../../src/components/Order/OrderCard';
 import { useGetAllOrdersQuery } from '../../src/services/ordersApi';
@@ -8,6 +8,12 @@ import styles from './Orders.module.css';
 
 const Orders = () => {
 	const { data: orders, isLoading, error } = useGetAllOrdersQuery();
+	// {
+	// 	!isLoading &&
+	// 		console.log(orders.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1)));
+	// }
+
+
 	return (
 		<>
 			{error && (
