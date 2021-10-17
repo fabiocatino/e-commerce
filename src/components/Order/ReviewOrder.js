@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	cartActions, useCartItems,
-	useTotalPrice
+	cartActions,
+	useCartItems,
+	useTotalPrice,
 } from '../../services/cartSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
 import styles from './ReviewOrder.module.css';
@@ -23,9 +24,8 @@ const ReviewOrder = () => {
 		try {
 			await addOrder({
 				shippingInfo,
-				...orderItems,
+				orderItems: [...orderItems],
 				totalPrice,
-				number: Math.random(),
 			}).unwrap();
 			dispatch(cartActions.deleteCart());
 		} catch (error) {

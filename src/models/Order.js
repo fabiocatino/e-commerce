@@ -20,8 +20,6 @@ const orderSchema = new mongoose.Schema(
 			phoneNumber: { type: Number, required: true },
 			email: { type: String, required: true },
 		},
-
-		number: { type: String, required: true, unique: true },
 		totalPrice: { type: Number, required: true },
 		// paymentMethod: { type: String, required: true },
 		// isPaid: { type: Boolean, required: true },

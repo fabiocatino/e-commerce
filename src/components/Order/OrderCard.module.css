@@ -22,5 +22,11 @@
 }
 
 .bottom-card {
-	height: 119px;
+	min-height: 119px;
+}
+.item {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	margin-top: 1rem;
 }

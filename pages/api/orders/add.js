@@ -15,6 +15,7 @@ handler.post(async (req, res) => {
 		console.log('Not authenticated.');
 		res.status(401);
 	}
+	console.log(req.body);
 	const email = session.user.email;
 	if (req.method === 'POST') {
 		await db.connect();

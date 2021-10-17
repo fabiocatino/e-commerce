@@ -34,13 +34,13 @@ const Navbar = () => {
 		<nav className={styles.navbar}>
 			<div className={styles.leftSide}>
 				<Link href="/" passHref={true}>
-					<MLink variant="h5" underline="none" color="none">
+					<MLink variant="h5" underline="hover" color="#fff">
 						SHOP
 					</MLink>
 				</Link>
 				<CategoriesMenu></CategoriesMenu>
 				<Link href="/" passHref={true}>
-					<MLink variant="body1" underline="none" color="none">
+					<MLink variant="body1" underline="hover" color="#fff">
 						<strong>Contact Us</strong>
 					</MLink>
 				</Link>
@@ -52,7 +52,7 @@ const Navbar = () => {
 			<ul className={styles['navbar-items']}>
 				{!session && status !== 'loading' && (
 					<Link href="/user/login" passHref={true}>
-						<MLink variant="h6" underline="none" color="none">
+						<MLink variant="h6" underline="hover" color="#fff">
 							<PersonIcon /> Login
 						</MLink>
 					</Link>
@@ -65,7 +65,7 @@ const Navbar = () => {
 							color="inherit"
 							onClick={handleMenu}
 						>
-							<Typography sx={{ textTransform: 'capitalize' }} variant="body1">
+							<Typography className={styles['account-button']} variant="body1">
 								Hello, {session.user.name.split(' ')[0]}
 							</Typography>
 						</Button>
@@ -94,7 +94,7 @@ const Navbar = () => {
 					</>
 				)}
 				<Link href="/user/cart" passHref={true}>
-					<MLink underline="hover" color="none">
+					<MLink underline="hover" color="#fff">
 						<CustomizedBadges></CustomizedBadges>
 					</MLink>
 				</Link>

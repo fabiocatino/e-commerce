@@ -8,7 +8,6 @@ import styles from './Orders.module.css';
 
 const Orders = () => {
 	const { data: orders, isLoading, error } = useGetAllOrdersQuery();
-
 	return (
 		<>
 			{error && (
@@ -19,6 +18,7 @@ const Orders = () => {
 			{isLoading && <Spinner />}
 			{!isLoading && !error && (
 				<Container className={styles.container}>
+					{orders.length <= 0 && <p>No orders to display.</p>}
 					{orders.map((order) => (
 						<OrderCard key={order._id} {...order}></OrderCard>
 					))}

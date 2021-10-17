@@ -38,7 +38,7 @@ const LoginForm = () => {
 					placeholder="Email"
 					variant="outlined"
 					className={styles.textfield}
-					onChange={(e) => setEmail(e.target.value)}
+					onChange={(e) => setEmail(e.target.value.toLowerCase())}
 				></TextField>
 				<TextField
 					required

@@ -114,7 +114,6 @@ const order = [
 			postalCode: '70124',
 			country: 'Italy',
 		},
-		number: '#2928329',
 		totalPrice: 200.55,
 		paymentMethod: 'Credit Card',
 		isPaid: true,

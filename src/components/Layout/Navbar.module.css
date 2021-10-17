@@ -8,10 +8,6 @@
 	color: white;
 }
 
-.navbar a:hover {
-	color: #0090f0;
-}
-
 .leftSide {
 	display: flex;
 	gap: 2rem;
@@ -23,6 +19,15 @@
 	gap: 20px;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.account-button {
+	text-transform: capitalize;
+}
+
+.account-button:hover {
+	text-transform: capitalize;
+	text-decoration: underline;
 }
 
 @media all and (min-width: 0px) and (max-width: 480px) {
