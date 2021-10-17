@@ -20,7 +20,7 @@ const Account = () => {
 		} else {
 			setIsLoading(false);
 		}
-	}, []);
+	}, [session]);
 
 	return (
 		<Container>

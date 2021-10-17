@@ -14,7 +14,7 @@ handler.get(async (req, res) => {
 	const user = await User.find({ email: session.user.email });
 	const _id = user[0]._id;
 	const orders = await Order.find({ user: _id }).sort({ createdAt: -1 });
-	await db.disconnect();
+	// await db.disconnect();
 	res.send(orders);
 });
 

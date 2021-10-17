@@ -6,7 +6,8 @@ import { useGetAllProductsQuery } from '../../src/services/productsApi';
 import Spinner from '../../src/components/Layout/Spinner';
 
 const Index = () => {
-	const { data, isLoading, error } = useGetAllProductsQuery('');
+	const { data, isLoading, error } = useGetAllProductsQuery();
+	console.log(data)
 
 	return (
 		<Container>

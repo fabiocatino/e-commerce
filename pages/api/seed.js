@@ -132,7 +132,7 @@ handler.get(async (req, res) => {
 	await User.insertMany(users);
 	await Order.deleteMany();
 	await Order.insertMany(order);
-	await db.disconnect();
+	// await db.disconnect();
 	res.send({ message: 'seeded successfully' });
 });
 

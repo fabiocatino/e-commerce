@@ -1,6 +1,11 @@
 .card {
 	display: flex;
 	width: 918px;
+	
+}
+
+.card-content {
+	padding: 0;
 }
 
 .top-card {
@@ -25,13 +30,14 @@
 }
 
 .bottom-card {
+	padding: 1rem;
 	min-height: 119px;
 }
 
 .left {
 	display: flex;
 	gap: 1rem;
-	width: 150px;
+	width: 160px;
 }
 
 .item {

@@ -5,6 +5,7 @@ const baseUrl = 'http://127.0.0.1:3000/api/orders';
 export const ordersApi = createApi({
 	reducerPath: 'ordersApi',
 	baseQuery: fetchBaseQuery({ baseUrl }),
+	refetchOnMountOrArgChange: true,
 	endpoints: (build) => ({
 		getAllOrders: build.query({
 			query: () => ({

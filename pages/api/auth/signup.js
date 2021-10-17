@@ -26,7 +26,7 @@ handler.post(async (req, res) => {
 
 		if (exsistingUser) {
 			res.status(422).json({ message: 'User already exists.' });
-			db.disconnect();
+			// db.disconnect();
 			return;
 		}
 
@@ -46,7 +46,7 @@ handler.post(async (req, res) => {
 
 		await user.save();
 
-		db.disconnect();
+		// db.disconnect();
 		res.status(201).json({ message: 'User created.' });
 		res.end('User created');
 	}

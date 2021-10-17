@@ -1,19 +1,11 @@
-import {
-	CardActionArea,
-	Card,
-	CardContent,
-	Typography,
-	Avatar,
-} from '@mui/material';
-import { useSession } from 'next-auth/react';
+import { Avatar, Card, CardContent, Typography } from '@mui/material';
 import * as React from 'react';
 import styles from './OrderCard.module.css';
 
 const OrderCard = (props) => {
-	const { data: session } = useSession();
 	return (
 		<Card className={styles.card}>
-			<CardContent>
+			<CardContent className={styles['card-content']}>
 				<CardContent className={styles['top-card']}>
 					<ul>
 						<li>
@@ -33,7 +25,9 @@ const OrderCard = (props) => {
 						<li>
 							<Typography variant="body1"> DISPATCH TO </Typography>
 						</li>
-						<li> {session.user.name}</li>
+						<li>
+							{props.shippingInfo.firstName} {props.shippingInfo.lastName}
+						</li>
 					</ul>
 
 					<ul>

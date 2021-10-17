@@ -9,6 +9,8 @@ import {
 } from '../../services/cartSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
 import styles from './ReviewOrder.module.css';
+import { checkoutAction } from '../../services/checkoutSlice';
+
 
 const ReviewOrder = () => {
 	const totalPrice = useTotalPrice();
@@ -18,6 +20,7 @@ const ReviewOrder = () => {
 	const shippingInfo = useSelector(
 		(state) => state.checkout.shippingInfo.shippingInfo.shippingInfo
 	);
+	const step = useSelector((state) => state.checkout.currentStep);
 	const orderItems = useCartItems();
 
 	const submitOrderHandler = async () => {
@@ -32,6 +35,8 @@ const ReviewOrder = () => {
 			console.log(error);
 		}
 		router.replace('/success');
+		dispatch(checkoutAction.currStep(0));
+
 	};
 
 	return (

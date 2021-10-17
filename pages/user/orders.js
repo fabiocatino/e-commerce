@@ -1,5 +1,6 @@
 import { Container } from '@mui/material';
-import { getSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import Spinner from '../../src/components/Layout/Spinner';
 import OrderCard from '../../src/components/Order/OrderCard';
@@ -7,16 +8,18 @@ import { useGetAllOrdersQuery } from '../../src/services/ordersApi';
 import styles from './Orders.module.css';
 
 const Orders = () => {
-	const { data: orders, isLoading, error } = useGetAllOrdersQuery();
-	// {
-	// 	!isLoading &&
-	// 		console.log(orders.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1)));
-	// }
-
+	const { data: orders, isLoading, error } = useGetAllOrdersQuery({});
+	const { data: session, status } = useSession();
+	const router = useRouter();
+	useEffect(() => {
+		if (!session && status !== 'loading') {
+			router.push('/');
+		}
+	}, [session]);
 
 	return (
 		<>
-			{error && (
+			{error && session && (
 				<p style={{ display: 'flex', justifyContent: 'center' }}>
 					Something went wrong. Please, try again.
 				</p>
@@ -36,19 +39,19 @@ const Orders = () => {
 
 export default Orders;
 
-export async function getServerSideProps(req) {
-	const session = await getSession(req);
+// export async function getServerSideProps(req) {
+// 	const session = await getSession(req);
 
-	if (!session) {
-		return {
-			redirect: {
-				destination: '/',
-				permanent: false,
-			},
-		};
-	}
+// 	if (!session) {
+// 		return {
+// 			redirect: {
+// 				destination: '/',
+// 				permanent: false,
+// 			},
+// 		};
+// 	}
 
-	return {
-		props: {},
-	};
-}
+// 	return {
+// 		props: {},
+// 	};
+// }

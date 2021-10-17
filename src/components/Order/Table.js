@@ -148,7 +148,7 @@ export default function EnhancedTable() {
 												scope="row"
 												padding="none"
 											>
-												<Image alt='' src={row.image} height={100} width={100}></Image>
+												<Image alt={row.name} src={row.image} height={100} width={100}></Image>
 											</TableCell>
 											<TableCell align="right">{row.name}</TableCell>
 											<TableCell align="right">
