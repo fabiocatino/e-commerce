@@ -9,7 +9,6 @@ import { useSession } from 'next-auth/react';
 
 const Account = () => {
 	const { data: session, status } = useSession();
-	console.log({ session });
 	return (
 		<Container>
 			<Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -20,7 +19,7 @@ const Account = () => {
 				)}
 				<div className={styles.container}>
 					{cardInfo.map((card) => (
-						<Grid item key={card.title} item xs={6} sm={6} md={4} lg={3}>
+						<Grid item key={card.title} xs={6} sm={6} md={4} lg={3}>
 							<UserCard {...card}></UserCard>
 						</Grid>
 					))}
@@ -36,16 +35,26 @@ const cardInfo = [
 	{
 		title: 'RECENT ORDERS',
 		description: 'Check your recent orders here.',
-		icon: <AccountCircleIcon sx={{ color: 'white' }} fontSize="large" />,
+		icon: <AccountCircleIcon sx={{ color: 'white' }} fontSize="large"/>,
+		link: '/user/orders/' ,
 	},
 	{
 		title: 'ACCOUNT DETAILS',
 		description: 'Manage your details, password and email.',
 		icon: <ListIcon sx={{ color: 'white' }} fontSize="large" />,
+		link: '/user/details/',
 	},
 	{
 		title: 'ADDRESS BOOK',
 		description: 'Manage your billing and delivery addresses.',
 		icon: <HomeIcon sx={{ color: 'white' }} fontSize="large" />,
+		link: '/user/addresses/',
 	},
 ];
+
+export async function getStaticProps() {
+	return {
+		props: {},
+		revalidate: 3000,
+	};
+}

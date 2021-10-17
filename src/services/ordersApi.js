@@ -6,6 +6,11 @@ export const ordersApi = createApi({
 	reducerPath: 'ordersApi',
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: (build) => ({
+		getAllOrders: build.query({
+			query: () => ({
+				baseUrl,
+			}),
+		}),
 		addOrder: build.mutation({
 			query: (body) => ({
 				url: `${baseUrl}/add`,
@@ -16,4 +21,4 @@ export const ordersApi = createApi({
 	}),
 });
 
-export const { useAddOrderMutation } = ordersApi;
+export const { useAddOrderMutation, useGetAllOrdersQuery } = ordersApi;

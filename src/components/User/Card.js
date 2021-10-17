@@ -1,8 +1,13 @@
+import Link from 'next/link';
+import {
+	CardActionArea,
+	Link as MLink,
+	Card,
+	CardContent,
+	Typography,
+} from '@mui/material';
+
 import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
 import styles from './Card.module.css';
 
 export default function UserCard(props) {
@@ -11,9 +16,11 @@ export default function UserCard(props) {
 			<CardActionArea>
 				<CardContent className={styles['top-card']}>
 					{props.icon}
-					<Typography variant="body1">
-						<strong>{props.title}</strong>
-					</Typography>
+					<Link passHref={true} href={props.link}>
+						<MLink color="white" underline="hover" variant="body1">
+							<strong>{props.title}</strong>
+						</MLink>
+					</Link>
 				</CardContent>
 				<CardContent className={styles['bottom-card']}>
 					<Typography variant="body2">{props.description}</Typography>

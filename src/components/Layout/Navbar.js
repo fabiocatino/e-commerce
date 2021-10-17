@@ -66,7 +66,7 @@ const Navbar = () => {
 							onClick={handleMenu}
 						>
 							<Typography sx={{ textTransform: 'capitalize' }} variant="body1">
-								Hello, {session.user.name}
+								Hello, {session.user.name.split(' ')[0]}
 							</Typography>
 						</Button>
 						<Menu

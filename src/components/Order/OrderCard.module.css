@@ -1,0 +1,26 @@
+.card {
+	display: flex;
+	width: 918px;
+}
+
+.top-card {
+    padding: 0px 5px;
+	background-color: #0090f0;
+	display: flex;
+	justify-content: space-between;
+	gap: 2rem;
+	height: 64px;
+}
+
+.top-card li, .top-card p {
+  
+    margin: 0;
+	display: flex;
+	color: white;
+	font-size: 14px;
+	list-style: none;
+}
+
+.bottom-card {
+	height: 119px;
+}

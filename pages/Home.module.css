@@ -1,6 +1,6 @@
 .container {
 	text-align: center;
-	background-color: rgb(189, 189, 189);
+	/* background-color: rgb(189, 189, 189); */
 	margin-top: 1rem;
 	height: 700px;
 	display: flex;
