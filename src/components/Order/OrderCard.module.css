@@ -4,7 +4,10 @@
 }
 
 .top-card {
-    padding: 0px 5px;
+	width: 918px;
+	padding: 0px;
+	padding-bottom: 5rem;
+	padding-right: 2rem;
 	background-color: #0090f0;
 	display: flex;
 	justify-content: space-between;
@@ -12,9 +15,9 @@
 	height: 64px;
 }
 
-.top-card li, .top-card p {
-  
-    margin: 0;
+.top-card li,
+.top-card p {
+	margin: 0;
 	display: flex;
 	color: white;
 	font-size: 14px;
@@ -24,9 +27,16 @@
 .bottom-card {
 	min-height: 119px;
 }
-.item {
+
+.left {
 	display: flex;
 	gap: 1rem;
+	width: 150px;
+}
+
+.item {
+	display: flex;
+	gap: 5rem;
 	align-items: center;
 	margin-top: 1rem;
 }

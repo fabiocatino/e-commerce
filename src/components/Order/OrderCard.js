@@ -13,7 +13,7 @@ const OrderCard = (props) => {
 	const { data: session } = useSession();
 	return (
 		<Card className={styles.card}>
-			<CardActionArea>
+			<CardContent>
 				<CardContent className={styles['top-card']}>
 					<ul>
 						<li>
@@ -45,17 +45,20 @@ const OrderCard = (props) => {
 				<CardContent className={styles['bottom-card']}>
 					{props.orderItems.map((item) => (
 						<div key={item._id} className={styles.item}>
-							<Avatar
-								alt={item.name}
-								sx={{ width: 40, height: 40 }}
-								variant="square"
-								src={item.image}
-							></Avatar>
-							{item.name}
+							<div className={styles.left}>
+								<Avatar
+									alt={item.name}
+									sx={{ width: 40, height: 40 }}
+									variant="square"
+									src={item.image}
+								></Avatar>
+								{item.name}
+							</div>
+							<div> £{item.price}</div>
 						</div>
 					))}
 				</CardContent>
-			</CardActionArea>
+			</CardContent>
 		</Card>
 	);
 };
