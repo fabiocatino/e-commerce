@@ -269,14 +269,6 @@ export default function CheckoutForm() {
 					SELECT PAYMENT METHOD
 				</Button>
 			</form>
-			{/* // 	type="submit"
-				// 	variant="contained"
-				// 	color="success"
-				// 	className={styles['submit-button']}
-				// 	size="large"
-				// >
-				// 	PLACE YOUR ORDER
-				// </Button>  */}
 		</Grid>
 	);
 }

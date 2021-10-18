@@ -1,0 +1,24 @@
+.container {
+	padding-top: 5rem;
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+}
+
+.title {
+	display: flex;
+	justify-content: center;
+}
+
+.card {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	flex-wrap: wrap;
+}
+
+.form {
+	padding-top: 6rem;
+	display: none;
+}

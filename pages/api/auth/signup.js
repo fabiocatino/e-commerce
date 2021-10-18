@@ -26,7 +26,6 @@ handler.post(async (req, res) => {
 
 		if (exsistingUser) {
 			res.status(422).json({ message: 'User already exists.' });
-			// db.disconnect();
 			return;
 		}
 

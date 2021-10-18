@@ -8,6 +8,7 @@ import ReviewOrder from '../../src/components/Order/ReviewOrder';
 import HorizontalLinearStepper from '../../src/components/Order/Stepper';
 import { useCartItems } from '../../src/services/cartSlice';
 import styles from './Checkout.module.css';
+import { getSession } from 'next-auth/react';
 
 const Checkout = () => {
 	const step = useSelector((state) => state.checkout.currentStep);
@@ -39,3 +40,22 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
+export async function getServerSideProps(context) {
+	const session = await getSession({ req: context.req });
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/user/login',
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: {
+			session,
+		},
+	};
+}

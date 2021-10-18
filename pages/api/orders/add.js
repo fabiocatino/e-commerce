@@ -20,7 +20,7 @@ handler.post(async (req, res) => {
 		await db.connect();
 		const exsistingUser = await User.findOne({ email: email });
 		if (!exsistingUser) {
-			// db.disconnect();
+		
 			throw new Error('No user associated with this email address.');
 		}
 
@@ -32,7 +32,6 @@ handler.post(async (req, res) => {
 		const order = await newOrder.save();
 
 		await res.send(order);
-		// db.disconnect();
 		res.end();
 	}
 });

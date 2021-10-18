@@ -88,12 +88,14 @@ const users = [
 		email: 'admin@gmail.com',
 		password: bcrypt.hashSync('admin'),
 		isAdmin: true,
+		addresss: [{}],
 	},
 	{
 		name: 'Summer',
 		email: 'Summer@gmail.com',
 		password: bcrypt.hashSync('summer'),
 		isAdmin: false,
+		addresss: [{}],
 	},
 ];
 

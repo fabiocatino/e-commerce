@@ -21,6 +21,11 @@
 	justify-content: space-between;
 }
 
+.login {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
 .account-button {
 	text-transform: capitalize;
 }

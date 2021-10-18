@@ -1,0 +1,15 @@
+.container div {
+	display: flex;
+	gap: 2rem;
+	margin-top: 5px;
+}
+
+.select {
+	width: 100%;
+}
+
+.submit-button {
+	border-radius: 20px;
+	margin-top: 2rem;
+	width: 100%;
+}

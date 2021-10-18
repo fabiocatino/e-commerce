@@ -51,8 +51,8 @@ const Navbar = () => {
 			</div>
 			<ul className={styles['navbar-items']}>
 				{!session && status !== 'loading' && (
-					<Link href="/user/login" passHref={true}>
-						<MLink variant="h6" underline="hover" color="#fff">
+					<Link  href="/user/login" passHref={true}>
+						<MLink className={styles.login} variant="h6" underline="hover" color="#fff">
 							<PersonIcon /> Login
 						</MLink>
 					</Link>
