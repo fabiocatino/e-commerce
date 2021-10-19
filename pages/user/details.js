@@ -17,8 +17,8 @@ import ModifyPasswordForm from '../../src/components/User/ModifyPasswordForm';
 import styles from './Details.module.css';
 
 export default function Details() {
-	const [openAccoutInfo, setOpenAccountInfo] = useState(false);
-	const [openChangePassword, setOpenChangePassword] = useState(false);
+	const [openAccoutInfo, setOpenAccountInfo] = useState(true);
+	const [openChangePassword, setOpenChangePassword] = useState(true);
 
 	const changeInfoHandler = () => {
 		setOpenAccountInfo(!openAccoutInfo);

@@ -51,8 +51,13 @@ const Navbar = () => {
 			</div>
 			<ul className={styles['navbar-items']}>
 				{!session && status !== 'loading' && (
-					<Link  href="/user/login" passHref={true}>
-						<MLink className={styles.login} variant="h6" underline="hover" color="#fff">
+					<Link href="/user/login" passHref={true}>
+						<MLink
+							className={styles.login}
+							variant="h6"
+							underline="hover"
+							color="#fff"
+						>
 							<PersonIcon /> Login
 						</MLink>
 					</Link>
@@ -85,7 +90,6 @@ const Navbar = () => {
 							open={Boolean(anchorEl)}
 							onClose={handleClose}
 						>
-							<MenuItem onClick={handleClose}>Profile</MenuItem>
 							<MenuItem>
 								<Link href="/user/account"> My account</Link>
 							</MenuItem>

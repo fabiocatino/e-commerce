@@ -10,7 +10,6 @@ const handler = nc().use(Cors());
 handler.patch(async (req, res) => {
 	if (req.method === 'PATCH') {
 		const session = await getSession({ req });
-		console.log(session);
 		const { email } = session.user;
 
 		const filter = { email };
@@ -26,7 +25,6 @@ handler.patch(async (req, res) => {
 		const exsistingUser = await User.findOneAndUpdate(filter, update);
 
 		const user = await exsistingUser.save();
-		console.log(exsistingUser);
 		await res.send({
 			user,
 		});

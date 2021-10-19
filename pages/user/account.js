@@ -15,7 +15,7 @@ const Account = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (!session) {
+		if (status !== 'loading' && !session) {
 			router.push('/');
 		} else {
 			setIsLoading(false);
