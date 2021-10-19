@@ -1,30 +1,22 @@
-import {
-	Button,
-	Container,
-	Link as Mlink,
-	TextField,
-	Typography,
-} from '@mui/material';
-import Link from 'next/link';
+import { Button, Container, TextField } from '@mui/material';
 import React, { useState } from 'react';
-import { useAddUserMutation } from '../../services/userApi';
+import { useUpdateUserPasswordMutation } from '../../services/userApi';
 import styles from './ModifyPasswordForm.module.css';
 
 const ModifyPasswordForm = () => {
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
+	const [oldPassword, setOldPassword] = useState('');
 	const [password1, setPassword1] = useState('');
-	const [password2, setPassword2] = useState(undefined);
+	const [password2, setPassword2] = useState('');
 
-	const [addUser, { isLoading, isSuccess, error }] = useAddUserMutation();
+	const [updateUserPassword, { isLoading, isSuccess, error }] =
+		useUpdateUserPasswordMutation();
 
 	async function submitHandler(e) {
 		e.preventDefault();
 
 		try {
-			await addUser({
-				name,
-				email,
+			await updateUserPassword({
+				oldPassword,
 				password1,
 			}).unwrap();
 		} catch (error) {
@@ -37,9 +29,19 @@ const ModifyPasswordForm = () => {
 			<form onSubmit={submitHandler} className={styles.form}>
 				<TextField
 					required
-					id="password1"
-					label="Password"
-					placeholder="Password"
+					id="old-password"
+					label="Old Password"
+					placeholder="Old Password"
+					variant="outlined"
+					type="password"
+					className={styles.textfield}
+					onChange={(e) => setOldPassword(e.target.value)}
+				></TextField>
+				<TextField
+					required
+					id="new-password"
+					label="New Password"
+					placeholder="New Password"
 					variant="outlined"
 					type="password"
 					className={styles.textfield}

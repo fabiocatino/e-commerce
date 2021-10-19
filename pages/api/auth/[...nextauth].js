@@ -22,11 +22,10 @@ export default NextAuth({
 	providers: [
 		CredentialsProvider({
 			async authorize(credentials) {
-				// await db.connect();
+				await db.connect();
 				const exsistingUser = await User.findOne({ email: credentials.email });
 
 				if (!exsistingUser) {
-					// db.disconnect();
 					throw new Error('No user associated with this email address.');
 				}
 
@@ -36,11 +35,8 @@ export default NextAuth({
 				);
 
 				if (!isValid) {
-					// db.disconnect();
 					throw new Error('Invalid password.');
 				}
-
-				// db.disconnect();
 
 				return {
 					name: exsistingUser.name,
@@ -50,5 +46,3 @@ export default NextAuth({
 		}),
 	],
 });
-
-
