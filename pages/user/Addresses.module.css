@@ -11,14 +11,35 @@
 	justify-content: center;
 }
 
-.card {
+.add-address-card {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 275px;
+	height: 180.131px;
+	border: 1px solid #b7b9bb;
+}
+
+.add-address-card button {
+	font-size: 20px;
+}
+
+.cards {
 	display: flex;
 	justify-content: center;
 	gap: 2rem;
 	flex-wrap: wrap;
 }
+.no-cards {
+	display: none;
+}
 
 .form {
-	padding-top: 6rem;
+	display: flex;
+	justify-content: center;
+	padding-bottom: 6rem;
+}
+
+.no-form {
 	display: none;
 }

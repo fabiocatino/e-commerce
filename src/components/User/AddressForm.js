@@ -1,11 +1,10 @@
 import { Button, Grid, TextField } from '@mui/material';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { useAddAddressMutation } from '../../services/userApi';
 import styles from './AddressForm.module.css';
 
-export default function AddressForm() {
+export default function AddressForm(props) {
 	const [addAddress, { data: mutationData, isLoading, isSuccess, error }] =
 		useAddAddressMutation();
 
@@ -23,7 +22,6 @@ export default function AddressForm() {
 		} catch (error) {
 			console.log(error);
 		}
-		console.log(mutationData);
 	};
 
 	return (
@@ -266,6 +264,7 @@ export default function AddressForm() {
 					color="success"
 					className={styles['submit-button']}
 					size="large"
+					onClick={() => props.onSubmit(false)}
 				>
 					ADD ADDRESS
 				</Button>

@@ -11,6 +11,10 @@ export const userApi = createApi({
 			query: () => ({
 				url: `${baseUrl}/address`,
 			}),
+			providesTags: (result, error, arg) =>
+				result
+					? [...result.map(({ _id }) => ({ type: 'User', _id })), 'User']
+					: ['User'],
 		}),
 		addUser: build.mutation({
 			query: (body) => ({
@@ -25,6 +29,7 @@ export const userApi = createApi({
 				method: 'POST',
 				body,
 			}),
+			invalidatesTags: ['User'],
 		}),
 		deleteAddress: build.mutation({
 			query: (body) => {
@@ -34,9 +39,7 @@ export const userApi = createApi({
 					body,
 				};
 			},
-			invalidatesTags: (result, error, arg) => {
-				console.log(result)
-			},
+			invalidatesTags: ['User'],
 		}),
 	}),
 });

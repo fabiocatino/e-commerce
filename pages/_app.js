@@ -23,6 +23,10 @@ export default function App({
 								name="viewport"
 								content="initial-scale=1.0, width=device-width"
 							/>
+							<link
+								href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+								rel="stylesheet"
+							/>
 						</Head>
 
 						<Component {...pageProps} />

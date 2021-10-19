@@ -37,14 +37,11 @@ export default function RemoveAddressModal(props) {
 						aria-describedby="modal-modal-description"
 					>
 						<Box className={styles.container}>
-							<Typography
-								className={styles.header}
-								id="modal-modal-title"
-								variant="h6"
-								component="h2"
-							>
-								You are about to delete the following address:
-							</Typography>
+							<div className={styles.header}>
+								<Typography id="modal-modal-title" variant="h6" component="h2">
+									You are about to delete the following address:
+								</Typography>
+							</div>
 							<div className={styles['modal-body']}>
 								<Typography
 									sx={{ fontSize: 14, fontWeight: 'bold' }}

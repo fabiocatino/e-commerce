@@ -12,7 +12,7 @@ const editHandler = (index) => () => {
 
 export default function AddressCard(props) {
 	return (
-		<Card sx={{ minWidth: 275 }}>
+		<Card sx={{ minWidth: 275, border: '1px solid #b7b9bb'}}>
 			<CardContent>
 				<Typography sx={{ fontSize: 14, fontWeight: 'bold' }} gutterBottom>
 					{props.firstName} {props.lastName}
