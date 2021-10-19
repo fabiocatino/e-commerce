@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
@@ -27,7 +27,11 @@ const Orders = () => {
 			{isLoading && <Spinner />}
 			{!isLoading && !error && (
 				<Container className={styles.container}>
-					{orders.length <= 0 && <p>No orders to display.</p>}
+					{orders.length <= 0 && (
+						<Typography variant="h3" className={styles['no-order-message']}>
+							No orders to display.
+						</Typography>
+					)}
 					{orders.map((order) => (
 						<OrderCard key={order._id} {...order}></OrderCard>
 					))}

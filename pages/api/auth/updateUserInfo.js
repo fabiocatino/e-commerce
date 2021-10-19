@@ -22,15 +22,16 @@ handler.patch(async (req, res) => {
 
 		await db.connect();
 
+		const exsistingEmail = await User.findOne({ email: email });
+
+		if (exsistingEmail.email === req.body.email) {
+			res.status(422).json({ message: 'Email already exists.' });
+			return;
+		}
+
 		const exsistingUser = await User.findOneAndUpdate(filter, update);
 
-		const user = await exsistingUser.save();
-		await res.send({
-			user,
-		});
-
-		// res.status(201).json({ message: 'User info updated.' });
-		// res.end('User info updated.');
+		res.status(201).json({ message: 'Name and/or password updated.' });
 	}
 });
 

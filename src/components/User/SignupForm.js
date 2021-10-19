@@ -47,6 +47,7 @@ const SignupForm = () => {
 			<form onSubmit={submitHandler} className={styles.form}>
 				{error && <Alert severity="error">{error.data.message}</Alert>}
 				<TextField
+					autoComplete="true"
 					required
 					id="name"
 					label="Name"
@@ -56,6 +57,7 @@ const SignupForm = () => {
 					onChange={(e) => setName(e.target.value)}
 				></TextField>
 				<TextField
+					autoComplete="true"
 					required
 					id="email"
 					label="Email"

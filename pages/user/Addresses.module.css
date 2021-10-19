@@ -6,6 +6,12 @@
 	gap: 2rem;
 }
 
+.error-message {
+	display: flex;
+	justify-content: center;
+	padding-top: 5rem;
+}
+
 .title {
 	display: flex;
 	justify-content: center;

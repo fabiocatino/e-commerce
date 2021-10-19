@@ -40,6 +40,7 @@ const LoginForm = () => {
 			<form onSubmit={submitHandler} className={styles.form}>
 				{error && <Alert severity="error">{error}</Alert>}
 				<TextField
+					autoComplete="true"
 					required
 					id="email"
 					label="Email"

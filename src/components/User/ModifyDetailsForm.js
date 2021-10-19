@@ -1,13 +1,13 @@
-import { Button, Container, TextField } from '@mui/material';
+import { Alert, Button, Container, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useUpdateUserInfoMutation } from '../../services/userApi';
 import styles from './ModifyDetailsForm.module.css';
 
-const ModifyDetailsForm = (props) => {
+const ModifyDetailsForm = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 
-	const [updateUserInfo, { isLoading, isSuccess, error }] =
+	const [updateUserInfo, { isLoading, isSuccess, error, data }] =
 		useUpdateUserInfoMutation();
 
 	async function submitHandler(e) {
@@ -26,7 +26,10 @@ const ModifyDetailsForm = (props) => {
 	return (
 		<Container className={styles.main}>
 			<form onSubmit={submitHandler} className={styles.form}>
+				{error && <Alert severity="error">{error.data.message}</Alert>}
+				{data && isSuccess && <Alert severity="success">{data.message}</Alert>}
 				<TextField
+					autoComplete="true"
 					type="text"
 					required
 					id="name"
@@ -37,6 +40,7 @@ const ModifyDetailsForm = (props) => {
 					onChange={(e) => setName(e.target.value)}
 				></TextField>
 				<TextField
+					autoComplete="true"
 					type="email"
 					required
 					id="email"
@@ -54,9 +58,6 @@ const ModifyDetailsForm = (props) => {
 					color="success"
 					size="large"
 					className={styles.button}
-					onClick={() => {
-						name && email.includes('@') ? props.onSubmit(true) : null;
-					}}
 				>
 					Submit
 				</Button>

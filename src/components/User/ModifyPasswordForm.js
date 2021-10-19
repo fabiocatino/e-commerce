@@ -1,4 +1,4 @@
-import { Button, Container, TextField } from '@mui/material';
+import { Alert, Button, Container, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useUpdateUserPasswordMutation } from '../../services/userApi';
 import styles from './ModifyPasswordForm.module.css';
@@ -8,7 +8,7 @@ const ModifyPasswordForm = () => {
 	const [password1, setPassword1] = useState('');
 	const [password2, setPassword2] = useState('');
 
-	const [updateUserPassword, { isLoading, isSuccess, error }] =
+	const [updateUserPassword, { isLoading, isSuccess, error, data }] =
 		useUpdateUserPasswordMutation();
 
 	async function submitHandler(e) {
@@ -20,13 +20,14 @@ const ModifyPasswordForm = () => {
 				password1,
 			}).unwrap();
 		} catch (error) {
-			console.log(error.data);
+			//
 		}
 	}
-
 	return (
 		<Container className={styles.main}>
 			<form onSubmit={submitHandler} className={styles.form}>
+				{error && <Alert severity="error">{error.data.message}</Alert>}
+				{data && isSuccess && <Alert severity="success">{data.message}</Alert>}
 				<TextField
 					required
 					id="old-password"
@@ -46,6 +47,7 @@ const ModifyPasswordForm = () => {
 					type="password"
 					className={styles.textfield}
 					onChange={(e) => setPassword1(e.target.value)}
+					helperText={'Password must be at least 7 characters.'}
 				></TextField>
 				<TextField
 					required
@@ -62,7 +64,6 @@ const ModifyPasswordForm = () => {
 					type="submit"
 					variant="contained"
 					color="success"
-					disabled={password1 === password2 ? false : true}
 					size="large"
 					className={styles.button}
 				>

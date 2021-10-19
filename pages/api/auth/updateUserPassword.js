@@ -9,11 +9,11 @@ import { verifyPassword } from '../../../src/utils/auth';
 const handler = nc().use(Cors());
 
 handler.patch(async (req, res) => {
-	const session = await getSession({ req });
-
-	const email = session.user.email;
-	const { oldPassword, password1 } = req.body;
 	if (req.method === 'PATCH') {
+		const session = await getSession({ req });
+		const email = session.user.email;
+		const { oldPassword, password1 } = req.body;
+
 		if (!password1 || password1.trim().length < 7) {
 			res
 				.status(422)
@@ -22,7 +22,6 @@ handler.patch(async (req, res) => {
 		}
 
 		await db.connect();
-
 		const exsistingUser = await User.findOne({ email });
 
 		const isValid = await verifyPassword(oldPassword, exsistingUser.password);
@@ -31,21 +30,19 @@ handler.patch(async (req, res) => {
 			res.status(403).json({ message: 'Invalid password.' });
 			return;
 		}
-
 		const hashedPassword = HashPassword(password1);
+
 		const newPassword = await User.updateOne(
 			{ email },
 			{ password: hashedPassword }
 		);
 
-		await res.send({
-			newPassword,
-		});
+		// await res.send({
+		// 	newPassword,
+		// });
+		res.status(200).json({ message: 'Password updated.' });
 
-		await newPassword.save();
-
-		res.status(201).json({ message: 'Password updated.' });
-		res.end('Password updated.');
+		res.end();
 	}
 });
 

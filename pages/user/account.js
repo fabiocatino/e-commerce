@@ -2,30 +2,27 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import ListIcon from '@mui/icons-material/List';
 import { Container, Grid, Typography } from '@mui/material';
-import React, { useState, useEffect } from 'react';
-import UserCard from '../../src/components/User/Card';
-import styles from './Account.module.css';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import Spinner from '../../src/components/Layout/Spinner';
+import UserCard from '../../src/components/User/Card';
+import styles from './Account.module.css';
 
 const Account = () => {
 	const { data: session, status } = useSession();
-	const [isLoading, setIsLoading] = useState(true);
 	const router = useRouter();
 
 	useEffect(() => {
-		if (status !== 'loading' && !session) {
-			router.push('/');
-		} else {
-			setIsLoading(false);
+		if (!session && status !== 'loading') {
+			router.push('/user/login');
 		}
-	}, [session]);
+	}, [status]);
 
 	return (
 		<Container>
-			{isLoading && <Spinner />}
-			{!isLoading && (
+			{status === 'loading' && <Spinner />}
+			{status === 'authenticated' && (
 				<Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
 					{status === 'authenticated' && (
 						<Typography className={styles.title} variant="h4">

@@ -1,5 +1,6 @@
 import HomeIcon from '@mui/icons-material/Home';
-import { Button, Card, Container, Grid } from '@mui/material';
+import { Button, Card, Container, Grid, Typography } from '@mui/material';
+import { getSession } from 'next-auth/react';
 import React, { useState } from 'react';
 import Spinner from '../../src/components/Layout/Spinner';
 import AddressCard from '../../src/components/User/AddressCard';
@@ -13,7 +14,11 @@ const Addresses = () => {
 
 	return (
 		<>
-			{isError && <p>Something went wrong. Please try again.</p>}
+			{isError && (
+				<Typography className={styles['error-message']} variant="h5">
+					Something went wrong. Please try again.
+				</Typography>
+			)}
 			{isLoading && <Spinner />}
 			{!isLoading && !isError && (
 				<Container className={styles.container}>
@@ -47,3 +52,22 @@ const Addresses = () => {
 };
 
 export default Addresses;
+
+export async function getServerSideProps(context) {
+	const session = await getSession({ req: context.req });
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/',
+				permanent: false,
+			},
+		};
+	}
+
+	return {
+		props: {
+			session,
+		},
+	};
+}
