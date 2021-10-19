@@ -25,9 +25,9 @@ handler.post(async (req, res) => {
 
 		await db.connect();
 
-		const exsistingUser = await User.findOne({ email: email });
+		const existingUser = await User.findOne({ email: email });
 
-		if (exsistingUser) {
+		if (existingUser) {
 			res.status(422).json({ message: 'User already exists.' });
 			return;
 		}

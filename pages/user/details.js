@@ -14,7 +14,7 @@ import { useRouter } from 'next/router';
 import Spinner from '../../src/components/Layout/Spinner';
 
 export default function Details() {
-	const [openAccoutInfo, setOpenAccountInfo] = useState(true);
+	const [openAccountInfo, setOpenAccountInfo] = useState(true);
 	const [openChangePassword, setOpenChangePassword] = useState(true);
 	const { data: session, status } = useSession();
 	const router = useRouter();
@@ -26,7 +26,7 @@ export default function Details() {
 	}, [status]);
 
 	const changeInfoHandler = () => {
-		setOpenAccountInfo(!openAccoutInfo);
+		setOpenAccountInfo(!openAccountInfo);
 	};
 
 	const changePasswordHandler = () => {
@@ -50,9 +50,9 @@ export default function Details() {
 							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold' }}
 							primary="EDIT YOUR ACCOUNT INFORMATION"
 						/>
-						{openAccoutInfo ? <ExpandLess /> : <ExpandMore />}
+						{openAccountInfo ? <ExpandLess /> : <ExpandMore />}
 					</ListItemButton>
-					<Collapse in={openAccoutInfo} timeout="auto" unmountOnExit>
+					<Collapse in={openAccountInfo} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
 							<ModifyDetailsForm onSubmit={() => setOpenAccountInfo(false)} />
 						</List>

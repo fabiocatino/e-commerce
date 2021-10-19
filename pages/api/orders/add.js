@@ -18,13 +18,13 @@ handler.post(async (req, res) => {
 	const email = session.user.email;
 	if (req.method === 'POST') {
 		await db.connect();
-		const exsistingUser = await User.findOne({ email: email });
-		if (!exsistingUser) {
+		const existingUser = await User.findOne({ email: email });
+		if (!existingUser) {
 		
 			throw new Error('No user associated with this email address.');
 		}
 
-		const _id = exsistingUser._id;
+		const _id = existingUser._id;
 		const newOrder = new Order({
 			...req.body,
 			user: _id,

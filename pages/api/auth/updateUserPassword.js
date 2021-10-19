@@ -22,9 +22,9 @@ handler.patch(async (req, res) => {
 		}
 
 		await db.connect();
-		const exsistingUser = await User.findOne({ email });
+		const existingUser = await User.findOne({ email });
 
-		const isValid = await verifyPassword(oldPassword, exsistingUser.password);
+		const isValid = await verifyPassword(oldPassword, existingUser.password);
 
 		if (!isValid) {
 			res.status(403).json({ message: 'Invalid password.' });

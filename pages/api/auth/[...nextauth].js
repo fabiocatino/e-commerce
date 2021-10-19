@@ -11,26 +11,20 @@ export default NextAuth({
 	},
 	jwt: {
 		secret: `${process.env.SECRET}`,
-		// signingKey: {
-		// 	kty: "oct",
-		// 	kid: "9esMHG2p8vUkwOHNeeTNaGtIaC4MEJeQBt4sAlD72B0",
-		// 	alg: "HS512",
-		// 	k: "zhiQ6XmVdJ2_HOrOAFyxUCnAGmibKLHY5LkAYd3HDwcPKPojkcpMZWfc9UrevU8x8pB3RMhwujjNn2vikbTxSw",
-		// },
 	},
 
 	providers: [
 		CredentialsProvider({
 			async authorize(credentials) {
 				await db.connect();
-				const exsistingUser = await User.findOne({ email: credentials.email });
-				if (!exsistingUser) {
+				const existingUser = await User.findOne({ email: credentials.email });
+				if (!existingUser) {
 					throw new Error('No user associated with this email address.');
 				}
 
 				const isValid = await verifyPassword(
 					credentials.password,
-					exsistingUser.password
+					existingUser.password
 				);
 
 				if (!isValid) {
@@ -38,8 +32,8 @@ export default NextAuth({
 				}
 
 				return {
-					name: exsistingUser.name,
-					email: exsistingUser.email,
+					name: existingUser.name,
+					email: existingUser.email,
 				};
 			},
 		}),

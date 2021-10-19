@@ -26,8 +26,8 @@ handler.post(async (req, res) => {
 			phoneNumber,
 		} = req.body;
 
-		const exsistingUser = await User.findOne({ email: session.user.email });
-		const addresses = exsistingUser.addresses;
+		const existingUser = await User.findOne({ email: session.user.email });
+		const addresses = existingUser.addresses;
 
 		const user = await User.findOneAndUpdate(
 			{ email: session.user.email },
