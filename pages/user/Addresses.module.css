@@ -18,6 +18,7 @@
 	min-width: 275px;
 	height: 180.131px;
 	border: 1px solid #b7b9bb;
+	border-radius: 8px;
 }
 
 .add-address-card button {
@@ -30,6 +31,7 @@
 	gap: 2rem;
 	flex-wrap: wrap;
 }
+
 .no-cards {
 	display: none;
 }

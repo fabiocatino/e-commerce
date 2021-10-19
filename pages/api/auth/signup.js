@@ -45,7 +45,6 @@ handler.post(async (req, res) => {
 
 		await user.save();
 
-		// db.disconnect();
 		res.status(201).json({ message: 'User created.' });
 		res.end('User created');
 	}

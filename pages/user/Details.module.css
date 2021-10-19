@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 5rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 1rem;
+
+}
+

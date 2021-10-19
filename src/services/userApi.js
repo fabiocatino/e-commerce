@@ -31,6 +31,14 @@ export const userApi = createApi({
 			}),
 			invalidatesTags: ['User'],
 		}),
+		updateUserInfo: build.mutation({
+			query: (body) => ({
+				url: `${baseUrl}/updateUserInfo`,
+				method: 'PATCH',
+				body,
+			}),
+			invalidatesTags: ['User'],
+		}),
 		deleteAddress: build.mutation({
 			query: (body) => {
 				return {
@@ -48,5 +56,6 @@ export const {
 	useGetAddressesQuery,
 	useAddUserMutation,
 	useAddAddressMutation,
+	useUpdateUserInfoMutation,
 	useDeleteAddressMutation,
 } = userApi;
