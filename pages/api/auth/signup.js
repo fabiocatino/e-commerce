@@ -8,7 +8,7 @@ const handler = nc().use(Cors());
 
 handler.post(async (req, res) => {
 	if (req.method === 'POST') {
-		const { email, password1 } = req.body;
+		const { email, password1, password2 } = req.body;
 
 		if (!email || !email.includes('@')) {
 			res.status(422).json({ message: 'Invalid email address.' });
@@ -17,6 +17,9 @@ handler.post(async (req, res) => {
 			res
 				.status(422)
 				.json({ message: 'Password should be at least 7 characters.' });
+			return;
+		} else if (password1 !== password2) {
+			res.status(422).json({ message: 'Passwords do not match.' });
 			return;
 		}
 

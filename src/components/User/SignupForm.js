@@ -1,16 +1,23 @@
 import {
-	Button, Container, Link as Mlink, TextField, Typography
+	Alert,
+	Button,
+	Container,
+	Link as Mlink,
+	TextField,
+	Typography,
 } from '@mui/material';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { useAddUserMutation } from '../../services/userApi';
 import styles from './SignupForm.module.css';
+import { useRouter } from 'next/router';
 
 const SignupForm = () => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password1, setPassword1] = useState('');
 	const [password2, setPassword2] = useState(undefined);
+	const router = useRouter();
 
 	const [addUser, { isLoading, isSuccess, error }] = useAddUserMutation();
 
@@ -22,15 +29,23 @@ const SignupForm = () => {
 				name,
 				email,
 				password1,
+				password2,
 			}).unwrap();
+			router.push('/user/login');
+			// const result = await signIn('credentials', {
+			// 	redirect: false,
+			// 	email,
+			// 	password1,
+			// });
 		} catch (error) {
-			console.log(error.data);
+			console.log(error);
 		}
 	}
 
 	return (
 		<Container className={styles.main}>
 			<form onSubmit={submitHandler} className={styles.form}>
+				{error && <Alert severity="error">{error.data.message}</Alert>}
 				<TextField
 					required
 					id="name"
@@ -56,6 +71,7 @@ const SignupForm = () => {
 					placeholder="Password"
 					variant="outlined"
 					type="password"
+					helperText={'Password must be at least 7 characters.'}
 					className={styles.textfield}
 					onChange={(e) => setPassword1(e.target.value)}
 				></TextField>
@@ -74,7 +90,6 @@ const SignupForm = () => {
 					type="submit"
 					variant="contained"
 					color="success"
-					disabled={password1 === password2 ? false : true}
 					size="large"
 					className={styles.button}
 				>

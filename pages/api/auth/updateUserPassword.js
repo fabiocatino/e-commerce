@@ -13,7 +13,6 @@ handler.patch(async (req, res) => {
 
 	const email = session.user.email;
 	const { oldPassword, password1 } = req.body;
-
 	if (req.method === 'PATCH') {
 		if (!password1 || password1.trim().length < 7) {
 			res
@@ -33,8 +32,7 @@ handler.patch(async (req, res) => {
 			return;
 		}
 
-		const hashedPassword = await HashPassword(password1);
-
+		const hashedPassword = HashPassword(password1);
 		const newPassword = await User.updateOne(
 			{ email },
 			{ password: hashedPassword }

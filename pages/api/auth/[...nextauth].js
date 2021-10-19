@@ -24,7 +24,6 @@ export default NextAuth({
 			async authorize(credentials) {
 				await db.connect();
 				const exsistingUser = await User.findOne({ email: credentials.email });
-
 				if (!exsistingUser) {
 					throw new Error('No user associated with this email address.');
 				}

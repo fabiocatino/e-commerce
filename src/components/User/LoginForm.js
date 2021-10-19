@@ -5,32 +5,40 @@ import {
 	Typography,
 	Button,
 	Link as Mlink,
+	Alert,
 } from '@mui/material';
 import styles from './LoginForm.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
+import { result } from 'lodash';
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [error, setError] = useState('');
 	const router = useRouter();
 
 	async function submitHandler(e) {
 		e.preventDefault();
+
 		const result = await signIn('credentials', {
 			redirect: false,
 			email,
 			password,
 		});
+
 		if (!result.error) {
 			router.replace('/');
+		} else if (result.error) {
+			setError(result.error);
 		}
 	}
 
 	return (
 		<Container className={styles.main}>
 			<form onSubmit={submitHandler} className={styles.form}>
+				{error && <Alert severity="error">{error}</Alert>}
 				<TextField
 					required
 					id="email"
