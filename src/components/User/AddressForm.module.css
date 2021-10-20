@@ -4,12 +4,19 @@
 	margin-top: 5px;
 }
 
+.alerts {
+	display: flex;
+	justify-content: center;
+}
+
 .select {
 	width: 100%;
 }
 
 .submit-button {
+	display: flex;
+	justify-content: center;
 	border-radius: 20px;
-	margin-top: 2rem;
+	padding-top: 1rem;
 	width: 100%;
 }

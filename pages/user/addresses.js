@@ -1,5 +1,11 @@
 import HomeIcon from '@mui/icons-material/Home';
-import { Button, Card, Container, Grid, Typography } from '@mui/material';
+import {
+	Button,
+	Card,
+	Container,
+	Grid,
+	Typography
+} from '@mui/material';
 import { getSession } from 'next-auth/react';
 import React, { useState } from 'react';
 import Spinner from '../../src/components/Layout/Spinner';
@@ -25,13 +31,13 @@ const Addresses = () => {
 					<div className={styles.title}>
 						<h1>Your Addresses</h1>
 					</div>
-
 					<div className={displayForm ? styles.form : styles['no-form']}>
 						<AddressForm
-							onSubmit={() => setDisplayForm(false)}
+							onSubmit={(option) => setDisplayForm(option)}
 							className={styles.address}
 						/>
 					</div>
+
 					<div className={styles.cards}>
 						<Card className={styles['add-address-card']}>
 							<HomeIcon color="primary" sx={{ fontSize: 35 }} />

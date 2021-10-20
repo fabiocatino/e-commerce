@@ -1,5 +1,5 @@
-import { Button, Grid, TextField } from '@mui/material';
-import React, { useState } from 'react';
+import { Alert, Button, Grid, TextField } from '@mui/material';
+import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
 	useAddAddressMutation,
@@ -8,17 +8,16 @@ import {
 import styles from './AddressForm.module.css';
 
 export default function AddressForm(props) {
-	const [addAddress, { data: mutationData, isLoading, isSuccess, error }] =
+	const [addAddress, { data: addAddressData, isLoading, isSuccess, error }] =
 		useAddAddressMutation();
-	// const [isEditing, setIsEditing] = useState(false);
 
 	const [
 		updateUserAddress,
 		{
-			data: newAddress,
-			isLoading: isNewAddressLoading,
-			isSuccess: isSuccessAddress,
-			error: isErrorAddress,
+			data: updatedAddressData,
+			isLoading: isUpdatedAddressLoading,
+			isSuccess: isSuccessUpdatedAddress,
+			error: isErrorUpdatedAddress,
 		},
 	] = useUpdateUserAddressMutation();
 
@@ -51,6 +50,15 @@ export default function AddressForm(props) {
 
 	return (
 		<Grid className={styles.container}>
+			<div className={styles.alerts}>
+				{error && <Alert severity="error">{error.data.message}</Alert>}
+				{isErrorUpdatedAddress && (
+					<Alert severity="error">{isErrorUpdatedAddress.data.message}</Alert>
+				)}
+				{isSuccessUpdatedAddress && (
+					<Alert severity="success">{updatedAddressData.message}</Alert>
+				)}
+			</div>
 			<form
 				onSubmit={
 					!props.isEditing
@@ -288,17 +296,25 @@ export default function AddressForm(props) {
 						/>
 					</div>
 				</>
-
-				<Button
-					type="submit"
-					variant="contained"
-					color="success"
-					className={styles['submit-button']}
-					size="large"
-					onClick={!props.isEditing ? () => props.onSubmit(false) : null}
-				>
-					ADD ADDRESS
-				</Button>
+				<div className={styles['submit-button']}>
+					<Button
+						type="submit"
+						variant="contained"
+						color="success"
+						size="large"
+						onClick={!props.isEditing ? () => props.onSubmit(false) : null}
+					>
+						Save changes
+					</Button>
+					<Button
+						variant="contained"
+						sx={{ backgroundColor: 'gray' }}
+						size="large"
+						onClick={() => props.onClose()}
+					>
+						Go Back
+					</Button>
+				</div>
 			</form>
 		</Grid>
 	);

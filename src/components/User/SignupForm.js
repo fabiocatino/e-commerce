@@ -7,10 +7,10 @@ import {
 	Typography,
 } from '@mui/material';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useAddUserMutation } from '../../services/userApi';
 import styles from './SignupForm.module.css';
-import { useRouter } from 'next/router';
 
 const SignupForm = () => {
 	const [name, setName] = useState('');
@@ -19,7 +19,7 @@ const SignupForm = () => {
 	const [password2, setPassword2] = useState(undefined);
 	const router = useRouter();
 
-	const [addUser, { isLoading, isSuccess, error }] = useAddUserMutation();
+	const [addUser, { error }] = useAddUserMutation();
 
 	async function submitHandler(e) {
 		e.preventDefault();
