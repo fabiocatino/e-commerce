@@ -59,9 +59,41 @@ handler.post(async (req, res) => {
 	}
 });
 
+handler.patch(async (req, res) => {
+	if (req.method === 'PATCH') {
+		const session = await getSession({ req });
+		await db.connect();
+
+		const {
+			firstName,
+			lastName,
+			address,
+			city,
+			postCode,
+			country,
+			phoneNumber,
+		} = req.body;
+
+		const user = await User.findOne({ email: session.user.email });
+
+		const updatedAddress = await user.addresses.id(req.body._id);
+		await updatedAddress.set({
+			firstName,
+			lastName,
+			address,
+			city,
+			postCode,
+			country,
+			phoneNumber,
+		});
+
+		await user.save();
+
+		res.status(201).json({ message: 'Address updated.' });
+	}
+});
 handler.get(async (req, res) => {
 	const session = await getSession({ req });
-
 	if (req.method === 'GET') {
 		await db.connect();
 		const userAddresses = await User.find({ email: session.user.email });
@@ -72,10 +104,9 @@ handler.get(async (req, res) => {
 handler.delete(async (req, res) => {
 	const session = await getSession({ req });
 	const email = session.user.email;
-
 	if (req.method === 'DELETE') {
 		await db.connect();
-		
+
 		const user = await User.findOne({ email });
 		await user.addresses.id(req.body._id).remove();
 

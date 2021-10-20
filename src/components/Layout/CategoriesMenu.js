@@ -22,8 +22,8 @@ export default function CategoriesMenu() {
 	return (
 		<div>
 			<Button
-				onMouseEnter={handleClick}
-				onMouseLeave={handleClick}
+				// onMouseEnter={handleClick}
+				// onMouseLeave={handleClick}
 				id="basic-button"
 				aria-controls="basic-menu"
 				aria-haspopup="true"

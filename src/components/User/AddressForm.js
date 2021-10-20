@@ -1,12 +1,26 @@
 import { Button, Grid, TextField } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useAddAddressMutation } from '../../services/userApi';
+import {
+	useAddAddressMutation,
+	useUpdateUserAddressMutation,
+} from '../../services/userApi';
 import styles from './AddressForm.module.css';
 
 export default function AddressForm(props) {
 	const [addAddress, { data: mutationData, isLoading, isSuccess, error }] =
 		useAddAddressMutation();
+	// const [isEditing, setIsEditing] = useState(false);
+
+	const [
+		updateUserAddress,
+		{
+			data: newAddress,
+			isLoading: isNewAddressLoading,
+			isSuccess: isSuccessAddress,
+			error: isErrorAddress,
+		},
+	] = useUpdateUserAddressMutation();
 
 	const {
 		control,
@@ -14,7 +28,7 @@ export default function AddressForm(props) {
 		formState: { errors },
 	} = useForm();
 
-	const onSubmit = async (data) => {
+	const onSubmitNewAddress = async (data) => {
 		try {
 			await addAddress({
 				...data,
@@ -24,9 +38,26 @@ export default function AddressForm(props) {
 		}
 	};
 
+	const onEditAddress = async (data) => {
+		try {
+			await updateUserAddress({
+				_id: props._id,
+				...data,
+			}).unwrap();
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<Grid className={styles.container}>
-			<form onSubmit={handleSubmit(onSubmit)}>
+			<form
+				onSubmit={
+					!props.isEditing
+						? handleSubmit(onSubmitNewAddress)
+						: handleSubmit(onEditAddress)
+				}
+			>
 				<>
 					<Grid item sm={12} mg={12} lg={12}>
 						<Controller
@@ -264,7 +295,7 @@ export default function AddressForm(props) {
 					color="success"
 					className={styles['submit-button']}
 					size="large"
-					onClick={() => props.onSubmit(false)}
+					onClick={!props.isEditing ? () => props.onSubmit(false) : null}
 				>
 					ADD ADDRESS
 				</Button>

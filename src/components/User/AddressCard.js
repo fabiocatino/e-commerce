@@ -4,6 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import EditAddressModal from './EditAddressModal';
 import RemoveAddressModal from './RemoveAddressModal';
 
 const editHandler = (index) => () => {
@@ -26,9 +27,10 @@ export default function AddressCard(props) {
 				</Typography>
 			</CardContent>
 			<CardActions>
-				<Button size="small" onClick={editHandler(props.index)}>
+				<EditAddressModal  {...props}></EditAddressModal>
+				{/* <Button size="small" onClick={editHandler(props.index)}>
 					Edit
-				</Button>
+				</Button> */}
 				<RemoveAddressModal {...props}></RemoveAddressModal>
 			</CardActions>
 		</Card>

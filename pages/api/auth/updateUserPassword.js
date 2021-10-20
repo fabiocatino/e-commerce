@@ -37,9 +37,6 @@ handler.patch(async (req, res) => {
 			{ password: hashedPassword }
 		);
 
-		// await res.send({
-		// 	newPassword,
-		// });
 		res.status(200).json({ message: 'Password updated.' });
 
 		res.end();
