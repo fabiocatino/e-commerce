@@ -2,9 +2,9 @@ import { Container, Typography } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import Spinner from '../../src/components/Layout/Spinner';
-import OrderCard from '../../src/components/Order/OrderCard';
-import { useGetAllOrdersQuery } from '../../src/services/ordersApi';
+import Spinner from '../../../src/components/Layout/Spinner';
+import OrderCard from '../../../src/components/Order/OrderCard';
+import { useGetAllOrdersQuery } from '../../../src/services/ordersApi';
 import styles from './Orders.module.css';
 
 const Orders = () => {

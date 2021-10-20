@@ -77,7 +77,7 @@ export default function RemoveAddressModal(props) {
 							</div>
 						</Box>
 					</Modal>
-					<Button onClick={handleOpen}>Remove</Button>
+					<Button size='small' onClick={handleOpen}>Remove</Button>
 				</>
 			)}
 		</div>

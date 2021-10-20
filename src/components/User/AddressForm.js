@@ -37,7 +37,7 @@ export default function AddressForm(props) {
 		}
 	};
 
-	const onEditAddress = async (data) => {
+	const onUpdateUserAddress = async (data) => {
 		try {
 			await updateUserAddress({
 				_id: props._id,
@@ -63,7 +63,7 @@ export default function AddressForm(props) {
 				onSubmit={
 					!props.isEditing
 						? handleSubmit(onSubmitNewAddress)
-						: handleSubmit(onEditAddress)
+						: handleSubmit(onUpdateUserAddress)
 				}
 			>
 				<>

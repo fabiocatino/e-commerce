@@ -3,7 +3,6 @@ import db from '../../../src/utils/db';
 import User from '../../../src/models/User';
 import Cors from 'cors';
 import { getSession } from 'next-auth/react';
-import { compareSync } from 'bcryptjs';
 
 const handler = nc().use(Cors());
 handler.post(async (req, res) => {
@@ -29,33 +28,65 @@ handler.post(async (req, res) => {
 		const existingUser = await User.findOne({ email: session.user.email });
 		const addresses = existingUser.addresses;
 
-		const user = await User.findOneAndUpdate(
-			{ email: session.user.email },
+		if (addresses.length === 0) {
+			const user = await User.findOneAndUpdate(
+				{ email: session.user.email },
 
-			{
-				addresses: [
-					...addresses,
-					{
-						firstName,
-						lastName,
-						address,
-						city,
-						postCode,
-						country,
-						phoneNumber,
-					},
-				],
-			}
-		);
+				{
+					addresses: [
+						{
+							firstName,
+							lastName,
+							address,
+							city,
+							postCode,
+							country,
+							phoneNumber,
+							isDefault: true,
+						},
+					],
+				}
+			);
 
-		await res.send({
-			user,
-		});
+			await res.send({
+				user,
+			});
 
-		await user.save();
+			await user.save();
 
-		res.status(201).json({ message: 'Address added.' });
-		res.end('Address added.');
+			res.status(201).json({ message: 'Address added.' });
+			res.end('Address added.');
+		}
+
+		if (addresses.length > 0) {
+			const user = await User.findOneAndUpdate(
+				{ email: session.user.email },
+
+				{
+					addresses: [
+						...addresses,
+						{
+							firstName,
+							lastName,
+							address,
+							city,
+							postCode,
+							country,
+							phoneNumber,
+						},
+					],
+				}
+			);
+
+			await res.send({
+				user,
+			});
+
+			await user.save();
+
+			res.status(201).json({ message: 'Address added.' });
+			res.end('Address added.');
+		}
 	}
 });
 
@@ -64,34 +95,57 @@ handler.patch(async (req, res) => {
 		const session = await getSession({ req });
 		await db.connect();
 
-		const {
-			firstName,
-			lastName,
-			address,
-			city,
-			postCode,
-			country,
-			phoneNumber,
-		} = req.body;
+		if (req.body.isDefault === true) {
+			const user = await User.findOne({ email: session.user.email });
 
-		const user = await User.findOne({ email: session.user.email });
+			const oldDefaultAddress = await user.addresses.filter((address) => {
+				return address.isDefault === true;
+			});
 
-		const updatedAddress = await user.addresses.id(req.body._id);
-		await updatedAddress.set({
-			firstName,
-			lastName,
-			address,
-			city,
-			postCode,
-			country,
-			phoneNumber,
-		});
+			await oldDefaultAddress[0].set({
+				isDefault: false,
+			});
 
-		await user.save();
+			const updatedAddress = await user.addresses.id(req.body._id);
+			const addressInfo = await user.addresses.id(req.body._id);
+			await updatedAddress.set({
+				isDefault: true,
+			});
 
-		res.status(201).json({ message: 'Address updated.' });
+			await user.save();
+
+			res.status(201).json({ message: 'Address updated.' });
+		} else {
+			const {
+				firstName,
+				lastName,
+				address,
+				city,
+				postCode,
+				country,
+				phoneNumber,
+			} = req.body;
+
+			const user = await User.findOne({ email: session.user.email });
+
+			const updatedAddress = await user.addresses.id(req.body._id);
+			await updatedAddress.set({
+				firstName,
+				lastName,
+				address,
+				city,
+				postCode,
+				country,
+				phoneNumber,
+			});
+
+			await user.save();
+
+			res.status(201).json({ message: 'Address updated.' });
+		}
 	}
 });
+
 handler.get(async (req, res) => {
 	const session = await getSession({ req });
 	if (req.method === 'GET') {

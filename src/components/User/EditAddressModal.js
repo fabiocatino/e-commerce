@@ -14,7 +14,6 @@ export default function EditAddressModal(props) {
 
 	return (
 		<div>
-			<Button onClick={handleOpen}>Edit</Button>
 			<Modal
 				open={open}
 				onClose={handleClose}
@@ -29,6 +28,9 @@ export default function EditAddressModal(props) {
 					></AddressForm>
 				</Box>
 			</Modal>
+			<Button size="small" onClick={handleOpen}>
+				Edit
+			</Button>
 		</div>
 	);
 }

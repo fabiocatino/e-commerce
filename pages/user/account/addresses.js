@@ -8,10 +8,10 @@ import {
 } from '@mui/material';
 import { getSession } from 'next-auth/react';
 import React, { useState } from 'react';
-import Spinner from '../../src/components/Layout/Spinner';
-import AddressCard from '../../src/components/User/AddressCard';
-import AddressForm from '../../src/components/User/AddressForm';
-import { useGetAddressesQuery } from '../../src/services/userApi';
+import Spinner from '../../../src/components/Layout/Spinner';
+import AddressCard from '../../../src/components/User/AddressCard';
+import AddressForm from '../../../src/components/User/AddressForm';
+import { useGetAddressesQuery } from '../../../src/services/userApi';
 import styles from './Addresses.module.css';
 
 const Addresses = () => {

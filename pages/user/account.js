@@ -49,19 +49,19 @@ const cardInfo = [
 		title: 'RECENT ORDERS',
 		description: 'Check your recent orders here.',
 		icon: <AccountCircleIcon sx={{ color: 'white' }} fontSize="large" />,
-		link: '/user/orders/',
+		link: '/user/account/orders/',
 	},
 	{
 		title: 'ACCOUNT DETAILS',
 		description: 'Manage your details, password and email.',
 		icon: <ListIcon sx={{ color: 'white' }} fontSize="large" />,
-		link: '/user/details/',
+		link: '/user/account/details/',
 	},
 	{
 		title: 'ADDRESS BOOK',
 		description: 'Manage your billing and delivery addresses.',
 		icon: <HomeIcon sx={{ color: 'white' }} fontSize="large" />,
-		link: '/user/addresses/',
+		link: '/user/account/addresses/',
 	},
 ];
 

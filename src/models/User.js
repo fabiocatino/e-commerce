@@ -14,6 +14,7 @@ const userSchema = new mongoose.Schema(
 				postCode: { type: String, required: false },
 				country: { type: String, required: false },
 				phoneNumber: { type: Number, required: false },
+				isDefault: { type: Boolean, required: false, default: false },
 				// email: { type: String, required: false },
 			},
 		],
