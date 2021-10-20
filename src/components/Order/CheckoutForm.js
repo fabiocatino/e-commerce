@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
 import styles from './CheckoutForm.module.css';
+import SelectShippingAddress from './SelectShippingAddress';
 
 export default function CheckoutForm() {
 	const dispatch = useDispatch();
@@ -28,7 +29,10 @@ export default function CheckoutForm() {
 			<form onSubmit={handleSubmit(onSubmit)}>
 				{step === 0 && (
 					<>
-						<h3>Billing Details</h3>
+						<div>
+							<h3>Delivery Address</h3>
+							<SelectShippingAddress />
+						</div>
 						<Grid item sm={12} mg={12} lg={12}>
 							<Controller
 								name="firstName"

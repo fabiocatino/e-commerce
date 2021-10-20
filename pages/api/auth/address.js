@@ -23,6 +23,7 @@ handler.post(async (req, res) => {
 			postCode,
 			country,
 			phoneNumber,
+			email,
 		} = req.body;
 
 		const existingUser = await User.findOne({ email: session.user.email });
@@ -42,6 +43,7 @@ handler.post(async (req, res) => {
 							postCode,
 							country,
 							phoneNumber,
+							email,
 							isDefault: true,
 						},
 					],
@@ -73,6 +75,7 @@ handler.post(async (req, res) => {
 							postCode,
 							country,
 							phoneNumber,
+							email,
 						},
 					],
 				}
@@ -124,6 +127,7 @@ handler.patch(async (req, res) => {
 				postCode,
 				country,
 				phoneNumber,
+				email,
 			} = req.body;
 
 			const user = await User.findOne({ email: session.user.email });
@@ -137,6 +141,7 @@ handler.patch(async (req, res) => {
 				postCode,
 				country,
 				phoneNumber,
+				email,
 			});
 
 			await user.save();

@@ -9,10 +9,7 @@ import React from 'react';
 import EditAddressModal from './EditAddressModal';
 import RemoveAddressModal from './RemoveAddressModal';
 import CheckIcon from '@mui/icons-material/Check';
-import {
-	useAddAddressMutation,
-	useUpdateUserAddressMutation,
-} from '../../services/userApi';
+import { useUpdateUserAddressMutation } from '../../services/userApi';
 
 export default function AddressCard(props) {
 	const [
@@ -35,10 +32,6 @@ export default function AddressCard(props) {
 			console.log(error);
 		}
 	};
-
-	// const editHandler = (index) => () => {
-	// 	console.log(index);
-	// };
 
 	return (
 		<Card
