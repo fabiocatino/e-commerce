@@ -1,5 +1,5 @@
 import { Button, Grid, TextField } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
@@ -9,6 +9,10 @@ import SelectShippingAddress from './SelectShippingAddress';
 export default function CheckoutForm() {
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
+	const shippingAddress = useSelector(
+		(state) => state.checkout.shippingInfo.shippingInfo.shippingInfo
+	);
+
 	const {
 		control,
 		handleSubmit,
@@ -35,9 +39,9 @@ export default function CheckoutForm() {
 						</div>
 						<Grid item sm={12} mg={12} lg={12}>
 							<Controller
+								defaultValue=""
 								name="firstName"
 								control={control}
-								defaultValue=""
 								rules={{
 									required: true,
 									minLength: 2,

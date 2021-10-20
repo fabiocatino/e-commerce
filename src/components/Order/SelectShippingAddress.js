@@ -13,6 +13,10 @@ export default function SelectShippingAddress() {
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
 
+	const changeHandler = (event) => {
+		setAddress(event.target.value);
+	};
+
 	const addressHandler = async (address) => {
 		dispatch(checkoutAction.nextStep(step + 1));
 		dispatch(
@@ -27,6 +31,7 @@ export default function SelectShippingAddress() {
 				<div>
 					<FormControl sx={{ m: 1, minWidth: 120 }}>
 						<Select
+							onChange={changeHandler}
 							value={address}
 							displayEmpty
 							inputProps={{ 'aria-label': 'Without label' }}
