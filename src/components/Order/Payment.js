@@ -25,6 +25,7 @@ const Payment = () => {
 	};
 
 	const createOrder = (data, actions) => {
+		console.log(data);
 		return actions.order
 			.create({
 				purchase_units: [
@@ -36,18 +37,16 @@ const Payment = () => {
 				],
 			})
 			.then((orderID) => {
-				// setOrderID(orderID);
 				return orderID;
 			});
 	};
 
 	function onApprove(data, actions) {
-		console.log(data)
 		dispatch(
 			cartActions.addItem({ ...orderItems[0], paymentMethod: 'Paypal' })
 		);
-		console.log('Approved');
-		return actions.order.capture().then(function (details) {
+
+		return actions.order.capture().then(function () {
 			addOrder({
 				shippingInfo,
 				orderItems: [...orderItems],
@@ -56,17 +55,6 @@ const Payment = () => {
 			}).unwrap();
 		});
 	}
-
-	// try {
-	// 	await addOrder({
-	// 		shippingInfo,
-	// 		orderItems: [...orderItems],
-	// 		totalPrice,
-	// 	}).unwrap();
-	// 	dispatch(cartActions.deleteCart());
-	// } catch (error) {
-	// 	console.log(error);
-	// }
 
 	function onError(err) {
 		console.log(err);
