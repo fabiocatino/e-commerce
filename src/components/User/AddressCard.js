@@ -1,4 +1,5 @@
 import {
+	Alert,
 	Button,
 	Card,
 	CardActions,
@@ -12,15 +13,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import { useUpdateUserAddressMutation } from '../../services/userApi';
 
 export default function AddressCard(props) {
-	const [
-		updateUserAddress,
-		{
-			data: updatedAddressData,
-			isLoading: isUpdatedAddressLoading,
-			isSuccess: isSuccessUpdatedAddress,
-			error: isErrorUpdatedAddress,
-		},
-	] = useUpdateUserAddressMutation();
+	const [updateUserAddress, { data, isLoading, isSuccess, error }] =
+		useUpdateUserAddressMutation();
 	const onUpdateUserAddress = async () => {
 		try {
 			await updateUserAddress({
@@ -37,24 +31,32 @@ export default function AddressCard(props) {
 		<Card
 			sx={{
 				minWidth: 275,
-				height: '186.89px',
+				minHeight: '186.89px',
 				border: '1px solid #b7b9bb',
 				borderRadius: '8px',
 			}}
 		>
 			<CardContent>
+				{error && (
+					<Alert sx={{ marginBottom: 1 }} severity="error">
+						Something went wrong.
+					</Alert>
+				)}
 				<Typography sx={{ fontSize: 14, fontWeight: 'bold' }} gutterBottom>
 					{props.firstName} {props.lastName}
 				</Typography>
-				<Typography variant="body1" component="div">
+				<Typography variant="body2" component="div">
 					{props.address}
 				</Typography>
+				<Typography variant="body2" component="div">
+					{props.city}
+				</Typography>
 				<Typography> {props.country} </Typography>
-				<Typography variant="body1">
+				<Typography variant="body2">
 					Phone Number: {props.phoneNumber}
 				</Typography>
 			</CardContent>
-			<CardActions>
+			<CardActions sx={{ padding: 0 }}>
 				<EditAddressModal {...props}></EditAddressModal>
 				<RemoveAddressModal {...props}></RemoveAddressModal>
 				<Button size="small" onClick={() => onUpdateUserAddress()}>

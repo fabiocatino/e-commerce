@@ -1,17 +1,23 @@
-import { Button, Grid, TextField } from '@mui/material';
-import React, { useEffect } from 'react';
+import {
+	Button,
+	Checkbox,
+	FormControlLabel,
+	Grid,
+	TextField
+} from '@mui/material';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
+import { useAddAddressMutation } from '../../services/userApi';
 import styles from './CheckoutForm.module.css';
 import SelectShippingAddress from './SelectShippingAddress';
 
 export default function CheckoutForm() {
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
-	const shippingAddress = useSelector(
-		(state) => state.checkout.shippingInfo.shippingInfo.shippingInfo
-	);
+	const [checked, setChecked] = useState(false);
+	const [addAddress, { data, error }] = useAddAddressMutation();
 
 	const {
 		control,
@@ -26,6 +32,21 @@ export default function CheckoutForm() {
 				shippingInfo: data,
 			})
 		);
+		if (checked) {
+			try {
+				await addAddress({
+					...data,
+				}).unwrap();
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
+
+	//CHECKBOX
+
+	const checkboxHandler = (event) => {
+		setChecked(event.target.checked);
 	};
 
 	return (
@@ -35,6 +56,7 @@ export default function CheckoutForm() {
 					<>
 						<div>
 							<h3>Delivery Address</h3>
+
 							<SelectShippingAddress />
 						</div>
 						<Grid item sm={12} mg={12} lg={12}>
@@ -263,6 +285,14 @@ export default function CheckoutForm() {
 										{...field}
 									/>
 								)}
+							/>
+						</div>
+						<div className={styles.checkbox}>
+							<FormControlLabel
+								control={
+									<Checkbox checked={checked} onChange={checkboxHandler} />
+								}
+								label="Save address"
 							/>
 						</div>
 					</>

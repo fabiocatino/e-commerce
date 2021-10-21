@@ -16,7 +16,7 @@ const MediaCard = (props) => {
 	const dispatch = useDispatch();
 	const item = useGetProductQuery(props._id);
 	const addToCartHandler = () => {
-		dispatch(cartActions.addItem({ ...item.data, quantity: 1 }));
+		dispatch(cartActions.addItem({ ...item.data, quantity: 1}));
 	};
 	return (
 		<Card elevation={1} sx={{ maxWidth: 300 }}>

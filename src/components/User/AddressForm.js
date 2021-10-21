@@ -3,13 +3,12 @@ import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
 	useAddAddressMutation,
-	useUpdateUserAddressMutation,
+	useUpdateUserAddressMutation
 } from '../../services/userApi';
 import styles from './AddressForm.module.css';
 
 export default function AddressForm(props) {
-	const [addAddress, { data: addAddressData, isLoading, isSuccess, error }] =
-		useAddAddressMutation();
+	const [addAddress, { data, error }] = useAddAddressMutation();
 
 	const [
 		updateUserAddress,

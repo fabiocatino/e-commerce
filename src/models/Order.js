@@ -21,10 +21,10 @@ const orderSchema = new mongoose.Schema(
 			email: { type: String, required: true },
 		},
 		totalPrice: { type: Number, required: true },
-		// paymentMethod: { type: String, required: true },
-		// isPaid: { type: Boolean, required: true },
+		paymentMethod: { type: String, required: false },
+		isPaid: { type: Boolean, required: true, default: false },
 		paidAt: { type: Date },
-		// isDelivered: { type: Boolean, required: true },
+		isDelivered: { type: Boolean, required: true, default: false },
 		deliveredAt: { type: Date },
 	},
 	{

@@ -1,5 +1,4 @@
 import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import React, { useState } from 'react';
@@ -29,13 +28,16 @@ export default function SelectShippingAddress() {
 		<>
 			{!isLoading && (
 				<div>
-					<FormControl sx={{ m: 1, minWidth: 120 }}>
+					<FormControl sx={{ m: 1, minWidth: 120, width: 320 }}>
 						<Select
 							onChange={changeHandler}
 							value={address}
 							displayEmpty
-							inputProps={{ 'aria-label': 'Without label' }}
+							inputProps={{ 'aria-label': 'Choose saved address' }}
 						>
+							<MenuItem disabled value="">
+								<em>Choose saved address</em>
+							</MenuItem>
 							{data.map((address) => (
 								<MenuItem
 									onClick={() => addressHandler(address)}
@@ -46,7 +48,6 @@ export default function SelectShippingAddress() {
 								</MenuItem>
 							))}
 						</Select>
-						<FormHelperText>Choose saved address</FormHelperText>
 					</FormControl>
 				</div>
 			)}

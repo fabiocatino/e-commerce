@@ -6,6 +6,8 @@ import styles from './OrderSummary.module.css';
 const OrderSummary = () => {
 	const cart = useCartItems();
 	const totalPrice = useTotalPrice();
+	const cartItems = useCartItems();
+	const paymentMethod = cartItems[0].paymentMethod;
 
 	return (
 		<div>
@@ -73,7 +75,7 @@ const OrderSummary = () => {
 					<ul>
 						<li>
 							<Typography variant="h6" sx={{ fontWeight: 600 }}>
-								Payment method: Credit Card
+								Payment method: {paymentMethod}
 							</Typography>
 						</li>
 					</ul>

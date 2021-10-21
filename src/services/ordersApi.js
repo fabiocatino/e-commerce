@@ -6,6 +6,7 @@ export const ordersApi = createApi({
 	reducerPath: 'ordersApi',
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	refetchOnMountOrArgChange: true,
+	tagTypes: ['Order'],
 	endpoints: (build) => ({
 		getAllOrders: build.query({
 			query: () => ({
@@ -18,6 +19,14 @@ export const ordersApi = createApi({
 				method: 'POST',
 				body,
 			}),
+		}),
+		updateOrder: build.mutation({
+			query: (body) => ({
+				url: `${baseUrl}/update-order`,
+				method: 'PATCH',
+				body,
+			}),
+			invalidatesTags: ['Order'],
 		}),
 	}),
 });
