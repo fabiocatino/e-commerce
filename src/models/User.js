@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema(
 				firstName: { type: String, required: false },
 				lastName: { type: String, required: false },
 				address: { type: String, required: false },
+				address2: { type: String, required: false },
 				city: { type: String, required: false },
 				postCode: { type: String, required: false },
 				country: { type: String, required: false },

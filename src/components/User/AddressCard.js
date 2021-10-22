@@ -49,6 +49,9 @@ export default function AddressCard(props) {
 					{props.address}
 				</Typography>
 				<Typography variant="body2" component="div">
+					{props.address2}
+				</Typography>
+				<Typography variant="body2" component="div">
 					{props.city}
 				</Typography>
 				<Typography> {props.country} </Typography>

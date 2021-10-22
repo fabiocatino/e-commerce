@@ -7,7 +7,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
 
-const steps = ['Billing Details', 'Payment Method', 'Review Order'];
+const steps = ['Billing Details', 'Payment', 'Order placed'];
 
 export default function HorizontalLinearStepper() {
 	const dispatch = useDispatch();

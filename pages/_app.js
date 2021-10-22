@@ -16,6 +16,7 @@ export default function App({
 		'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
 		currency: 'GBP',
 		intent: 'capture',
+		'buyer-country': 'GB',
 	};
 
 	return (

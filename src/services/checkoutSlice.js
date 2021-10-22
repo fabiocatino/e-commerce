@@ -16,10 +16,7 @@ const checkoutSlice = createSlice({
 		addShippingInfo: (state, action) => {
 			const shippingInfo = action.payload;
 			Cookies.set('shippingInfo', JSON.stringify(shippingInfo));
-			return {
-				...state,
-				shippingInfo: { ...state.shippingInfo, shippingInfo },
-			};
+			return { ...state, shippingInfo };
 		},
 		currStep: (state, action) => {
 			if (state.currentStep === 0 && action.payload === 1) {
@@ -44,6 +41,5 @@ const checkoutSlice = createSlice({
 const { actions, reducer } = checkoutSlice;
 
 export const checkoutAction = checkoutSlice.actions;
-
 
 export default reducer;

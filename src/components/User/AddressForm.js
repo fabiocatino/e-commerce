@@ -3,7 +3,7 @@ import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
 	useAddAddressMutation,
-	useUpdateUserAddressMutation
+	useUpdateUserAddressMutation,
 } from '../../services/userApi';
 import styles from './AddressForm.module.css';
 
@@ -134,10 +134,10 @@ export default function AddressForm(props) {
 							render={({ field }) => (
 								<TextField
 									required
-									id="street-address"
+									id="address-line-1"
 									type="text"
 									fullWidth
-									placeholder="Street Address"
+									placeholder="Address line 1"
 									error={Boolean(errors.address)}
 									helperText={
 										errors.address
@@ -146,6 +146,25 @@ export default function AddressForm(props) {
 												: 'Address required.'
 											: ''
 									}
+									{...field}
+								/>
+							)}
+						/>
+					</div>
+					<div>
+						<Controller
+							name="address2"
+							control={control}
+							defaultValue=""
+							rules={{
+								required: false,
+							}}
+							render={({ field }) => (
+								<TextField
+									id="address2"
+									type="text"
+									fullWidth
+									placeholder="Address line 2"
 									{...field}
 								/>
 							)}
@@ -220,7 +239,7 @@ export default function AddressForm(props) {
 						render={({ field }) => (
 							<TextField
 								required
-								placeholder="State / Country"
+								placeholder="Country"
 								fullWidth
 								id="country"
 								type="text"

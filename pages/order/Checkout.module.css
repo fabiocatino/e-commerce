@@ -13,3 +13,7 @@
 	max-width: 816px;
 }
 
+.paypal {
+	display: flex;
+	gap: 1rem;
+}

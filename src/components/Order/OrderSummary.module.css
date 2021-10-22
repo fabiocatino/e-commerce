@@ -27,3 +27,10 @@
 	gap: 1rem;
 	align-items: center;
 }
+
+.payment-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

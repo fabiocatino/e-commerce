@@ -85,7 +85,6 @@ export default function EnhancedTable() {
 				...items[index],
 				quantity: parseInt(e.target.innerText),
 			})
-			// cartActions.addTotalQuantity()
 		);
 	};
 
@@ -105,7 +104,7 @@ export default function EnhancedTable() {
 				/>
 
 				<TableContainer>
-					<Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
+					<Table sx={{ maxWidth: 1000 }} aria-labelledby="tableTitle">
 						<EnhancedTableHead
 							numSelected={selected.length}
 							order={order}

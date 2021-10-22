@@ -17,16 +17,16 @@ const ReviewOrder = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const [addOrder, { isLoading }] = useAddOrderMutation();
-	const shippingInfo = useSelector(
-		(state) => state.checkout.shippingInfo.shippingInfo.shippingInfo
-	);
+	// const shippingInfo = useSelector(
+	// 	(state) => state.checkout.shippingInfo.shippingInfo.shippingInfo
+	// );
 	const step = useSelector((state) => state.checkout.currentStep);
 	const orderItems = useCartItems();
 
 	const submitOrderHandler = async () => {
 		try {
 			await addOrder({
-				shippingInfo,
+				// shippingInfo,
 				orderItems: [...orderItems],
 				totalPrice,
 			}).unwrap();
@@ -34,7 +34,7 @@ const ReviewOrder = () => {
 		} catch (error) {
 			console.log(error);
 		}
-		router.replace('/success');
+		router.replace('/order/success');
 		dispatch(checkoutAction.currStep(0));
 
 	};

@@ -3,7 +3,7 @@ import {
 	Checkbox,
 	FormControlLabel,
 	Grid,
-	TextField
+	TextField,
 } from '@mui/material';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -55,7 +55,7 @@ export default function CheckoutForm() {
 				{step === 0 && (
 					<>
 						<div>
-							<h3>Delivery Address</h3>
+							<h3>Billing Details</h3>
 
 							<SelectShippingAddress />
 						</div>
@@ -127,10 +127,10 @@ export default function CheckoutForm() {
 								render={({ field }) => (
 									<TextField
 										required
-										id="street-address"
+										id="address-line-1"
 										type="text"
 										fullWidth
-										placeholder="Street Address"
+										placeholder="Address line 1"
 										error={Boolean(errors.address)}
 										helperText={
 											errors.address
@@ -139,6 +139,25 @@ export default function CheckoutForm() {
 													: 'Address required.'
 												: ''
 										}
+										{...field}
+									/>
+								)}
+							/>
+						</div>
+						<div>
+							<Controller
+								name="address2"
+								control={control}
+								defaultValue=""
+								rules={{
+									required: false,
+								}}
+								render={({ field }) => (
+									<TextField
+										id="address2"
+										type="text"
+										fullWidth
+										placeholder="Address line 2"
 										{...field}
 									/>
 								)}
@@ -213,7 +232,7 @@ export default function CheckoutForm() {
 							render={({ field }) => (
 								<TextField
 									required
-									placeholder="State / Country"
+									placeholder="Country"
 									fullWidth
 									id="country"
 									type="text"
@@ -304,7 +323,7 @@ export default function CheckoutForm() {
 					className={styles['submit-button']}
 					size="large"
 				>
-					SELECT PAYMENT METHOD
+					REVIEW YOUR ORDER
 				</Button>
 			</form>
 		</Grid>
