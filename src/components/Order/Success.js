@@ -10,7 +10,7 @@ import { checkoutAction } from '../../services/checkoutSlice';
 const Success = () => {
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
-
+	// dispatch(checkoutAction.currStep(2));
 	// useEffect(() => {
 	// 	dispatch(checkoutAction.nextStep(step - 3));
 	// }, []);

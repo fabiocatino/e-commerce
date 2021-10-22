@@ -2,9 +2,9 @@ import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    cartActions,
-    useCartItems,
-    useTotalPrice
+	cartActions,
+	useCartItems,
+	useTotalPrice,
 } from '../../services/cartSlice';
 import { checkoutAction } from '../../services/checkoutSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
@@ -122,7 +122,7 @@ const CardPaymentButton = () => {
 
 	return (
 		<div style={{ paddingTop: 100 }}>
-			<PayPalButtons 
+			<PayPalButtons
 				createOrder={createOrderByCard}
 				// onShippingChange={onShippingChange}
 				// onApprove={onApproveByCard}

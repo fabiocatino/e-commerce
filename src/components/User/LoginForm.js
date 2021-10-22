@@ -40,7 +40,7 @@ const LoginForm = () => {
 			<form onSubmit={submitHandler} className={styles.form}>
 				{error && <Alert severity="error">{error}</Alert>}
 				<TextField
-					autoComplete="true"
+					autoComplete="email"
 					required
 					id="email"
 					label="Email"
@@ -50,6 +50,7 @@ const LoginForm = () => {
 					onChange={(e) => setEmail(e.target.value.toLowerCase())}
 				></TextField>
 				<TextField
+					autoComplete="on"
 					required
 					id="password"
 					label="Password"

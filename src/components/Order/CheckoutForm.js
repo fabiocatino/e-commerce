@@ -75,6 +75,7 @@ export default function CheckoutForm() {
 										type="text"
 										fullWidth
 										placeholder="First Name"
+										autoComplete="given-name"
 										error={Boolean(errors.firstName)}
 										helperText={
 											errors.firstName
@@ -102,6 +103,7 @@ export default function CheckoutForm() {
 										type="text"
 										fullWidth
 										placeholder="Last Name"
+										autoComplete="family-name"
 										error={Boolean(errors.lastName)}
 										helperText={
 											errors.lastName
@@ -131,6 +133,7 @@ export default function CheckoutForm() {
 										type="text"
 										fullWidth
 										placeholder="Address line 1"
+										autoComplete="shipping address-line1"
 										error={Boolean(errors.address)}
 										helperText={
 											errors.address
@@ -158,6 +161,7 @@ export default function CheckoutForm() {
 										type="text"
 										fullWidth
 										placeholder="Address line 2"
+										autoComplete="shipping address-line2"
 										{...field}
 									/>
 								)}
@@ -179,6 +183,7 @@ export default function CheckoutForm() {
 										fullWidth
 										id="city"
 										type="text"
+										autoComplete="shipping address-level2"
 										error={Boolean(errors.city)}
 										helperText={
 											errors.city
@@ -208,6 +213,7 @@ export default function CheckoutForm() {
 										fullWidth
 										id="postCode"
 										type="text"
+										autoComplete="shipping postal-code"
 										error={Boolean(errors.postCode)}
 										helperText={
 											errors.postCode
@@ -236,6 +242,7 @@ export default function CheckoutForm() {
 									fullWidth
 									id="country"
 									type="text"
+									autoComplete="shipping country"
 									error={Boolean(errors.country)}
 									helperText={
 										errors.country

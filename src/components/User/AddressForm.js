@@ -82,6 +82,7 @@ export default function AddressForm(props) {
 									type="text"
 									fullWidth
 									placeholder="First Name"
+									autoComplete="given-name"
 									error={Boolean(errors.firstName)}
 									helperText={
 										errors.firstName
@@ -110,6 +111,7 @@ export default function AddressForm(props) {
 									fullWidth
 									placeholder="Last Name"
 									error={Boolean(errors.lastName)}
+									autoComplete="family-name"
 									helperText={
 										errors.lastName
 											? errors.lastName.type === 'minLength'
@@ -138,6 +140,7 @@ export default function AddressForm(props) {
 									type="text"
 									fullWidth
 									placeholder="Address line 1"
+									autoComplete="shipping address-line1"
 									error={Boolean(errors.address)}
 									helperText={
 										errors.address
@@ -165,6 +168,7 @@ export default function AddressForm(props) {
 									type="text"
 									fullWidth
 									placeholder="Address line 2"
+									autoComplete="shipping address-line2"
 									{...field}
 								/>
 							)}
@@ -187,6 +191,7 @@ export default function AddressForm(props) {
 									id="city"
 									type="text"
 									error={Boolean(errors.city)}
+									autoComplete="shipping address-line2"
 									helperText={
 										errors.city
 											? errors.city.type === 'minLength'
@@ -215,6 +220,7 @@ export default function AddressForm(props) {
 									fullWidth
 									id="postCode"
 									type="text"
+									autoComplete="shipping postal-code"
 									error={Boolean(errors.postCode)}
 									helperText={
 										errors.postCode
@@ -243,6 +249,7 @@ export default function AddressForm(props) {
 								fullWidth
 								id="country"
 								type="text"
+								autoComplete="shipping country"
 								error={Boolean(errors.country)}
 								helperText={
 									errors.country

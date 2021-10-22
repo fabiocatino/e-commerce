@@ -1,4 +1,5 @@
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -16,6 +17,7 @@ const PayPalButton = () => {
 	const [{ isResolved }] = usePayPalScriptReducer();
 	const totalPrice = useTotalPrice();
 	const orderItems = useCartItems();
+	const router = useRouter();
 
 	const [addOrder, { isLoading }] = useAddOrderMutation();
 
@@ -35,9 +37,9 @@ const PayPalButton = () => {
 			});
 	};
 
-	// function onShippingChange(data, action) {
-	// 	console.log({data})
-	// }
+	function onShippingChange(data, action) {
+		//
+	}
 
 	function onApprove(data, actions) {
 		dispatch(
@@ -65,6 +67,7 @@ const PayPalButton = () => {
 				isPaid: true,
 			}).unwrap();
 			dispatch(checkoutAction.currStep(2));
+			router.push('/order/checkout');
 			dispatch(cartActions.deleteCart());
 		});
 	}
@@ -82,7 +85,7 @@ const PayPalButton = () => {
 					<PayPalButtons
 						style={{ shape: 'pill', height: 42 }}
 						createOrder={createOrder}
-						// onShippingChange={onShippingChange}
+						onShippingChange={onShippingChange}
 						onApprove={onApprove}
 						onError={onError}
 						fundingSource={paypal.FUNDING.PAYPAL}
