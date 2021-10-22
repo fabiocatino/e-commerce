@@ -1,14 +1,20 @@
-import { Box, Button, Grid, NoSsr, Typography } from '@mui/material';
+import { Button, Grid, NoSsr, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react';
 import OrderSummary from '../../src/components/Order/OrderSummary';
 import EnhancedTable from '../../src/components/Order/Table';
-import { useTotalPrice, useTotalQuantity } from '../../src/services/cartSlice';
+import {
+	useCartItems,
+	useTotalPrice,
+	useTotalQuantity
+} from '../../src/services/cartSlice';
 import styles from './Cart.module.css';
 
 const Cart = () => {
 	const router = useRouter();
 	const itemsQuantity = useTotalQuantity();
+	const totalPrice = useTotalPrice();
+	const cartItems = useCartItems();
 
 	return (
 		<NoSsr>
@@ -27,7 +33,10 @@ const Cart = () => {
 							<EnhancedTable sx={{ maxWidth: 500 }}></EnhancedTable>
 						</Grid>
 						<Grid sx={{ width: 500 }} item xs={8} sm={8} md={8} lg={4}>
-							<OrderSummary></OrderSummary>
+							<OrderSummary
+								totalPrice={totalPrice}
+								cartItems={cartItems}
+							></OrderSummary>
 						</Grid>
 					</div>
 				)}

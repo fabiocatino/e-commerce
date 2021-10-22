@@ -13,6 +13,11 @@ export const ordersApi = createApi({
 				baseUrl,
 			}),
 		}),
+		getOrder: build.query({
+			query: () => ({
+				url: `${baseUrl}/get-order`,
+			}),
+		}),
 		addOrder: build.mutation({
 			query: (body) => ({
 				url: `${baseUrl}/add`,
@@ -31,4 +36,5 @@ export const ordersApi = createApi({
 	}),
 });
 
-export const { useAddOrderMutation, useGetAllOrdersQuery } = ordersApi;
+export const { useAddOrderMutation, useGetOrderQuery, useGetAllOrdersQuery } =
+	ordersApi;

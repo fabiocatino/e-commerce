@@ -25,16 +25,16 @@ const Checkout = () => {
 							<div className={styles.left}>
 								{step === 0 && <CheckoutForm />}
 								{step === 1 && <Payment />}
-								{step === 2 && <Success />}
 							</div>
 						</Grid>
 						<Grid item xs={12} sm={12} md={12} lg={5}>
-							<OrderSummary></OrderSummary>
+							{step !== 2 && <OrderSummary></OrderSummary>}
 						</Grid>
 					</Grid>
 				) : (
 					<p>No items in your basket.</p>
 				)}
+				{step === 2 && <Success />}
 			</div>
 		</NoSsr>
 	);

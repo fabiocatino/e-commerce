@@ -66,6 +66,7 @@ const PayPalButton = () => {
 				totalPrice,
 				isPaid: true,
 			}).unwrap();
+
 			dispatch(checkoutAction.currStep(2));
 			router.push('/order/checkout');
 			dispatch(cartActions.deleteCart());
