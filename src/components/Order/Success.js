@@ -1,15 +1,31 @@
 import { Container, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetOrderQuery } from '../../services/ordersApi';
 import Spinner from '../Layout/Spinner';
 import OrderSummary from './OrderSummary';
 import styles from './Success.module.css';
+import { useRouter } from 'next/router';
+import { checkoutAction } from '../../services/checkoutSlice';
 
 const Success = () => {
+	const router = useRouter();
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
+
+	useEffect(() => {
+		console.log('loading');
+		const handleStart = (url) => {
+			dispatch(checkoutAction.currStep(0));
+		};
+
+		router.events.on('routeChangeStart', handleStart);
+
+		return () => {
+			router.events.off('routeChangeStart', handleStart);
+		};
+	}, [router.events]);
 
 	const { data, isLoading, error } = useGetOrderQuery();
 	return (

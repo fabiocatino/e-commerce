@@ -5,7 +5,8 @@ import {
 	Grid,
 	TextField,
 } from '@mui/material';
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
@@ -14,6 +15,7 @@ import styles from './CheckoutForm.module.css';
 import SelectShippingAddress from './SelectShippingAddress';
 
 export default function CheckoutForm() {
+	const router = useRouter();
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
 	const [checked, setChecked] = useState(false);
@@ -26,6 +28,7 @@ export default function CheckoutForm() {
 	} = useForm();
 
 	const onSubmit = async (data) => {
+		router.push('/order/checkout', '/order/checkout/step=2');
 		dispatch(checkoutAction.nextStep(step + 1));
 		dispatch(
 			checkoutAction.addShippingInfo({

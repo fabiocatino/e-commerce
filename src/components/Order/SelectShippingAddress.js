@@ -1,12 +1,14 @@
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetAddressesQuery } from '../../../src/services/userApi';
 import { checkoutAction } from '../../services/checkoutSlice';
 
 export default function SelectShippingAddress() {
+	const router = useRouter();
 	const { data, isError, isLoading } = useGetAddressesQuery();
 	const [address, setAddress] = useState('');
 	const dispatch = useDispatch();
@@ -17,6 +19,7 @@ export default function SelectShippingAddress() {
 	};
 
 	const addressHandler = async (address) => {
+		router.push('/order/checkout', '/order/checkout/step=2');
 		dispatch(checkoutAction.nextStep(step + 1));
 		dispatch(
 			checkoutAction.addShippingInfo({

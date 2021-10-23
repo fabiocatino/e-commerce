@@ -1,17 +1,19 @@
 import { Alert } from '@mui/material';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	cartActions,
 	useCartItems,
-	useTotalPrice
+	useTotalPrice,
 } from '../../services/cartSlice';
 import { checkoutAction } from '../../services/checkoutSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
 import Spinner from '../Layout/Spinner';
 
 const CardPaymentButton = () => {
+	const router = useRouter()
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
 	const [{ isResolved, isPending }, dispatchPayPal] = usePayPalScriptReducer();
@@ -128,6 +130,7 @@ const CardPaymentButton = () => {
 			}).unwrap();
 			dispatch(checkoutAction.nextStep(step + 1));
 			dispatch(cartActions.deleteCart());
+			router.push('/order/checkout', '/order/checkout/step=success');
 		});
 	}
 

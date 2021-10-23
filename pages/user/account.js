@@ -12,7 +12,7 @@ import styles from './Account.module.css';
 const Account = () => {
 	const { data: session, status } = useSession();
 	const router = useRouter();
-
+	console.log(router)
 	useEffect(() => {
 		if (!session && status !== 'loading') {
 			router.push('/user/login');

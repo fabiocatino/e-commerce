@@ -74,8 +74,8 @@ const PayPalButton = () => {
 				paymentMethod: 'Paypal',
 			}).unwrap();
 			dispatch(cartActions.deleteCart());
-			dispatch(checkoutAction.nextStep(1 + 1));
-			router.push('/order/checkout');
+			dispatch(checkoutAction.currStep(2));
+			router.push('/order/checkout', '/order/checkout/step=success');
 		});
 	}
 
