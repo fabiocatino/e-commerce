@@ -1,22 +1,23 @@
+import { Alert } from '@mui/material';
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	cartActions,
 	useCartItems,
-	useTotalPrice,
+	useTotalPrice
 } from '../../services/cartSlice';
 import { checkoutAction } from '../../services/checkoutSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
+import Spinner from '../Layout/Spinner';
 
 const CardPaymentButton = () => {
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
-	const [{ isResolved }] = usePayPalScriptReducer();
+	const [{ isResolved, isPending }, dispatchPayPal] = usePayPalScriptReducer();
 	const totalPrice = useTotalPrice();
 	const orderItems = useCartItems();
-	const router = useRouter();
+	const [error, setError] = useState(false);
 	const [addOrder, { isLoading }] = useAddOrderMutation();
 	const shippingInfo = useSelector(
 		(state) => state.checkout.shippingInfo.shippingInfo
@@ -32,6 +33,13 @@ const CardPaymentButton = () => {
 		email,
 		phoneNumber,
 	} = shippingInfo;
+
+	useEffect(() => {
+		dispatchPayPal({
+			type: 'setLoadingStatus',
+			value: 'pending',
+		});
+	}, [error]);
 
 	const createOrder = (data, actions) => {
 		return actions.order
@@ -123,22 +131,41 @@ const CardPaymentButton = () => {
 		});
 	}
 
+	// function onShippingChange(data, actions) {
+	// 	if (data.shipping_address.country_code !== 'GB') {
+	// 		return actions.reject();
+	// 	}
+	// 	return actions.resolve();
+	// }
+
 	function onError(err) {
-		console.log(err);
-		setOnErrorMessage(err.toString());
+		setError(true);
 	}
 
 	return (
-		<div style={{ paddingTop: 100 }}>
-			<PayPalButtons
-				createOrder={createOrder}
-				// onShippingChange={onShippingChange}
-				onApprove={onApprove}
-				// onError={onErrorByCard}
-				fundingSource={paypal.FUNDING.CARD}
-			/>
-		</div>
+		<>
+			{!isResolved && <Spinner />}
+			{isResolved && (
+				<div style={{ paddingTop: 100 }}>
+					{error && (
+						<Alert
+							sx={{ marginBottom: 5 }}
+							onClose={() => setError(false)}
+							severity="error"
+						>
+							Something went wrong.
+						</Alert>
+					)}
+					<PayPalButtons
+						createOrder={createOrder}
+						// onShippingChange={onShippingChange}
+						onApprove={onApprove}
+						onError={onError}
+						fundingSource={paypal.FUNDING.CARD}
+					/>
+				</div>
+			)}
+		</>
 	);
 };
-
 export default CardPaymentButton;

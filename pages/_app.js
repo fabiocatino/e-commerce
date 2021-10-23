@@ -12,6 +12,7 @@ export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
 }) {
+	
 	const initialOptions = {
 		'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
 		currency: 'GBP',
@@ -23,7 +24,7 @@ export default function App({
 		<StyledEngineProvider injectFirst>
 			<SessionProvider session={session}>
 				<Provider store={store}>
-					<PayPalScriptProvider options={initialOptions}>
+					<PayPalScriptProvider  deferLoading={true} options={initialOptions}>
 						<CssBaseline />
 						<Layout>
 							<Head>

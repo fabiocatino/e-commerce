@@ -14,7 +14,7 @@ const Checkout = () => {
 	const step = useSelector((state) => state.checkout.currentStep);
 	const cartItems = useCartItems();
 	const totalPrice = useTotalPrice();
-
+	console.log(step);
 	return (
 		<NoSsr>
 			<div>
@@ -26,7 +26,6 @@ const Checkout = () => {
 							<div className={styles.left}>
 								{step === 0 && <CheckoutForm />}
 								{step === 1 && <Payment />}
-								{step === 2 && <Success />}
 							</div>
 						</Grid>
 						<Grid item xs={12} sm={12} md={12} lg={5}>
@@ -41,7 +40,7 @@ const Checkout = () => {
 				) : (
 					<p>No items in your basket.</p>
 				)}
-				
+				{step === 2 && <Success />}
 			</div>
 		</NoSsr>
 	);

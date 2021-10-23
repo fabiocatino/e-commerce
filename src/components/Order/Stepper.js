@@ -1,9 +1,7 @@
-import { Button, NoSsr, Box, Step, StepLabel, Stepper } from '@mui/material';
+import { Box, Button, NoSsr, Step, StepLabel, Stepper } from '@mui/material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
-import { StepIcon } from '@mui/material';
-import CheckIcon from '@mui/icons-material/Check';
 
 const steps = ['Billing Details', 'Payment', 'Order placed'];
 
@@ -31,11 +29,6 @@ export default function HorizontalLinearStepper() {
 
 						return (
 							<Step key={label} {...stepProps}>
-								{label === 'Order placed' && activeStep === 2 && (
-									<StepLabel StepIconComponent={CheckIcon}>
-										ORDER PLACED
-									</StepLabel>
-								)}
 								<StepLabel {...labelProps}>
 									<Button onClick={handleBack(index)}>{label}</Button>
 								</StepLabel>
