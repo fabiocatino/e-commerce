@@ -6,7 +6,7 @@ import EnhancedTable from '../../src/components/Order/Table';
 import {
 	useCartItems,
 	useTotalPrice,
-	useTotalQuantity
+	useTotalQuantity,
 } from '../../src/services/cartSlice';
 import styles from './Cart.module.css';
 

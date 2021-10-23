@@ -42,11 +42,10 @@ const PayPalButton = () => {
 	}
 
 	function onApprove(data, actions) {
-		dispatch(
-			cartActions.addItem({ ...orderItems[0], paymentMethod: 'Paypal' })
-		);
+		dispatch(cartActions.addItem({ ...orderItems[0] }));
 
 		return actions.order.capture().then(function (details) {
+			console.log({ details });
 			addOrder({
 				shippingInfo: {
 					firstName: details.payer.name.given_name,
@@ -65,6 +64,7 @@ const PayPalButton = () => {
 				orderItems: [...orderItems],
 				totalPrice,
 				isPaid: true,
+				paymentMethod: 'Paypal',
 			}).unwrap();
 
 			dispatch(checkoutAction.currStep(2));

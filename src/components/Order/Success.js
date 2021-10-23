@@ -1,12 +1,7 @@
 import { Container, Typography } from '@mui/material';
-import React, { useEffect } from 'react';
+import { Box } from '@mui/system';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-	cartActions,
-	useCartItems,
-	useTotalPrice,
-} from '../../services/cartSlice';
-import { checkoutAction } from '../../services/checkoutSlice';
 import { useGetOrderQuery } from '../../services/ordersApi';
 import Spinner from '../Layout/Spinner';
 import OrderSummary from './OrderSummary';
@@ -15,10 +10,7 @@ import styles from './Success.module.css';
 const Success = () => {
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
-	// dispatch(checkoutAction.currStep(2));
-	// useEffect(() => {
-	// 	dispatch(checkoutAction.nextStep(step - 3));
-	// }, []);
+
 	const { data, isLoading, error } = useGetOrderQuery();
 	return (
 		<>
@@ -36,8 +28,8 @@ const Success = () => {
 							</div>
 							<div>
 								<Typography variant="body1">
-									We've received your order, and will contact you as sooon as
-									your package is shipped. You can find your purchase
+									We&apos;ve received your order, and will contact you as sooon
+									as your package is shipped. You can find your purchase
 									information below.
 								</Typography>
 							</div>
@@ -59,9 +51,66 @@ const Success = () => {
 									new Date(data[0].createdAt).getFullYear()}
 							</Typography>
 						</div>
-						<div style={{width: 1000}}>
-							<OrderSummary totalPrice={data[0].totalPrice} cartItems={data[0].orderItems}></OrderSummary>
+						<div style={{ width: 1000 }}>
+							<OrderSummary
+								totalPrice={data[0].totalPrice}
+								cartItems={data[0].orderItems}
+							></OrderSummary>
 						</div>
+					</div>
+					<div className={styles['delivery-section']}>
+						<Typography variant="h4">Billing and Shipping</Typography>
+					</div>
+					<div className={styles['delivery-container']}>
+						<Box className={styles['billing-section']}>
+							{data[0].billingInfo && (
+								<>
+									<Typography variant="h5" sx={{ marginBottom: 1 }}>
+										Billing
+									</Typography>
+									<div>
+										{data[0].billingInfo.firstName}{' '}
+										{data[0].billingInfo.lastName}
+									</div>
+									<div>
+										{data[0].billingInfo.address}
+										{data[0].billingInfo.address2
+											? data[0].billingInfo.address2
+											: null}
+									</div>
+									<div>{data[0].billingInfo.city}</div>
+									<div>{data[0].billingInfo.postCode}</div>
+									<div>{data[0].billingInfo.country}</div>
+								</>
+							)}
+
+							<Typography variant="h5" sx={{ marginTop: 2 }}>
+								Payment Method
+							</Typography>
+							<div>{data[0].paymentMethod}</div>
+						</Box>
+
+						<Box className={styles['shipping-section']}>
+							<Typography variant="h5" sx={{ marginBottom: 1 }}>
+								Shipping
+							</Typography>
+							<div>
+								{data[0].shippingInfo.firstName} {data[0].shippingInfo.lastName}
+							</div>
+							<div>{data[0].shippingInfo.address} </div>
+							<div>
+								{data[0].shippingInfo.address2
+									? data[0].shippingInfo.address2
+									: null}
+							</div>
+							<div>{data[0].shippingInfo.city}</div>
+							<div>{data[0].shippingInfo.postCode}</div>
+							<div>{data[0].shippingInfo.country}</div>
+							<Typography variant="h5" sx={{ marginTop: 2 }}>
+								Shipping Method
+							</Typography>
+							<div>Standard Shipping</div>
+						</Box>
 					</div>
 				</Container>
 			)}

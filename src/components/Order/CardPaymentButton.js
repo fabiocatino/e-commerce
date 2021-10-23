@@ -1,4 +1,5 @@
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -15,7 +16,7 @@ const CardPaymentButton = () => {
 	const [{ isResolved }] = usePayPalScriptReducer();
 	const totalPrice = useTotalPrice();
 	const orderItems = useCartItems();
-
+	const router = useRouter();
 	const [addOrder, { isLoading }] = useAddOrderMutation();
 	const shippingInfo = useSelector(
 		(state) => state.checkout.shippingInfo.shippingInfo
@@ -32,7 +33,7 @@ const CardPaymentButton = () => {
 		phoneNumber,
 	} = shippingInfo;
 
-	const createOrderByCard = (data, actions) => {
+	const createOrder = (data, actions) => {
 		return actions.order
 			.create({
 				intent: 'CAPTURE',
@@ -45,7 +46,7 @@ const CardPaymentButton = () => {
 						address_line_1: address,
 						address_line_2: address2 ? address2 : '',
 						admin_area_2: city,
-						admin_area_1: 'CA',
+						admin_area_1: '',
 						postal_code: postCode,
 						country_code: 'GB',
 					},
@@ -68,7 +69,7 @@ const CardPaymentButton = () => {
 								address_line_1: address,
 								address_line_2: address2 ? address2 : '',
 								admin_area_2: city,
-								admin_area_1: 'CA',
+								admin_area_1: '',
 								postal_code: postCode,
 								country_code: 'GB',
 							},
@@ -85,21 +86,28 @@ const CardPaymentButton = () => {
 		dispatch(
 			cartActions.addItem({
 				...orderItems[0],
-				paymentMethod: 'Debit/Credit Card',
 			})
 		);
 
 		return actions.order.capture().then(function (details) {
 			addOrder({
-				shippingInfo: {
+				billingInfo: {
 					firstName: details.payer.name.given_name,
 					lastName: details.payer.name.surname,
-					address:
-						details.purchase_units[0].shipping.address.address_line_1 +
-						(details.purchase_units[0].shipping.address.address_line_2 ===
-						'undefined'
-							? details.purchase_units[0].shipping.address.address_line_2
-							: ''),
+					address: details.payer.address.address_line_1,
+					address1: details.payer.address.address_line_2,
+					city: details.payer.address.admin_area_2,
+					postCode: details.payer.address.postal_code,
+					country: details.payer.address.country_code,
+					email: details.payer.email_address,
+				},
+				shippingInfo: {
+					firstName:
+						details.purchase_units[0].shipping.name.full_name.split(' ')[0],
+					lastName:
+						details.purchase_units[0].shipping.name.full_name.split(' ')[1],
+					address: details.purchase_units[0].shipping.address.address_line_1,
+					address2: details.purchase_units[0].shipping.address.address_line_2,
 					city: details.purchase_units[0].shipping.address.admin_area_2,
 					postCode: details.purchase_units[0].shipping.address.postal_code,
 					country: details.purchase_units[0].shipping.address.country_code,
@@ -108,9 +116,9 @@ const CardPaymentButton = () => {
 				orderItems: [...orderItems],
 				totalPrice,
 				isPaid: true,
+				paymentMethod: 'Card',
 			}).unwrap();
-			// router.replace('/order/success');
-			dispatch(checkoutAction.currStep(2));
+			dispatch(checkoutAction.nextStep(step + 1));
 			dispatch(cartActions.deleteCart());
 		});
 	}
@@ -123,9 +131,9 @@ const CardPaymentButton = () => {
 	return (
 		<div style={{ paddingTop: 100 }}>
 			<PayPalButtons
-				createOrder={createOrderByCard}
+				createOrder={createOrder}
 				// onShippingChange={onShippingChange}
-				// onApprove={onApproveByCard}
+				onApprove={onApprove}
 				// onError={onErrorByCard}
 				fundingSource={paypal.FUNDING.CARD}
 			/>

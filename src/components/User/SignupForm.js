@@ -47,7 +47,7 @@ const SignupForm = () => {
 			<form onSubmit={submitHandler} className={styles.form}>
 				{error && <Alert severity="error">{error.data.message}</Alert>}
 				<TextField
-					autoComplete="true"
+					autoComplete="given-name"
 					required
 					id="name"
 					label="Name"
@@ -57,7 +57,7 @@ const SignupForm = () => {
 					onChange={(e) => setName(e.target.value)}
 				></TextField>
 				<TextField
-					autoComplete="true"
+					autoComplete="email"
 					required
 					id="email"
 					label="Email"
@@ -67,6 +67,7 @@ const SignupForm = () => {
 					onChange={(e) => setEmail(e.target.value.toLowerCase())}
 				></TextField>
 				<TextField
+					autocomplete="new-password"
 					required
 					id="password1"
 					label="Password"
