@@ -14,7 +14,7 @@ const Checkout = () => {
 	const step = useSelector((state) => state.checkout.currentStep);
 	const cartItems = useCartItems();
 	const totalPrice = useTotalPrice();
-	console.log(step);
+	
 	return (
 		<NoSsr>
 			<div>

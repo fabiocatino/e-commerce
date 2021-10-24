@@ -13,7 +13,7 @@ export default function HorizontalLinearStepper() {
 
 	const handleBack = (index) => (e) => {
 		if (index === 0) {
-			router.push('/order/checkout', '/order/checkout/step=1');
+			router.push('/order/checkout');
 			dispatch(checkoutAction.currStep(0));
 		} else if (index === 1) {
 			return;

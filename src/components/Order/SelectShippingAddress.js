@@ -19,7 +19,7 @@ export default function SelectShippingAddress() {
 	};
 
 	const addressHandler = async (address) => {
-		router.push('/order/checkout', '/order/checkout/step=2');
+		router.push('/order/checkout');
 		dispatch(checkoutAction.nextStep(step + 1));
 		dispatch(
 			checkoutAction.addShippingInfo({

@@ -9,7 +9,7 @@ const OrderSummary = (props) => {
 	const router = useRouter();
 
 	const checkoutHandler = () => {
-		router.push('/order/checkout', '/order/checkout/step=1');
+		router.push('/order/checkout');
 	};
 	const step = useSelector((state) => state.checkout.currentStep);
 	return (

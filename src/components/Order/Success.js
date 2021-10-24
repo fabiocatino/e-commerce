@@ -1,13 +1,13 @@
 import { Container, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { checkoutAction } from '../../services/checkoutSlice';
 import { useGetOrderQuery } from '../../services/ordersApi';
 import Spinner from '../Layout/Spinner';
 import OrderSummary from './OrderSummary';
 import styles from './Success.module.css';
-import { useRouter } from 'next/router';
-import { checkoutAction } from '../../services/checkoutSlice';
 
 const Success = () => {
 	const router = useRouter();
@@ -15,19 +15,23 @@ const Success = () => {
 	const step = useSelector((state) => state.checkout.currentStep);
 
 	useEffect(() => {
-		console.log('loading');
-		const handleStart = (url) => {
-			dispatch(checkoutAction.currStep(0));
+		const handleRouteChange = (url) => {
+			if (url === '/order/checkout/step=success') {
+				return;
+			} else {
+				dispatch(checkoutAction.currStep(0));
+			}
 		};
 
-		router.events.on('routeChangeStart', handleStart);
+		router.events.on('routeChangeStart', handleRouteChange);
 
 		return () => {
-			router.events.off('routeChangeStart', handleStart);
+			router.events.off('routeChangeStart', handleRouteChange);
 		};
-	}, [router.events]);
+	}, []);
 
 	const { data, isLoading, error } = useGetOrderQuery();
+
 	return (
 		<>
 			{isLoading && <Spinner />}
@@ -44,7 +48,7 @@ const Success = () => {
 							</div>
 							<div>
 								<Typography variant="body1">
-									We&apos;ve received your order, and will contact you as sooon
+									We&apos;ve received your order, and will contact you as soon
 									as your package is shipped. You can find your purchase
 									information below.
 								</Typography>
@@ -62,7 +66,7 @@ const Success = () => {
 									month: 'long',
 								}) +
 									' ' +
-									new Date(data[0].createdAt).getDay() +
+									new Date(data[0].createdAt).getDate() +
 									', ' +
 									new Date(data[0].createdAt).getFullYear()}
 							</Typography>

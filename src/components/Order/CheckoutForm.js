@@ -28,7 +28,7 @@ export default function CheckoutForm() {
 	} = useForm();
 
 	const onSubmit = async (data) => {
-		router.push('/order/checkout', '/order/checkout/step=2');
+		router.push('/order/checkout');
 		dispatch(checkoutAction.nextStep(step + 1));
 		dispatch(
 			checkoutAction.addShippingInfo({
