@@ -29,7 +29,7 @@ const ModifyDetailsForm = () => {
 				{error && <Alert severity="error">{error.data.message}</Alert>}
 				{data && isSuccess && <Alert severity="success">{data.message}</Alert>}
 				<TextField
-					autoComplete="true"
+					autoComplete="given-name"
 					type="text"
 					required
 					id="name"
@@ -40,7 +40,7 @@ const ModifyDetailsForm = () => {
 					onChange={(e) => setName(e.target.value)}
 				></TextField>
 				<TextField
-					autoComplete="true"
+					autoComplete="email"
 					type="email"
 					required
 					id="email"

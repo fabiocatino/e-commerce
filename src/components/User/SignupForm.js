@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useAddUserMutation } from '../../services/userApi';
 import styles from './SignupForm.module.css';
+import { signIn } from 'next-auth/react';
 
 const SignupForm = () => {
 	const [name, setName] = useState('');
@@ -31,12 +32,12 @@ const SignupForm = () => {
 				password1,
 				password2,
 			}).unwrap();
-			router.push('/user/login');
-			// const result = await signIn('credentials', {
-			// 	redirect: false,
-			// 	email,
-			// 	password1,
-			// });
+			await signIn('credentials', {
+				callbackUrl: '/',
+				redirect: true,
+				email,
+				password: password1,
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -67,7 +68,7 @@ const SignupForm = () => {
 					onChange={(e) => setEmail(e.target.value.toLowerCase())}
 				></TextField>
 				<TextField
-					autocomplete="new-password"
+					autoComplete="new-password"
 					required
 					id="password1"
 					label="Password"

@@ -36,26 +36,18 @@ const CardPaymentButton = () => {
 	const [phoneNumber, setPhoneNumber] = useState(0);
 
 	useEffect(() => {
-		setFirstName(shippingInfo.firstName);
-		setLastName(shippingInfo.lastName);
-		setAddress(shippingInfo.address);
-		setAddress2(shippingInfo.address2);
-		setCity(shippingInfo.city);
-		setPostCode(shippingInfo.postCode);
-		setCountry(shippingInfo.country);
-		setEmail(shippingInfo.email);
-		setPhoneNumber(shippingInfo.phoneNumber);
-	}, [
-		firstName,
-		lastName,
-		address,
-		address2,
-		city,
-		postCode,
-		country,
-		email,
-		phoneNumber,
-	]);
+		if (shippingInfo) {
+			setFirstName(shippingInfo.firstName);
+			setLastName(shippingInfo.lastName);
+			setAddress(shippingInfo.address);
+			setAddress2(shippingInfo.address2);
+			setCity(shippingInfo.city);
+			setPostCode(shippingInfo.postCode);
+			setCountry(shippingInfo.country);
+			setEmail(shippingInfo.email);
+			setPhoneNumber(shippingInfo.phoneNumber);
+		}
+	}, [shippingInfo]);
 
 	useEffect(() => {
 		dispatchPayPal({
@@ -79,7 +71,7 @@ const CardPaymentButton = () => {
 						admin_area_2: city,
 						admin_area_1: '',
 						postal_code: postCode,
-						country_code: 'GB',
+						country_code: country === 'United Kingdom' ? 'GB' : 'IT',
 					},
 					email_address: email,
 					phone: {
@@ -102,7 +94,7 @@ const CardPaymentButton = () => {
 								admin_area_2: city,
 								admin_area_1: '',
 								postal_code: postCode,
-								country_code: 'GB',
+								country_code: country === 'United Kingdom' ? 'GB' : 'IT',
 							},
 						},
 					},
@@ -121,28 +113,57 @@ const CardPaymentButton = () => {
 		);
 
 		return actions.order.capture().then(function (details) {
+			const {
+				payer: {
+					name: { given_name, surname },
+				},
+				payer: {
+					address: {
+						address_line_1,
+						address_line_2,
+						admin_area_2,
+						postal_code,
+						country_code,
+					},
+				},
+				payer: { email_address },
+			} = details;
+
+			const {
+				shipping: {
+					address: {
+						address_line_1: shipping_address_line_1,
+						address_line_2: shipping_address_line_2,
+						admin_area_2: shipping_admin_area_2,
+						postal_code: shipping_postal_code,
+						country_code: shipping_country_code,
+					},
+				},
+			} = details.purchase_units[0];
+
 			addOrder({
 				billingInfo: {
-					firstName: details.payer.name.given_name,
-					lastName: details.payer.name.surname,
-					address: details.payer.address.address_line_1,
-					address1: details.payer.address.address_line_2,
-					city: details.payer.address.admin_area_2,
-					postCode: details.payer.address.postal_code,
-					country: details.payer.address.country_code,
-					email: details.payer.email_address,
+					firstName: given_name,
+					lastName: surname,
+					address: address_line_1,
+					address1: address_line_2,
+					city: admin_area_2,
+					postCode: postal_code,
+					country: country_code,
+					email: email_address,
 				},
+
 				shippingInfo: {
 					firstName:
 						details.purchase_units[0].shipping.name.full_name.split(' ')[0],
 					lastName:
 						details.purchase_units[0].shipping.name.full_name.split(' ')[1],
-					address: details.purchase_units[0].shipping.address.address_line_1,
-					address2: details.purchase_units[0].shipping.address.address_line_2,
-					city: details.purchase_units[0].shipping.address.admin_area_2,
-					postCode: details.purchase_units[0].shipping.address.postal_code,
-					country: details.purchase_units[0].shipping.address.country_code,
-					email: details.payer.email_address,
+					address: shipping_address_line_1,
+					address2: shipping_address_line_2,
+					city: shipping_admin_area_2,
+					postCode: shipping_postal_code,
+					country: shipping_country_code,
+					email: email_address,
 				},
 				orderItems: [...orderItems],
 				totalPrice,

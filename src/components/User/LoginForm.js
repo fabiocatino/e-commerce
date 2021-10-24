@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
 import {
-	TextField,
-	Container,
-	Typography,
-	Button,
-	Link as Mlink,
 	Alert,
+	Button,
+	Container,
+	Link as Mlink,
+	TextField,
+	Typography,
 } from '@mui/material';
-import styles from './LoginForm.module.css';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { signIn } from 'next-auth/react';
-import { result } from 'lodash';
+import React, { useState } from 'react';
+import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
 	const [email, setEmail] = useState('');

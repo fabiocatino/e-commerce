@@ -36,7 +36,7 @@ export default NextAuth({
 				if (!existingUser) {
 					throw new Error('No user associated with this email address.');
 				}
-
+				
 				const isValid = await verifyPassword(
 					credentials.password,
 					existingUser.password

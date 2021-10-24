@@ -1,4 +1,5 @@
-import { Alert, Button, Grid, TextField } from '@mui/material';
+import { Alert, Autocomplete, Button, Grid, TextField } from '@mui/material';
+import { Box } from '@mui/system';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import {
@@ -21,6 +22,7 @@ export default function AddressForm(props) {
 	] = useUpdateUserAddressMutation();
 
 	const {
+		register,
 		control,
 		handleSubmit,
 		formState: { errors },
@@ -234,31 +236,44 @@ export default function AddressForm(props) {
 							)}
 						/>
 					</div>
-					<Controller
-						name="country"
-						control={control}
-						defaultValue=""
-						rules={{
-							required: true,
-							minLength: 2,
-						}}
-						render={({ field }) => (
+					<Autocomplete
+						id="country-select-demo"
+						options={countries}
+						autoHighlight
+						isOptionEqualToValue={(option, value) =>
+							option.label === value.label
+						}
+						getOptionLabel={(option) => option.label}
+						renderOption={(props, option) => (
+							<Box
+								component="li"
+								sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+								{...props}
+							>
+								<img
+									loading="lazy"
+									width="20"
+									src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+									srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+									alt=""
+								/>
+								{option.label} ({option.code})
+							</Box>
+						)}
+						renderInput={(params) => (
 							<TextField
+								{...register('country')}
+								{...params}
 								required
 								placeholder="Country"
 								fullWidth
 								id="country"
 								type="text"
-								autoComplete="shipping country"
-								error={Boolean(errors.country)}
-								helperText={
-									errors.country
-										? errors.country.type === 'minLength'
-											? 'Please, insert a valid Country.'
-											: 'Country required'
-										: ''
-								}
-								{...field}
+								autoComplete="country"
+								inputProps={{
+									...params.inputProps,
+									autoComplete: 'country',
+								}}
 							/>
 						)}
 					/>
@@ -344,3 +359,8 @@ export default function AddressForm(props) {
 		</Grid>
 	);
 }
+
+const countries = [
+	{ code: 'GB', label: 'United Kingdom' },
+	{ code: 'IT', label: 'Italy' },
+];

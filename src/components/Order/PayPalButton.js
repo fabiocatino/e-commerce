@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	cartActions,
 	useCartItems,
-	useTotalPrice,
+	useTotalPrice
 } from '../../services/cartSlice';
 import { checkoutAction } from '../../services/checkoutSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
@@ -22,6 +22,7 @@ const PayPalButton = () => {
 	const router = useRouter();
 	const [error, setError] = useState(false);
 	const [addOrder, { isLoading, data: orderID }] = useAddOrderMutation();
+	const allowedCountries = ['GB', 'IT'];
 
 	useEffect(() => {
 		dispatchPayPal({
@@ -47,7 +48,11 @@ const PayPalButton = () => {
 	};
 
 	function onShippingChange(data, actions) {
-		if (data.shipping_address.country_code !== 'GB') {
+		const {
+			shipping_address: { country_code },
+		} = data;
+
+		if (!allowedCountries.includes(country_code)) {
 			return actions.reject();
 		}
 		return actions.resolve();
@@ -57,16 +62,35 @@ const PayPalButton = () => {
 		dispatch(cartActions.addItem({ ...orderItems[0] }));
 
 		return actions.order.capture().then(function (details) {
+			const {
+				payer: {
+					name: { given_name: firstName, surname: lastName },
+				},
+				payer: { email_address: email },
+			} = details;
+
+			const {
+				shipping: {
+					address: {
+						address_line_1: shipping_address_line_1,
+						address_line_2: shipping_address_line_2,
+						admin_area_2: shipping_admin_area_2,
+						postal_code: shipping_postal_code,
+						country_code: shipping_country_code,
+					},
+				},
+			} = details.purchase_units[0];
+
 			addOrder({
 				shippingInfo: {
-					firstName: details.payer.name.given_name,
-					lastName: details.payer.name.surname,
-					address: details.purchase_units[0].shipping.address.address_line_1,
-					address2: details.purchase_units[0].shipping.address.address_line_2,
-					city: details.purchase_units[0].shipping.address.admin_area_2,
-					postCode: details.purchase_units[0].shipping.address.postal_code,
-					country: details.purchase_units[0].shipping.address.country_code,
-					email: details.payer.email_address,
+					firstName,
+					lastName,
+					address: shipping_address_line_1,
+					address2: shipping_address_line_2,
+					city: shipping_admin_area_2,
+					postCode: shipping_postal_code,
+					country: shipping_country_code,
+					email,
 				},
 				orderItems: [...orderItems],
 				totalPrice,

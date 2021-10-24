@@ -8,6 +8,7 @@ const handler = nc().use(Cors());
 
 handler.post(async (req, res) => {
 	if (req.method === 'POST') {
+	
 		const { email, password1, password2 } = req.body;
 
 		if (!email || !email.includes('@')) {
