@@ -10,6 +10,7 @@ import {
 } from '../../services/cartSlice';
 import { checkoutAction } from '../../services/checkoutSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
+import { orderAction } from '../../services/orderSlice';
 import Spinner from '../Layout/Spinner';
 
 const PayPalButton = () => {
@@ -20,8 +21,7 @@ const PayPalButton = () => {
 	const orderItems = useCartItems();
 	const router = useRouter();
 	const [error, setError] = useState(false);
-
-	const [addOrder, { isLoading }] = useAddOrderMutation();
+	const [addOrder, { isLoading, data: orderID }] = useAddOrderMutation();
 
 	useEffect(() => {
 		dispatchPayPal({
@@ -73,15 +73,20 @@ const PayPalButton = () => {
 				isPaid: true,
 				paymentMethod: 'Paypal',
 			}).unwrap();
-			dispatch(cartActions.deleteCart());
-			dispatch(checkoutAction.currStep(2));
-			router.push('/order/checkout', '/order/checkout/step=success');
 		});
 	}
 
 	function onError(err) {
 		setError(true);
 	}
+
+	useEffect(() => {
+		if (orderID !== undefined) {
+			dispatch(orderAction.addOrderID(orderID._id));
+			dispatch(checkoutAction.currStep(2));
+			router.push('/order/checkout', '/order/checkout/step=success');
+		}
+	}, [orderID]);
 
 	return (
 		<div>

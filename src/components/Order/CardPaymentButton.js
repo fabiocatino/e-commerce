@@ -10,21 +10,42 @@ import {
 } from '../../services/cartSlice';
 import { checkoutAction } from '../../services/checkoutSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
+import { orderAction } from '../../services/orderSlice';
 import Spinner from '../Layout/Spinner';
 
 const CardPaymentButton = () => {
-	const router = useRouter()
+	const router = useRouter();
 	const dispatch = useDispatch();
 	const step = useSelector((state) => state.checkout.currentStep);
 	const [{ isResolved, isPending }, dispatchPayPal] = usePayPalScriptReducer();
 	const totalPrice = useTotalPrice();
 	const orderItems = useCartItems();
 	const [error, setError] = useState(false);
-	const [addOrder, { isLoading }] = useAddOrderMutation();
+	const [addOrder, { isLoading, data: orderID }] = useAddOrderMutation();
 	const shippingInfo = useSelector(
 		(state) => state.checkout.shippingInfo.shippingInfo
 	);
-	const {
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [address, setAddress] = useState('');
+	const [address2, setAddress2] = useState('');
+	const [city, setCity] = useState('');
+	const [postCode, setPostCode] = useState('');
+	const [country, setCountry] = useState('');
+	const [email, setEmail] = useState('');
+	const [phoneNumber, setPhoneNumber] = useState(0);
+
+	useEffect(() => {
+		setFirstName(shippingInfo.firstName);
+		setLastName(shippingInfo.lastName);
+		setAddress(shippingInfo.address);
+		setAddress2(shippingInfo.address2);
+		setCity(shippingInfo.city);
+		setPostCode(shippingInfo.postCode);
+		setCountry(shippingInfo.country);
+		setEmail(shippingInfo.email);
+		setPhoneNumber(shippingInfo.phoneNumber);
+	}, [
 		firstName,
 		lastName,
 		address,
@@ -34,7 +55,7 @@ const CardPaymentButton = () => {
 		country,
 		email,
 		phoneNumber,
-	} = shippingInfo;
+	]);
 
 	useEffect(() => {
 		dispatchPayPal({
@@ -128,22 +149,20 @@ const CardPaymentButton = () => {
 				isPaid: true,
 				paymentMethod: 'Card',
 			}).unwrap();
-			dispatch(checkoutAction.nextStep(step + 1));
-			dispatch(cartActions.deleteCart());
-			router.push('/order/checkout', '/order/checkout/step=success');
 		});
 	}
-
-	// function onShippingChange(data, actions) {
-	// 	if (data.shipping_address.country_code !== 'GB') {
-	// 		return actions.reject();
-	// 	}
-	// 	return actions.resolve();
-	// }
 
 	function onError(err) {
 		setError(true);
 	}
+
+	useEffect(() => {
+		if (orderID !== undefined) {
+			dispatch(orderAction.addOrderID(orderID._id));
+			dispatch(checkoutAction.nextStep(step + 1));
+			router.push('/order/checkout', '/order/checkout/step=success');
+		}
+	}, [orderID]);
 
 	return (
 		<>

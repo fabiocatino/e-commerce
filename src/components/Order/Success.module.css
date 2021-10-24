@@ -3,7 +3,7 @@
 	min-width: fit-content;
 }
 
-.message {
+.main {
 	display: flex;
 	gap: 2rem;
 	flex-direction: column;
@@ -12,6 +12,13 @@
 	width: 100%;
 	height: 300px;
 	background-color: #ebf8f3;
+}
+
+.message {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 1rem;
 }
 
 .order-summary {

@@ -14,8 +14,8 @@ export const ordersApi = createApi({
 			}),
 		}),
 		getOrder: build.query({
-			query: () => ({
-				url: `${baseUrl}/get-order`,
+			query: (_id) => ({
+				url: `${baseUrl}/${_id}`,
 			}),
 		}),
 		addOrder: build.mutation({

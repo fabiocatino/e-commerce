@@ -91,7 +91,7 @@ const Navbar = () => {
 							onClose={handleClose}
 						>
 							<MenuItem>
-								<Link href="/user/account"> My account</Link>
+								<Link href="/user/account/account"> My account</Link>
 							</MenuItem>
 							<MenuItem onClick={logoutHandler}>Logout</MenuItem>
 						</Menu>

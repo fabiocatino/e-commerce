@@ -1,8 +1,26 @@
-import { Avatar, Card, CardContent, Typography } from '@mui/material';
-import * as React from 'react';
+import React from 'react';
 import styles from './OrderCard.module.css';
+import {
+	Avatar,
+	Button,
+	Card,
+	CardContent,
+	Link as MLink,
+	Typography,
+} from '@mui/material';
+import Link from 'next/link';
+import { checkoutAction } from '../../services/checkoutSlice';
+import { useDispatch } from 'react-redux';
+import { orderAction } from '../../services/orderSlice';
 
 const OrderCard = (props) => {
+	const dispatch = useDispatch();
+
+	const onClickHandler = () => {
+		dispatch(orderAction.addOrderID(props._id));
+		dispatch(checkoutAction.currStep(2));
+	};
+
 	return (
 		<Card className={styles.card}>
 			<CardContent className={styles['card-content']}>
@@ -32,7 +50,23 @@ const OrderCard = (props) => {
 
 					<ul>
 						<li>
-							<Typography variant="body1">ORDER #{props._id} </Typography>{' '}
+							<Typography variant="body1">ORDER #{props._id} </Typography>
+						</li>
+						<li>
+							<Link
+								href="/order/checkout"
+								as="/order/checkout/step=success"
+								passHref={true}
+							>
+								<MLink
+									onClick={onClickHandler}
+									variant="contained"
+									underline="always"
+									color="inherit"
+								>
+									View order details
+								</MLink>
+							</Link>
 						</li>
 					</ul>
 				</CardContent>
@@ -49,6 +83,9 @@ const OrderCard = (props) => {
 								{item.name}
 							</div>
 							<div> £{item.price}</div>
+							<div className={styles.button}>
+								<Button variant="outlined">Leave a review</Button>
+							</div>
 						</div>
 					))}
 				</CardContent>

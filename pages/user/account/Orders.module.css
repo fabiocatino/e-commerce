@@ -1,13 +1,13 @@
 .container {
-    margin-top: 5rem;
+	margin-top: 5rem;
 	display: flex;
 	justify-content: center;
-    flex-direction: column;
-    gap: 5rem;
+	align-items: center;
+	flex-direction: column;
+	gap: 5rem;
 }
 
 .no-order-message {
-    display: flex;
-    justify-content: center;
-    
+	display: flex;
+	justify-content: center;
 }

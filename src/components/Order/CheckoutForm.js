@@ -3,10 +3,10 @@ import {
 	Checkbox,
 	FormControlLabel,
 	Grid,
-	TextField,
+	TextField
 } from '@mui/material';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';

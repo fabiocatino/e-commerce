@@ -11,22 +11,17 @@ import { useAddOrderMutation } from '../../services/ordersApi';
 import styles from './ReviewOrder.module.css';
 import { checkoutAction } from '../../services/checkoutSlice';
 
-
 const ReviewOrder = () => {
 	const totalPrice = useTotalPrice();
 	const router = useRouter();
 	const dispatch = useDispatch();
 	const [addOrder, { isLoading }] = useAddOrderMutation();
-	// const shippingInfo = useSelector(
-	// 	(state) => state.checkout.shippingInfo.shippingInfo.shippingInfo
-	// );
 	const step = useSelector((state) => state.checkout.currentStep);
 	const orderItems = useCartItems();
 
 	const submitOrderHandler = async () => {
 		try {
 			await addOrder({
-				// shippingInfo,
 				orderItems: [...orderItems],
 				totalPrice,
 			}).unwrap();
@@ -36,7 +31,6 @@ const ReviewOrder = () => {
 		}
 		router.replace('/order/success');
 		dispatch(checkoutAction.currStep(0));
-
 	};
 
 	return (

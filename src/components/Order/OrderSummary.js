@@ -1,7 +1,6 @@
 import { Avatar, Button, Divider, NoSsr, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import styles from './OrderSummary.module.css';
 import PayPalButton from './PayPalButton';
 
@@ -11,7 +10,7 @@ const OrderSummary = (props) => {
 	const checkoutHandler = () => {
 		router.push('/order/checkout');
 	};
-	const step = useSelector((state) => state.checkout.currentStep);
+	
 	return (
 		<>
 			{!props && 'loading'}

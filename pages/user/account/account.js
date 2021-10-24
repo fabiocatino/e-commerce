@@ -5,14 +5,14 @@ import { Container, Grid, Typography } from '@mui/material';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
-import Spinner from '../../src/components/Layout/Spinner';
-import UserCard from '../../src/components/User/Card';
+import Spinner from '../../../src/components/Layout/Spinner';
+import UserCard from '../../../src/components/User/Card';
 import styles from './Account.module.css';
 
 const Account = () => {
 	const { data: session, status } = useSession();
 	const router = useRouter();
-	console.log(router)
+
 	useEffect(() => {
 		if (!session && status !== 'loading') {
 			router.push('/user/login');

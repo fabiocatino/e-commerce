@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { cartActions } from '../../services/cartSlice';
 import { checkoutAction } from '../../services/checkoutSlice';
 import { useGetOrderQuery } from '../../services/ordersApi';
 import Spinner from '../Layout/Spinner';
@@ -12,7 +13,8 @@ import styles from './Success.module.css';
 const Success = () => {
 	const router = useRouter();
 	const dispatch = useDispatch();
-	const step = useSelector((state) => state.checkout.currentStep);
+	const orderID = useSelector((state) => state.order.orderID);
+	const { data, isLoading, error } = useGetOrderQuery(orderID);
 
 	useEffect(() => {
 		const handleRouteChange = (url) => {
@@ -20,6 +22,7 @@ const Success = () => {
 				return;
 			} else {
 				dispatch(checkoutAction.currStep(0));
+				dispatch(cartActions.deleteCart());
 			}
 		};
 
@@ -30,30 +33,29 @@ const Success = () => {
 		};
 	}, []);
 
-	const { data, isLoading, error } = useGetOrderQuery();
-
 	return (
 		<>
 			{isLoading && <Spinner />}
 			{error && <p>Something went wrong.</p>}
 			{!isLoading && !error && (
 				<Container className={styles.container}>
-					<div className={styles.message}>
-						<Typography className={styles.message} variant="h3">
-							ORDER CONFIRMATION
-							<div>
-								<Typography variant="h5">
-									{data[0].shippingInfo.firstName}, thank you for your order!
-								</Typography>
-							</div>
-							<div>
-								<Typography variant="body1">
-									We&apos;ve received your order, and will contact you as soon
-									as your package is shipped. You can find your purchase
-									information below.
-								</Typography>
-							</div>
-						</Typography>
+					<div className={styles.main}>
+						<div className={styles.message}>
+							<Typography variant="h3">ORDER CONFIRMATION</Typography>
+							<Typography variant="subtitle2">#{data._id}</Typography>
+						</div>
+						<div>
+							<Typography variant="h5">
+								{data.shippingInfo.firstName}, thank you for your order!
+							</Typography>
+						</div>
+						<div>
+							<Typography variant="body1">
+								We&apos;ve received your order, and will contact you as soon as
+								your package is shipped. You can find your purchase information
+								below.
+							</Typography>
+						</div>
 					</div>
 
 					<div className={styles['order-summary']}>
@@ -62,19 +64,19 @@ const Success = () => {
 						</div>
 						<div>
 							<Typography variant="h5">
-								{new Date(data[0].createdAt).toLocaleString('en-US', {
+								{new Date(data.createdAt).toLocaleString('en-US', {
 									month: 'long',
 								}) +
 									' ' +
-									new Date(data[0].createdAt).getDate() +
+									new Date(data.createdAt).getDate() +
 									', ' +
-									new Date(data[0].createdAt).getFullYear()}
+									new Date(data.createdAt).getFullYear()}
 							</Typography>
 						</div>
 						<div style={{ width: 1000 }}>
 							<OrderSummary
-								totalPrice={data[0].totalPrice}
-								cartItems={data[0].orderItems}
+								totalPrice={data.totalPrice}
+								cartItems={data.orderItems}
 							></OrderSummary>
 						</div>
 					</div>
@@ -83,31 +85,30 @@ const Success = () => {
 					</div>
 					<div className={styles['delivery-container']}>
 						<Box className={styles['billing-section']}>
-							{data[0].billingInfo && (
+							{data.billingInfo && (
 								<>
 									<Typography variant="h5" sx={{ marginBottom: 1 }}>
 										Billing
 									</Typography>
 									<div>
-										{data[0].billingInfo.firstName}{' '}
-										{data[0].billingInfo.lastName}
+										{data.billingInfo.firstName} {data.billingInfo.lastName}
 									</div>
 									<div>
-										{data[0].billingInfo.address}
-										{data[0].billingInfo.address2
-											? data[0].billingInfo.address2
+										{data.billingInfo.address}
+										{data.billingInfo.address2
+											? data.billingInfo.address2
 											: null}
 									</div>
-									<div>{data[0].billingInfo.city}</div>
-									<div>{data[0].billingInfo.postCode}</div>
-									<div>{data[0].billingInfo.country}</div>
+									<div>{data.billingInfo.city}</div>
+									<div>{data.billingInfo.postCode}</div>
+									<div>{data.billingInfo.country}</div>
 								</>
 							)}
 
 							<Typography variant="h5" sx={{ marginTop: 2 }}>
 								Payment Method
 							</Typography>
-							<div>{data[0].paymentMethod}</div>
+							<div>{data.paymentMethod}</div>
 						</Box>
 
 						<Box className={styles['shipping-section']}>
@@ -115,17 +116,15 @@ const Success = () => {
 								Shipping
 							</Typography>
 							<div>
-								{data[0].shippingInfo.firstName} {data[0].shippingInfo.lastName}
+								{data.shippingInfo.firstName} {data.shippingInfo.lastName}
 							</div>
-							<div>{data[0].shippingInfo.address} </div>
+							<div>{data.shippingInfo.address} </div>
 							<div>
-								{data[0].shippingInfo.address2
-									? data[0].shippingInfo.address2
-									: null}
+								{data.shippingInfo.address2 ? data.shippingInfo.address2 : null}
 							</div>
-							<div>{data[0].shippingInfo.city}</div>
-							<div>{data[0].shippingInfo.postCode}</div>
-							<div>{data[0].shippingInfo.country}</div>
+							<div>{data.shippingInfo.city}</div>
+							<div>{data.shippingInfo.postCode}</div>
+							<div>{data.shippingInfo.country}</div>
 							<Typography variant="h5" sx={{ marginTop: 2 }}>
 								Shipping Method
 							</Typography>
