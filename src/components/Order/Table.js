@@ -1,10 +1,13 @@
 import {
-	Button, Checkbox,
-	MenuItem, Paper, TableBody,
+	Button,
+	Checkbox,
+	MenuItem,
+	Paper,
+	TableBody,
 	TableCell,
 	TableContainer,
 	TablePagination,
-	TableRow
+	TableRow,
 } from '@mui/material/';
 import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
@@ -15,7 +18,7 @@ import { useDispatch } from 'react-redux';
 import { cartActions, useCartItems } from '../../services/cartSlice';
 import EnhancedTableHead, {
 	getComparator,
-	stableSort
+	stableSort,
 } from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 
@@ -147,12 +150,21 @@ export default function EnhancedTable() {
 												scope="row"
 												padding="none"
 											>
-												<Image alt={row.name} src={row.image} height={100} width={100}></Image>
+												<Image
+													alt={row.name}
+													src={row.image}
+													height={100}
+													width={100}
+												></Image>
 											</TableCell>
 											<TableCell align="right">{row.name}</TableCell>
 											<TableCell align="right">
 												<Select value="">
-													{[...Array(row.countInStock).keys()].map((item) => (
+													{[
+														...Array(
+															row.countInStock >= 10 ? 10 : row.countInStock
+														).keys(),
+													].map((item) => (
 														<MenuItem
 															onClick={changeQuantityHandler(index)}
 															key={item + 1}
