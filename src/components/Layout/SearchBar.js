@@ -12,7 +12,7 @@ export default function SearchBar() {
 	const [productName, setProductName] = useState('');
 	const [search, setSearch] = useState('');
 	const loading = open && options.length === 0;
-	
+
 	const {
 		data: products,
 		error,
@@ -46,12 +46,11 @@ export default function SearchBar() {
 			open={open}
 			onOpen={() => setOpen(true)}
 			onClose={() => setOpen(false)}
-			// isOptionEqualToValue={(option, value) => option.name === value.name}
 			getOptionLabel={(option) => option.name}
 			options={options}
 			loading={loading}
 			renderOption={(props, option) => (
-				<Link passHref={true} href={`/products/${option._id}`}>
+				<Link passHref={true} key={option._id} href={`/products/${option._id}`}>
 					<li {...props}>{option.name}</li>
 				</Link>
 			)}

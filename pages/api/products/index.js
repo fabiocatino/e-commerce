@@ -5,6 +5,8 @@ import Cors from 'cors';
 
 const handler = nc().use(Cors());
 
+const brands = ['Apple', 'Amazon'];
+
 handler.get(async (req, res) => {
 	await db.connect();
 	const products = await Product.find({});

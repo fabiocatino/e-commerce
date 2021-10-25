@@ -2,13 +2,14 @@ import { Link as MLink, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGetAllProductsQuery } from '../../services/productsApi';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 
 export default function CategoriesMenu() {
-	const [anchorEl, setAnchorEl] = React.useState(null);
+	const [anchorEl, setAnchorEl] = useState(null);
+	const [filteredCategories, setFilteredCategories] = useState([]);
 	const open = Boolean(anchorEl);
 	const categories = useGetAllProductsQuery();
 
@@ -19,11 +20,17 @@ export default function CategoriesMenu() {
 		setAnchorEl(null);
 	};
 
+	useEffect(() => {
+		let temp = [];
+		categories.data?.map((item) => {
+			temp.push(item.category);
+			setFilteredCategories([...new Set(temp)].sort());
+		});
+	}, [categories]);
+
 	return (
 		<div>
 			<Button
-				// onMouseEnter={handleClick}
-				// onMouseLeave={handleClick}
 				id="basic-button"
 				aria-controls="basic-menu"
 				aria-haspopup="true"
@@ -32,7 +39,9 @@ export default function CategoriesMenu() {
 				color="inherit"
 			>
 				<MenuIcon />
-				<Typography variant="body1"><strong>ALL CATEGORIES</strong></Typography>
+				<Typography variant="body1">
+					<strong>ALL CATEGORIES</strong>
+				</Typography>
 			</Button>
 			<Menu
 				id="basic-menu"
@@ -50,14 +59,9 @@ export default function CategoriesMenu() {
 						</MLink>
 					</Link>
 				</MenuItem>
-				{categories.data?.map((category) => (
-					<MenuItem
-						onMouseLeave={handleClose}
-						onClick={handleClose}
-						divider={true}
-						key={category._id}
-					>
-						{category.category}
+				{filteredCategories.map((category) => (
+					<MenuItem onClick={handleClose} divider={true} key={category}>
+						{category}
 					</MenuItem>
 				))}
 			</Menu>

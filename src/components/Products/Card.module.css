@@ -1,3 +1,28 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	max-width: 360px;
+	max-height: 350px;
+}
+
+.cardContent {
+	padding: 1rem;
+}
+
+.cardContent:last-child {
+	padding-bottom: 0.3rem;
+}
+
+.text {
+	max-height: 100px;
+}
 .price {
-	padding-top: 15px;
+	margin-top: 1rem;
+	height: 50px;
+}
+
+.buttons {
+	margin-top: 1rem;
+	display: flex;
+	align-items: flex-end;
 }
