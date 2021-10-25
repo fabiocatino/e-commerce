@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	cartActions,
 	useCartItems,
-	useTotalPrice
+	useTotalPrice,
 } from '../../services/cartSlice';
 import { checkoutAction } from '../../services/checkoutSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
@@ -62,24 +62,26 @@ const PayPalButton = () => {
 		dispatch(cartActions.addItem({ ...orderItems[0] }));
 
 		return actions.order.capture().then(function (details) {
+			
 			const {
 				payer: {
 					name: { given_name: firstName, surname: lastName },
+					email_address: email,
 				},
-				payer: { email_address: email },
-			} = details;
-
-			const {
-				shipping: {
-					address: {
-						address_line_1: shipping_address_line_1,
-						address_line_2: shipping_address_line_2,
-						admin_area_2: shipping_admin_area_2,
-						postal_code: shipping_postal_code,
-						country_code: shipping_country_code,
+				purchase_units: [
+					{
+						shipping: {
+							address: {
+								address_line_1: shipping_address_line_1,
+								address_line_2: shipping_address_line_2,
+								admin_area_2: shipping_admin_area_2,
+								postal_code: shipping_postal_code,
+								country_code: shipping_country_code,
+							},
+						},
 					},
-				},
-			} = details.purchase_units[0];
+				],
+			} = details;
 
 			addOrder({
 				shippingInfo: {

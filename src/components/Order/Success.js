@@ -17,12 +17,12 @@ const Success = () => {
 	const { data, isLoading, error } = useGetOrderQuery(orderID);
 
 	useEffect(() => {
+		dispatch(cartActions.deleteCart());
 		const handleRouteChange = (url) => {
 			if (url === '/order/checkout/step=success') {
 				return;
 			} else {
 				dispatch(checkoutAction.currStep(0));
-				dispatch(cartActions.deleteCart());
 			}
 		};
 

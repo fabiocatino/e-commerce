@@ -6,7 +6,7 @@ const initialState = {
 
 	shippingInfo: Cookies.get('shippingInfo')
 		? JSON.parse(Cookies.get('shippingInfo'))
-		: [],
+		: {},
 };
 
 const checkoutSlice = createSlice({

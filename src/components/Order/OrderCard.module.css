@@ -1,7 +1,6 @@
 .card {
 	display: flex;
 	width: 918px;
-	
 }
 
 .card-content {
@@ -38,15 +37,18 @@
 	display: flex;
 	gap: 1rem;
 	width: 160px;
+	padding: 0px;
+	padding-right: 2rem;
 }
 
 .item {
 	display: flex;
-	gap: 5rem;
-	align-items: center;
+	justify-content: space-between;
+	/* gap: 5rem; */
+	/* align-items: center; */
 	margin-top: 1rem;
 }
 
-.button {
-	margin-left: 16.5rem;
-}
+/* .button {
+	
+} */

@@ -25,29 +25,42 @@ const CardPaymentButton = () => {
 	const shippingInfo = useSelector(
 		(state) => state.checkout.shippingInfo.shippingInfo
 	);
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [address, setAddress] = useState('');
-	const [address2, setAddress2] = useState('');
-	const [city, setCity] = useState('');
-	const [postCode, setPostCode] = useState('');
-	const [country, setCountry] = useState('');
-	const [email, setEmail] = useState('');
-	const [phoneNumber, setPhoneNumber] = useState(0);
 
-	useEffect(() => {
-		if (shippingInfo) {
-			setFirstName(shippingInfo.firstName);
-			setLastName(shippingInfo.lastName);
-			setAddress(shippingInfo.address);
-			setAddress2(shippingInfo.address2);
-			setCity(shippingInfo.city);
-			setPostCode(shippingInfo.postCode);
-			setCountry(shippingInfo.country);
-			setEmail(shippingInfo.email);
-			setPhoneNumber(shippingInfo.phoneNumber);
-		}
-	}, [shippingInfo]);
+	const {
+		firstName,
+		lastName,
+		address,
+		address2,
+		city,
+		postCode,
+		country,
+		email,
+		phoneNumber,
+	} = shippingInfo;
+
+	// const [firstName, setFirstName] = useState('');
+	// const [lastName, setLastName] = useState('');
+	// const [address, setAddress] = useState('');
+	// const [address2, setAddress2] = useState('');
+	// const [city, setCity] = useState('');
+	// const [postCode, setPostCode] = useState('');
+	// const [country, setCountry] = useState('');
+	// const [email, setEmail] = useState('');
+	// const [phoneNumber, setPhoneNumber] = useState(0);
+
+	// useEffect(() => {
+	// 	if (shippingInfo) {
+	// 		setFirstName(shippingInfo.firstName);
+	// 		setLastName(shippingInfo.lastName);
+	// 		setAddress(shippingInfo.address);
+	// 		setAddress2(shippingInfo.address2);
+	// 		setCity(shippingInfo.city);
+	// 		setPostCode(shippingInfo.postCode);
+	// 		setCountry(shippingInfo.country);
+	// 		setEmail(shippingInfo.email);
+	// 		setPhoneNumber(shippingInfo.phoneNumber);
+	// 	}
+	// }, [shippingInfo]);
 
 	useEffect(() => {
 		dispatchPayPal({
@@ -67,7 +80,7 @@ const CardPaymentButton = () => {
 					},
 					address: {
 						address_line_1: address,
-						address_line_2: address2 ? address2 : '',
+						address_line_2: address2 ?? '',
 						admin_area_2: city,
 						admin_area_1: '',
 						postal_code: postCode,
@@ -90,7 +103,7 @@ const CardPaymentButton = () => {
 						shipping: {
 							address: {
 								address_line_1: address,
-								address_line_2: address2 ? address2 : '',
+								address_line_2: address2 ?? '',
 								admin_area_2: city,
 								admin_area_1: '',
 								postal_code: postCode,
@@ -116,8 +129,6 @@ const CardPaymentButton = () => {
 			const {
 				payer: {
 					name: { given_name, surname },
-				},
-				payer: {
 					address: {
 						address_line_1,
 						address_line_2,
@@ -125,21 +136,22 @@ const CardPaymentButton = () => {
 						postal_code,
 						country_code,
 					},
+					email_address,
 				},
-				payer: { email_address },
-			} = details;
-
-			const {
-				shipping: {
-					address: {
-						address_line_1: shipping_address_line_1,
-						address_line_2: shipping_address_line_2,
-						admin_area_2: shipping_admin_area_2,
-						postal_code: shipping_postal_code,
-						country_code: shipping_country_code,
+				purchase_units: [
+					{
+						shipping: {
+							address: {
+								address_line_1: shipping_address_line_1,
+								address_line_2: shipping_address_line_2,
+								admin_area_2: shipping_admin_area_2,
+								postal_code: shipping_postal_code,
+								country_code: shipping_country_code,
+							},
+						},
 					},
-				},
-			} = details.purchase_units[0];
+				],
+			} = details;
 
 			addOrder({
 				billingInfo: {
