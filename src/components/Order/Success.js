@@ -31,7 +31,7 @@ const Success = () => {
 		return () => {
 			router.events.off('routeChangeStart', handleRouteChange);
 		};
-	}, []);
+	}, [dispatch, router.events]);
 
 	return (
 		<>

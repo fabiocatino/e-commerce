@@ -10,7 +10,6 @@ handler.get(async (req, res) => {
 	const product = await Product.find({
 		name: { $regex: new RegExp(req.query.productName), $options: 'i' },
 	}).limit(10);
-	// await db.disconnect();
 	res.send(product);
 });
 export default handler;

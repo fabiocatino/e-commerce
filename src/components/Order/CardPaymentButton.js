@@ -38,36 +38,12 @@ const CardPaymentButton = () => {
 		phoneNumber,
 	} = shippingInfo;
 
-	// const [firstName, setFirstName] = useState('');
-	// const [lastName, setLastName] = useState('');
-	// const [address, setAddress] = useState('');
-	// const [address2, setAddress2] = useState('');
-	// const [city, setCity] = useState('');
-	// const [postCode, setPostCode] = useState('');
-	// const [country, setCountry] = useState('');
-	// const [email, setEmail] = useState('');
-	// const [phoneNumber, setPhoneNumber] = useState(0);
-
-	// useEffect(() => {
-	// 	if (shippingInfo) {
-	// 		setFirstName(shippingInfo.firstName);
-	// 		setLastName(shippingInfo.lastName);
-	// 		setAddress(shippingInfo.address);
-	// 		setAddress2(shippingInfo.address2);
-	// 		setCity(shippingInfo.city);
-	// 		setPostCode(shippingInfo.postCode);
-	// 		setCountry(shippingInfo.country);
-	// 		setEmail(shippingInfo.email);
-	// 		setPhoneNumber(shippingInfo.phoneNumber);
-	// 	}
-	// }, [shippingInfo]);
-
 	useEffect(() => {
 		dispatchPayPal({
 			type: 'setLoadingStatus',
 			value: 'pending',
 		});
-	}, [error]);
+	}, [error, dispatchPayPal]);
 
 	const createOrder = (data, actions) => {
 		return actions.order
@@ -195,7 +171,7 @@ const CardPaymentButton = () => {
 			dispatch(checkoutAction.nextStep(step + 1));
 			router.push('/order/checkout', '/order/checkout/step=success');
 		}
-	}, [orderID]);
+	}, [orderID, router, step, dispatch]);
 
 	return (
 		<>

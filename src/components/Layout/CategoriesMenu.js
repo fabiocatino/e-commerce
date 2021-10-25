@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import React, { useEffect, useState } from 'react';
-import { useGetAllProductsQuery } from '../../services/productsApi';
+import { useGetProductCategoriesQuery } from '../../services/productsApi';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 
@@ -11,7 +11,7 @@ export default function CategoriesMenu() {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [filteredCategories, setFilteredCategories] = useState([]);
 	const open = Boolean(anchorEl);
-	const categories = useGetAllProductsQuery();
+	const categories = useGetProductCategoriesQuery();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);

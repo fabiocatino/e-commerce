@@ -17,3 +17,9 @@
 .checkbox {
 	padding-top: 1rem;
 }
+
+.image {
+	display: flex;
+	gap: 0.5rem;
+	height: 1rem;
+}

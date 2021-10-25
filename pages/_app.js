@@ -12,7 +12,6 @@ export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
 }) {
-	
 	const initialOptions = {
 		'client-id': process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
 		currency: 'GBP',
@@ -24,7 +23,7 @@ export default function App({
 		<StyledEngineProvider injectFirst>
 			<SessionProvider session={session}>
 				<Provider store={store}>
-					<PayPalScriptProvider  deferLoading={true} options={initialOptions}>
+					<PayPalScriptProvider deferLoading={true} options={initialOptions}>
 						<CssBaseline />
 						<Layout>
 							<Head>
@@ -32,10 +31,6 @@ export default function App({
 								<meta
 									name="viewport"
 									content="initial-scale=1.0, width=device-width"
-								/>
-								<link
-									href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-									rel="stylesheet"
 								/>
 							</Head>
 

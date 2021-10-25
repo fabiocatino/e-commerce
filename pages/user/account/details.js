@@ -25,7 +25,7 @@ export default function Details() {
 		if (!session && status !== 'loading') {
 			router.push('/user/login');
 		}
-	}, [status]);
+	}, [status, router, session]);
 
 	const changeInfoHandler = () => {
 		setOpenAccountInfo(!openAccountInfo);

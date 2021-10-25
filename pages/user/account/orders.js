@@ -15,7 +15,7 @@ const Orders = () => {
 		if (!session && status !== 'loading') {
 			router.push('/');
 		}
-	}, [session]);
+	}, [session, router, status]);
 
 	return (
 		<>
@@ -42,20 +42,3 @@ const Orders = () => {
 };
 
 export default Orders;
-
-// export async function getServerSideProps(req) {
-// 	const session = await getSession(req);
-
-// 	if (!session) {
-// 		return {
-// 			redirect: {
-// 				destination: '/',
-// 				permanent: false,
-// 			},
-// 		};
-// 	}
-
-// 	return {
-// 		props: {},
-// 	};
-// }

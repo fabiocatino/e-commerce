@@ -29,7 +29,7 @@ const PayPalButton = () => {
 			type: 'setLoadingStatus',
 			value: 'pending',
 		});
-	}, [error]);
+	}, [error, dispatchPayPal]);
 
 	const createOrder = (data, actions) => {
 		return actions.order
@@ -112,7 +112,7 @@ const PayPalButton = () => {
 			dispatch(checkoutAction.currStep(2));
 			router.push('/order/checkout', '/order/checkout/step=success');
 		}
-	}, [orderID]);
+	}, [orderID, dispatch, router]);
 
 	return (
 		<div>

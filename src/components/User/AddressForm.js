@@ -7,6 +7,7 @@ import {
 	useUpdateUserAddressMutation,
 } from '../../services/userApi';
 import styles from './AddressForm.module.css';
+import Image from 'next/image';
 
 export default function AddressForm(props) {
 	const [addAddress, { data, error }] = useAddAddressMutation();
@@ -250,14 +251,17 @@ export default function AddressForm(props) {
 								sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
 								{...props}
 							>
-								<img
-									loading="lazy"
-									width="20"
-									src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-									srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-									alt=""
-								/>
-								{option.label} ({option.code})
+								<div className={styles.image}>
+									<Image
+										loading="lazy"
+										width={20}
+										height={20}
+										src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+										srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+										alt=""
+									/>
+									{option.label} ({option.code}){' '}
+								</div>
 							</Box>
 						)}
 						renderInput={(params) => (
@@ -269,10 +273,8 @@ export default function AddressForm(props) {
 								fullWidth
 								id="country"
 								type="text"
-								autoComplete="country"
 								inputProps={{
 									...params.inputProps,
-									autoComplete: 'country',
 								}}
 							/>
 						)}

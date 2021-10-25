@@ -6,10 +6,11 @@ export const productsApi = createApi({
 	reducerPath: 'productsApi',
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: (builder) => ({
-		getAllProducts: builder.query({
-			query: () => ({
-				baseUrl,
-			}),
+		getProductsByPage: builder.query({
+			query: (page = 1) => `${baseUrl}?page=${page}`,
+		}),
+		getProductCategories: builder.query({
+			query: () => `${baseUrl}/product-categories`,
 		}),
 		getProduct: builder.query({
 			query: (_id) => `${baseUrl}/${_id}`,
@@ -27,4 +28,9 @@ export const productsApi = createApi({
 	}),
 });
 
-export const { useGetAllProductsQuery, useGetProductQuery, useGetProductByNameQuery } = productsApi;
+export const {
+	useGetProductCategoriesQuery,
+	useGetProductsByPageQuery,
+	useGetProductQuery,
+	useGetProductByNameQuery,
+} = productsApi;

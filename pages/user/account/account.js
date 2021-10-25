@@ -17,7 +17,7 @@ const Account = () => {
 		if (!session && status !== 'loading') {
 			router.push('/user/login');
 		}
-	}, [status]);
+	}, [status, router, session]);
 
 	return (
 		<Container>

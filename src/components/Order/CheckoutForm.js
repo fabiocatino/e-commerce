@@ -15,6 +15,7 @@ import { checkoutAction } from '../../services/checkoutSlice';
 import { useAddAddressMutation } from '../../services/userApi';
 import styles from './CheckoutForm.module.css';
 import SelectShippingAddress from './SelectShippingAddress';
+import Image from 'next/image';
 
 export default function CheckoutForm() {
 	const router = useRouter();
@@ -248,14 +249,17 @@ export default function CheckoutForm() {
 									sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
 									{...props}
 								>
-									<img
-										loading="lazy"
-										width="20"
-										src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-										srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-										alt=""
-									/>
-									{option.label} ({option.code})
+									<div className={styles.image}>
+										<Image
+											loading="lazy"
+											width={20}
+											height={20}
+											src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+											srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+											alt=""
+										/>
+										{option.label} ({option.code}){' '}
+									</div>
 								</Box>
 							)}
 							renderInput={(params) => (
@@ -267,10 +271,8 @@ export default function CheckoutForm() {
 									fullWidth
 									id="country"
 									type="text"
-									autoComplete="country"
 									inputProps={{
 										...params.inputProps,
-										autoComplete: 'country',
 									}}
 								/>
 							)}

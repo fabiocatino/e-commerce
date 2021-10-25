@@ -23,89 +23,90 @@ for (let i = 0; i < 50; i++) {
 		countInStock: Math.floor(Math.random() * 100),
 	});
 }
+// const products = [
+// 	{
+// 		name: 'Phone',
+// 		image: '/images/4177FAVpp2L._AC_.jpg',
+// 		brand: 'OnePlus',
+// 		category: 'Mobile Phones',
+// 		description:
+// 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
+// 		rating: 4.0,
+// 		numReviews: 0,
+// 		price: 199.99,
+// 		countInStock: 10,
+// 		name: 'Phone',
+// 		image: '/images/4177FAVpp2L._AC_.jpg',
+// 		brand: 'OnePlus',
+// 		category: 'Mobile Phones',
+// 		description:
+// 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
+// 		rating: 4.0,
+// 		numReviews: 0,
+// 		price: 199.99,
+// 		countInStock: 10,
+// 	},
 
-// {
-// 	name: 'Phone',
-// 	image: '/images/4177FAVpp2L._AC_.jpg',
-// 	brand: 'OnePlus',
-// 	category: 'Mobile Phones',
-// 	description:
-// 		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
-// 	rating: 4.0,
-// 	numReviews: 0,
-// 	price: 199.99,
-// 	countInStock: 10,
-// 	name: 'Phone',
-// 	image: '/images/4177FAVpp2L._AC_.jpg',
-// 	brand: 'OnePlus',
-// 	category: 'Mobile Phones',
-// 	description:
-// 		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
-// 	rating: 4.0,
-// 	numReviews: 0,
-// 	price: 199.99,
-// 	countInStock: 10,
-// },
-
-// {
-// 	name: faker.commerce.productName(),
-// 	image: faker.image.image(),
-// 	brand: 'Samsung',
-// 	category: faker.commerce.department(),
-// 	description: faker.commerce.productDescription(),
-// 	rating: (Math.random() * (5 - 1) + 1).toFixed(2),
-// 	numReviews: Math.floor(Math.random() * 30),
-// 	price: faker.commerce.price(),
-// 	countInStock: Math.floor(Math.random() * 100),
-// },
-// {
-// 	name: 'Computer',
-// 	image: '/images/three-dimensional-image-computer_53876-1610.jpg',
-// 	brand: 'MSI',
-// 	category: 'Desktop and Laptops',
-// 	description:
-// 		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
-// 	rating: 2.3,
-// 	numReviews: 2,
-// 	price: 499.99,
-// 	countInStock: 2,
-// },
-// {
-// 	name: 'Keyboard',
-// 	image: '/images/MQ052.jpg',
-// 	brand: 'Steelseries',
-// 	category: 'Gaming Keyboards',
-// 	description:
-// 		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
-// 	rating: 2.99,
-// 	numReviews: 1,
-// 	price: 50.99,
-// 	countInStock: 15,
-// },
-// {
-// 	name: ' Playstation 5',
-// 	image: '/images/ps5-1060x663.jpg',
-// 	brand: 'Sony',
-// 	category: 'Consoles',
-// 	description:
-// 		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
-// 	rating: 5.0,
-// 	numReviews: 15,
-// 	price: 499.0,
-// 	countInStock: 45,
-// },
-// {
-// 	name: 'Mouse',
-// 	image: '/images/16611831-1200-auto.jpg',
-// 	brand: 'Logitech',
-// 	category: 'Mice',
-// 	description:
-// 		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
-// 	rating: 4.0,
-// 	numReviews: 2,
-// 	price: 120.0,
-// 	countInStock: 9,
-// },
+// 	{
+// 		name: faker.commerce.productName(),
+// 		image: faker.image.image(),
+// 		brand: 'Samsung',
+// 		category: faker.commerce.department(),
+// 		description: faker.commerce.productDescription(),
+// 		rating: (Math.random() * (5 - 1) + 1).toFixed(2),
+// 		numReviews: Math.floor(Math.random() * 30),
+// 		price: faker.commerce.price(),
+// 		countInStock: Math.floor(Math.random() * 100),
+// 	},
+// 	{
+// 		name: 'Computer',
+// 		image: '/images/three-dimensional-image-computer_53876-1610.jpg',
+// 		brand: 'MSI',
+// 		category: 'Desktop and Laptops',
+// 		description:
+// 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
+// 		rating: 2.3,
+// 		numReviews: 2,
+// 		price: 499.99,
+// 		countInStock: 2,
+// 	},
+// 	{
+// 		name: 'Keyboard',
+// 		image: '/images/MQ052.jpg',
+// 		brand: 'Steelseries',
+// 		category: 'Gaming Keyboards',
+// 		description:
+// 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
+// 		rating: 2.99,
+// 		numReviews: 1,
+// 		price: 50.99,
+// 		countInStock: 15,
+// 	},
+// 	{
+// 		name: ' Playstation 5',
+// 		image: '/images/ps5-1060x663.jpg',
+// 		brand: 'Sony',
+// 		category: 'Consoles',
+// 		description:
+// 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
+// 		rating: 5.0,
+// 		numReviews: 15,
+// 		price: 499.0,
+// 		countInStock: 45,
+// 	},
+// 	{
+// 		name: 'Mouse',
+// 		image: '/images/16611831-1200-auto.jpg',
+// 		brand: 'Logitech',
+// 		category: 'Mice',
+// 		description:
+// 			'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, excepturi?',
+// 		rating: 4.0,
+// 		numReviews: 2,
+// 		price: 120.0,
+// 		countInStock: 9,
+// 	},
+// ];
 
 const users = [
 	{
