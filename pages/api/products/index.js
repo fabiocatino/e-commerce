@@ -13,7 +13,6 @@ handler.get(async (req, res) => {
 			{ page: req.query.page, limit: 9 }
 		);
 		res.send(products);
-		
 	} else {
 		const products = await Product.paginate(
 			{ category: req.query.category },
