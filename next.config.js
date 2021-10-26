@@ -7,8 +7,4 @@ module.exports = {
 			'https://e-commerce-bay-nine.vercel.app/',
 		],
 	},
-	// experimental: {
-	// 	concurrentFeatures: true,
-	// 	serverComponents: true,
-	// },
 };
