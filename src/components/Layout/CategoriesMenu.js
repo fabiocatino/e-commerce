@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useGetProductCategoriesQuery } from '../../services/productsApi';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
+import styles from './CategoriesMenu.module.css'
 
 export default function CategoriesMenu() {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -48,6 +49,7 @@ export default function CategoriesMenu() {
 				anchorEl={anchorEl}
 				open={open}
 				onClose={handleClose}
+				classes={{ list: styles.menu}}
 				MenuListProps={{
 					'aria-labelledby': 'basic-button',
 				}}

@@ -14,6 +14,7 @@ import { useRouter } from 'next/router';
 
 const Index = () => {
 	const router = useRouter();
+
 	const [page, setPage] = useState(1);
 	const { data, isLoading, error } = useGetProductsByPageQuery(page);
 
@@ -71,12 +72,12 @@ const Index = () => {
 export default Index;
 
 // export async function getServerSideProps(req) {
-// 	const { page, limit } = req.query;
+// 	const { pageNumber = 1 } = req.query;
+// 	// console.log(parseInt(page));
 
 // 	return {
 // 		props: {
-// 			page,
-// 			limit,
+// 			pageNumber,
 // 		},
 // 	};
 // }
