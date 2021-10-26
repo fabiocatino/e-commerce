@@ -2,6 +2,9 @@ module.exports = {
 	images: {
 		domains: ['127.0.0.1', 'placeimg.com', 'flagcdn.com'],
 	},
-
-	reactStrictMode: false,
+	experimental: {
+		// reactRoot: true,
+		concurrentFeatures: true,
+		serverComponents: true,
+	},
 };

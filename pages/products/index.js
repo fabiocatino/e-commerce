@@ -20,6 +20,7 @@ const Index = ({ pageNumber, category }) => {
 		category,
 	});
 
+
 	const handlePaginationChange = (e, value) => {
 		e.preventDefault();
 		setPage(value);

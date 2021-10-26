@@ -25,7 +25,6 @@ export default function CategoriesMenu() {
 	};
 
 	const categoryChoiceHandler = (index) => (e) => {
-		console.log(index)
 		router.push(`/products?category=${index}`)
 	};
 
