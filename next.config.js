@@ -1,10 +1,14 @@
 module.exports = {
 	images: {
-		domains: ['127.0.0.1', 'placeimg.com', 'flagcdn.com'],
+		domains: [
+			'127.0.0.1',
+			'placeimg.com',
+			'flagcdn.com',
+			'https://e-commerce-bay-nine.vercel.app/',
+		],
 	},
-	experimental: {
-		// reactRoot: true,
-		concurrentFeatures: true,
-		serverComponents: true,
-	},
+	// experimental: {
+	// 	concurrentFeatures: true,
+	// 	serverComponents: true,
+	// },
 };
