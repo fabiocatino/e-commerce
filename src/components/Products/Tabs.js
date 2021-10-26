@@ -4,6 +4,9 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import ProductRating from './ProductRating';
+import { Avatar } from '@mui/material';
+import styles from './Tabs.module.css';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -38,13 +41,12 @@ function a11yProps(index) {
 	};
 }
 
-export default function BasicTabs() {
+export default function BasicTabs(props) {
 	const [value, setValue] = React.useState(0);
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
-
 	return (
 		<Box sx={{ width: '100%' }}>
 			<Box
@@ -66,13 +68,27 @@ export default function BasicTabs() {
 				</Tabs>
 			</Box>
 			<TabPanel value={value} index={0}>
-				Item One
+				{props.data.description}
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				Item Two
+				LIST DETAILS HERE
 			</TabPanel>
 			<TabPanel value={value} index={2}>
-				Item Three
+				{props.data.reviews.map((review) => (
+					<div className={styles.review}>
+						<div className={styles['user-review']}>
+							<Avatar sx={{ width: 24, height: 24 }}></Avatar>
+							<Typography variant="h6">Customer</Typography>
+						</div>
+						<ProductRating
+							readOnly
+							rating={(Math.random() * (5 - 1) + 1).toFixed(2)}
+						></ProductRating>
+						<Typography variant="subtitle2" key={review}>
+							{review}
+						</Typography>
+					</div>
+				))}
 			</TabPanel>
 		</Box>
 	);

@@ -4,6 +4,7 @@ import Product from '../../src/models/Product';
 import bcrypt from 'bcryptjs';
 import User from '../../src/models/User';
 import Order from '../../src/models/Order';
+import Reviews from '../../src/models/Reviews';
 import faker from 'faker';
 
 const handler = nc();
@@ -14,15 +15,26 @@ for (let i = 0; i < 50; i++) {
 	products.push({
 		name: faker.commerce.productName(),
 		image: faker.image.image(),
+		secondary_images: [
+			faker.image.image(),
+			faker.image.image(),
+			faker.image.image(),
+		],
 		brand: 'Samsung',
 		category: faker.commerce.department(),
 		description: faker.commerce.productDescription(),
 		rating: (Math.random() * (5 - 1) + 1).toFixed(2),
 		numReviews: Math.floor(Math.random() * 30),
+
 		price: faker.commerce.price(),
 		countInStock: Math.floor(Math.random() * 100),
 	});
 }
+
+const reviews = [
+	{text: faker.lorem.paragraph(), rating: (Math.random() * (5 - 1) + 1).toFixed(2)},
+	
+],
 // const products = [
 // 	{
 // 		name: 'Phone',
@@ -160,6 +172,8 @@ handler.get(async (req, res) => {
 	// await User.insertMany(users);
 	// await Order.deleteMany();
 	// await Order.insertMany(order);
+	// await Reviews.deleteMany();
+	// await Reviews.insertMany(reviews);
 	// await db.disconnect();
 	res.send({ message: 'seeded successfully' });
 });

@@ -7,13 +7,14 @@ export const productsApi = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: (builder) => ({
 		getProductsByPage: builder.query({
-			query: (page = 1) => {
-				return `${baseUrl}?page=${page}`;
+			query: ({ page, category }) => {
+				return `${baseUrl}?page=${page}&category=${category}`;
 			},
 		}),
 		getProductCategories: builder.query({
-			query: () => `${baseUrl}/product-categories`,
+			query: () => `${baseUrl}/category-list`,
 		}),
+
 		getProduct: builder.query({
 			query: (_id) => `${baseUrl}/${_id}`,
 		}),

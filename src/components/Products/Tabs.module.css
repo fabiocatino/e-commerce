@@ -1,0 +1,13 @@
+.review {
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
+	padding: 2;
+	gap: 0.5rem;
+}
+
+.user-review {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+}

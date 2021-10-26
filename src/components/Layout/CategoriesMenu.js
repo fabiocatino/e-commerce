@@ -7,8 +7,10 @@ import { useGetProductCategoriesQuery } from '../../services/productsApi';
 import MenuIcon from '@mui/icons-material/Menu';
 import Link from 'next/link';
 import styles from './CategoriesMenu.module.css'
+import { useRouter } from 'next/dist/client/router';
 
 export default function CategoriesMenu() {
+	const router = useRouter();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [filteredCategories, setFilteredCategories] = useState([]);
 	const open = Boolean(anchorEl);
@@ -17,8 +19,14 @@ export default function CategoriesMenu() {
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
 	};
+
 	const handleClose = () => {
 		setAnchorEl(null);
+	};
+
+	const categoryChoiceHandler = (index) => (e) => {
+		console.log(index)
+		router.push(`/products?category=${index}`)
 	};
 
 	useEffect(() => {
@@ -61,8 +69,8 @@ export default function CategoriesMenu() {
 						</MLink>
 					</Link>
 				</MenuItem>
-				{filteredCategories.map((category) => (
-					<MenuItem onClick={handleClose} divider={true} key={category}>
+				{filteredCategories.map((category, index) => (
+					<MenuItem onClick={categoryChoiceHandler(category, index)} divider={true} key={category}>
 						{category}
 					</MenuItem>
 				))}

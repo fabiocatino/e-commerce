@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
 import {
-	Container,
-	Divider,
-	Grid,
+	Button, Container, Grid,
 	Stack,
-	Typography,
-	Button,
+	Typography
 } from '@mui/material';
-import Image from 'next/image';
-import styles from './Product.module.css';
-import ProductRating from '../../src/components/Products/ProductRating';
-import TabPanel from '../../src/components/Products/Tabs';
-import { useGetProductQuery } from '../../src/services/productsApi';
+import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 import ImageGallery from 'react-image-gallery';
-import Spinner from '../../src/components/Layout/Spinner';
+import 'react-image-gallery/styles/css/image-gallery.css';
 import { useDispatch } from 'react-redux';
-import { cartActions } from '../../src/services/cartSlice';
+import Spinner from '../../src/components/Layout/Spinner';
+import ProductRating from '../../src/components/Products/ProductRating';
 import BasicSelect from '../../src/components/Products/Select';
+import TabPanel from '../../src/components/Products/Tabs';
+import { cartActions } from '../../src/services/cartSlice';
+import { useGetProductQuery } from '../../src/services/productsApi';
+import styles from './Product.module.css';
 
 const Product = () => {
 	const router = useRouter();
@@ -39,12 +36,20 @@ const Product = () => {
 			{error && <p>Something went wrong. Try again later.</p>}
 			{isLoading && <Spinner />}
 			{!isLoading && !error && (
-				<Grid container>
-					<Grid item xs={12} sm={12} md={6} lg={6} className={styles.left}>
-						<Image alt='' src={data.image} height={500} width={500} />
-						{/* <ImageGallery
-							items={[{ original: `http://127.0.0.1:8000${data.image}` }]}
-						></ImageGallery> */}
+				<Grid container className={styles.container}>
+					<Grid item xs={12} sm={12} md={4} lg={5} className={styles.left}>
+						<div className={styles.gallery}>
+							<ImageGallery
+								showBullets={true}
+								showFullscreenButton={false}
+								showNav={true}
+								showPlayButton={false}
+								items={data.secondary_images.map((image) => ({
+									original: image,
+									thumbnail: image,
+								}))}
+							></ImageGallery>
+						</div>
 					</Grid>
 
 					<Grid item xs={12} sm={12} md={6} lg={6} className={styles.right}>
@@ -74,7 +79,7 @@ const Product = () => {
 						</Stack>
 					</Grid>
 					<Container className={styles['bottom-section']}>
-						<TabPanel></TabPanel>
+						<TabPanel data={data}></TabPanel>
 					</Container>
 				</Grid>
 			)}
