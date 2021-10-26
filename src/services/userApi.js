@@ -1,6 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = '/api/auth';
+let baseUrl;
+
+if (process.env.NODE_ENV !== 'production') {
+	baseUrl = 'http://127.0.0.1:3000/api/auth';
+} else {
+	baseUrl = 'https://e-commerce-bay-nine.vercel.app/api/auth';
+}
 
 export const userApi = createApi({
 	reducerPath: 'userApi',
