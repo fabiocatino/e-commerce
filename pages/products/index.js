@@ -12,7 +12,7 @@ import MediaCard from '../../src/components/Products/Card';
 import { useGetProductsByPageQuery } from '../../src/services/productsApi';
 import styles from './Index.module.css';
 
-const Index = ({ pageNumber = 1 }) => {
+const Index = ({ pageNumber }) => {
 	const router = useRouter();
 	const [page, setPage] = useState(pageNumber);
 	const { data, isLoading, error } = useGetProductsByPageQuery(page);
