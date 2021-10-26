@@ -33,7 +33,7 @@ const Addresses = () => {
 						/>
 					</div>
 
-					<div className={styles.cards}>
+					<div className={styles['cards-container']}>
 						<Card className={styles['add-address-card']}>
 							<HomeIcon color="primary" sx={{ fontSize: 35 }} />
 							<Button onClick={() => setDisplayForm(true)}>
@@ -41,9 +41,9 @@ const Addresses = () => {
 							</Button>
 						</Card>
 						{data.map((address, index) => (
-							<Grid key={address._id} item xs={6} sm={6} md={4} lg={3}>
+							<div className={styles.cards} key={address._id}>
 								<AddressCard {...address} index={index} />
-							</Grid>
+							</div>
 						))}
 					</div>
 				</Container>

@@ -1,8 +1,7 @@
 .card {
-	display: flex;
-	flex-direction: column;
-	max-width: 360px;
+	min-height: 322.71px;
 	max-height: 350px;
+	position: relative;
 }
 
 .cardContent {
@@ -22,7 +21,6 @@
 }
 
 .buttons {
-	margin-top: 1rem;
-	display: flex;
-	align-items: flex-end;
+	position: absolute;
+	bottom: 0;
 }

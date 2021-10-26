@@ -1,16 +1,15 @@
-import React from 'react';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import styles from './Card.module.css';
-import ProductRating from './ProductRating';
 import Link from 'next/link';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../services/cartSlice';
 import { useGetProductQuery } from '../../services/productsApi';
+import styles from './Card.module.css';
+import ProductRating from './ProductRating';
 
 const MediaCard = (props) => {
 	const dispatch = useDispatch();
@@ -42,12 +41,13 @@ const MediaCard = (props) => {
 					</Typography>
 				</div>
 				<div className={styles.buttons}>
-					<Link passHref={true} href={`/products/${props._id}`}>
-						<Button size="small">Learn More</Button>
-					</Link>
-					<Button onClick={addToCartHandler} size="small">
-						ADD TO CART
-					</Button>
+
+				<Link passHref={true} href={`/products/${props._id}`}>
+					<Button size="small">Learn More</Button>
+				</Link>
+				<Button onClick={addToCartHandler} size="small">
+					ADD TO CART
+				</Button>
 				</div>
 			</CardContent>
 		</Card>

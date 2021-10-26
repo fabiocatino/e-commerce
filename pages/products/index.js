@@ -1,21 +1,21 @@
 import {
 	Container,
 	Grid,
+	Link,
 	Pagination,
 	PaginationItem,
-	Link,
 } from '@mui/material';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Spinner from '../../src/components/Layout/Spinner';
 import MediaCard from '../../src/components/Products/Card';
 import { useGetProductsByPageQuery } from '../../src/services/productsApi';
 import styles from './Index.module.css';
-import { useRouter } from 'next/router';
 
-const Index = () => {
+const Index = ({ pageNumber }) => {
 	const router = useRouter();
 
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(pageNumber);
 	const { data, isLoading, error } = useGetProductsByPageQuery(page);
 
 	const handlePaginationChange = (e, value) => {
@@ -32,23 +32,15 @@ const Index = () => {
 				<>
 					<Grid container className={styles.main}>
 						{data.docs.map((item) => (
-							<Grid
-								item
-								xs={6}
-								sm={5}
-								md={3}
-								lg={3}
-								key={item._id}
-								className={styles.card}
-							>
+							<div key={item._id} className={styles.card}>
 								<MediaCard {...item}></MediaCard>
-							</Grid>
+							</div>
 						))}
 					</Grid>
 					<div className={styles.pagination}>
 						<Pagination
 							color="primary"
-							page={page}
+							page={parseInt(page)}
 							onChange={handlePaginationChange}
 							count={data.totalPages}
 							variant="outlined"
@@ -71,13 +63,12 @@ const Index = () => {
 
 export default Index;
 
-// export async function getServerSideProps(req) {
-// 	const { pageNumber = 1 } = req.query;
-// 	// console.log(parseInt(page));
+export async function getServerSideProps(req) {
+	const pageNumber = req.query.page;
 
-// 	return {
-// 		props: {
-// 			pageNumber,
-// 		},
-// 	};
-// }
+	return {
+		props: {
+			pageNumber,
+		},
+	};
+}

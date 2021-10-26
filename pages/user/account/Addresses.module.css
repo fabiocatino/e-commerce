@@ -22,7 +22,7 @@
 	justify-content: center;
 	align-items: center;
 	min-width: 275px;
-	height: 186.89px;
+	min-height: 199.02px;
 	border: 1px solid #b7b9bb;
 	border-radius: 8px;
 }
@@ -31,11 +31,17 @@
 	font-size: 20px;
 }
 
-.cards {
-	display: flex;
+.cards-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(275px, 275px));
+	grid-gap: 2rem;
 	justify-content: center;
-	gap: 2rem;
-	flex-wrap: wrap;
+}
+
+.cards {
+	word-wrap:break-word;
+	width: 277px;
+	min-height: 199.02px;
 }
 
 .no-cards {
