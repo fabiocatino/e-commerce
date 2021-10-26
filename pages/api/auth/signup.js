@@ -1,8 +1,8 @@
+import Cors from 'cors';
 import nc from 'next-connect';
-import db from '../../../src/utils/db';
 import User from '../../../src/models/User';
 import { HashPassword } from '../../../src/utils/auth';
-import Cors from 'cors';
+import db from '../../../src/utils/db';
 
 const handler = nc().use(Cors());
 

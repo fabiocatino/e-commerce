@@ -75,7 +75,7 @@ export default function BasicTabs(props) {
 			</TabPanel>
 			<TabPanel value={value} index={2}>
 				{props.data.reviews.map((review) => (
-					<div className={styles.review}>
+					<div key={review} className={styles.review}>
 						<div className={styles['user-review']}>
 							<Avatar sx={{ width: 24, height: 24 }}></Avatar>
 							<Typography variant="h6">Customer</Typography>
@@ -84,7 +84,7 @@ export default function BasicTabs(props) {
 							readOnly
 							rating={(Math.random() * (5 - 1) + 1).toFixed(2)}
 						></ProductRating>
-						<Typography variant="subtitle2" key={review}>
+						<Typography variant="subtitle2" >
 							{review}
 						</Typography>
 					</div>

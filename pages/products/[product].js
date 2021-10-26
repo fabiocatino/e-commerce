@@ -1,8 +1,4 @@
-import {
-	Button, Container, Grid,
-	Stack,
-	Typography
-} from '@mui/material';
+import { Button, Container, Grid, Stack, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import ImageGallery from 'react-image-gallery';
@@ -20,11 +16,11 @@ const Product = () => {
 	const router = useRouter();
 	const itemId = router.query.product;
 	const { data, isLoading, error } = useGetProductQuery(itemId);
-	const [quantity, setQuantity] = useState(1);
+	const [quantity, setQuantity] = useState(0);
 	const dispatch = useDispatch();
 
 	const setItemQuantity = (quantity) => {
-		setQuantity(quantity);
+		setQuantity((prevQuantity) => prevQuantity + quantity);
 	};
 
 	const addToCartHandler = () => {

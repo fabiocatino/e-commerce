@@ -1,13 +1,13 @@
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link as MLink, Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useRouter } from 'next/dist/client/router';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useGetProductCategoriesQuery } from '../../services/productsApi';
-import MenuIcon from '@mui/icons-material/Menu';
-import Link from 'next/link';
-import styles from './CategoriesMenu.module.css'
-import { useRouter } from 'next/dist/client/router';
+import styles from './CategoriesMenu.module.css';
 
 export default function CategoriesMenu() {
 	const router = useRouter();

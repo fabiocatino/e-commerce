@@ -1,10 +1,9 @@
-import nc from 'next-connect';
-import db from '../../../src/utils/db';
-import User from '../../../src/models/User';
-import { HashPassword } from '../../../src/utils/auth';
 import Cors from 'cors';
 import { getSession } from 'next-auth/react';
-import { verifyPassword } from '../../../src/utils/auth';
+import nc from 'next-connect';
+import User from '../../../src/models/User';
+import { HashPassword, verifyPassword } from '../../../src/utils/auth';
+import db from '../../../src/utils/db';
 
 const handler = nc().use(Cors());
 

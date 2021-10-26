@@ -4,7 +4,7 @@ import {
 	Link as MLink,
 	Menu,
 	MenuItem,
-	Typography,
+	Typography
 } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';

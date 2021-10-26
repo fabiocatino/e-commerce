@@ -1,8 +1,8 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import db from '../../../src/utils/db';
 import User from '../../../src/models/User';
 import { verifyPassword } from '../../../src/utils/auth';
+import db from '../../../src/utils/db';
 
 export default NextAuth({
 	sessions: {
@@ -14,20 +14,6 @@ export default NextAuth({
 		signingKey: `{"kty":"oct","kid":"${process.env.JWT_KID}","alg":"HS512","k":"${process.env.JWT_K}"}`,
 	},
 
-	// callbacks: {
-	// 	async signIn({ user, account, profile, email, credentials }) {
-	// 		const isAllowedToSignIn = true;
-	// 		if (isAllowedToSignIn) {
-	// 			return true;
-	// 		} else {
-	// 			// Return false to display a default error message
-	// 			return false;
-	// 			// Or you can return a URL to redirect to:
-	// 			// return '/unauthorized'
-	// 		}
-	// 	},
-	// },
-
 	providers: [
 		CredentialsProvider({
 			async authorize(credentials) {
@@ -36,7 +22,7 @@ export default NextAuth({
 				if (!existingUser) {
 					throw new Error('No user associated with this email address.');
 				}
-				
+
 				const isValid = await verifyPassword(
 					credentials.password,
 					existingUser.password

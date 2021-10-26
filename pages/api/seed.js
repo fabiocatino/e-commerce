@@ -4,7 +4,6 @@ import Product from '../../src/models/Product';
 import bcrypt from 'bcryptjs';
 import User from '../../src/models/User';
 import Order from '../../src/models/Order';
-import Reviews from '../../src/models/Reviews';
 import faker from 'faker';
 
 const handler = nc();
@@ -25,16 +24,19 @@ for (let i = 0; i < 50; i++) {
 		description: faker.commerce.productDescription(),
 		rating: (Math.random() * (5 - 1) + 1).toFixed(2),
 		numReviews: Math.floor(Math.random() * 30),
-
+		reviews: [
+			faker.lorem.paragraph(),
+			faker.lorem.paragraph(),
+			faker.lorem.paragraph(),
+			faker.lorem.paragraph(),
+			faker.lorem.paragraph(),
+			faker.lorem.paragraph(),
+		],
 		price: faker.commerce.price(),
 		countInStock: Math.floor(Math.random() * 100),
 	});
 }
 
-const reviews = [
-	{text: faker.lorem.paragraph(), rating: (Math.random() * (5 - 1) + 1).toFixed(2)},
-	
-],
 // const products = [
 // 	{
 // 		name: 'Phone',
@@ -151,10 +153,10 @@ const order = [
 			firstName: 'Fabio',
 			lastName: 'Catino',
 			email: 'fabivs9@gmail.com',
-			phoneNumber: '07593644412',
-			address: 'Torre Tresca',
-			city: 'Bari',
-			postCode: '70124',
+			phoneNumber: '2123423423423',
+			address: 'Torre Dello Schiamante',
+			city: 'Rome',
+			postCode: '70128',
 			country: 'Italy',
 		},
 		totalPrice: 200.55,
@@ -172,8 +174,6 @@ handler.get(async (req, res) => {
 	// await User.insertMany(users);
 	// await Order.deleteMany();
 	// await Order.insertMany(order);
-	// await Reviews.deleteMany();
-	// await Reviews.insertMany(reviews);
 	// await db.disconnect();
 	res.send({ message: 'seeded successfully' });
 });
