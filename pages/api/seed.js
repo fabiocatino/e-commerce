@@ -122,22 +122,22 @@ for (let i = 0; i < 50; i++) {
 // 	},
 // ];
 
-const users = [
-	{
-		name: 'admin',
-		email: 'admin@gmail.com',
-		password: bcrypt.hashSync('admin'),
-		isAdmin: true,
-		addresss: [{}],
-	},
-	{
-		name: 'Summer',
-		email: 'Summer@gmail.com',
-		password: bcrypt.hashSync('summer'),
-		isAdmin: false,
-		addresss: [{}],
-	},
-];
+// const users = [
+// 	{
+// 		name: 'admin',
+// 		email: 'admin@gmail.com',
+// 		password: bcrypt.hashSync('admin'),
+// 		isAdmin: true,
+// 		addresss: [{}],
+// 	},
+// 	{
+// 		name: 'Summer',
+// 		email: 'Summer@gmail.com',
+// 		password: bcrypt.hashSync('summer'),
+// 		isAdmin: false,
+// 		addresss: [{}],
+// 	},
+// ];
 
 const order = [
 	{
