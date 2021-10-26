@@ -12,9 +12,8 @@ import MediaCard from '../../src/components/Products/Card';
 import { useGetProductsByPageQuery } from '../../src/services/productsApi';
 import styles from './Index.module.css';
 
-const Index = ({ pageNumber }) => {
+const Index = ({ pageNumber = 1 }) => {
 	const router = useRouter();
-
 	const [page, setPage] = useState(pageNumber);
 	const { data, isLoading, error } = useGetProductsByPageQuery(page);
 
@@ -64,7 +63,7 @@ const Index = ({ pageNumber }) => {
 export default Index;
 
 export async function getServerSideProps(req) {
-	const pageNumber = req.query.page;
+	const pageNumber = req.query.page ?? 1;
 
 	return {
 		props: {
