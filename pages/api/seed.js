@@ -9,15 +9,22 @@ import faker from 'faker';
 const handler = nc();
 
 const products = [];
+const images = [
+	'/images/4177FAVpp2L._AC_.jpg',
+	'/images/three-dimensional-image-computer_53876-1610.jpg',
+	'/images/MQ052.jpg',
+	'/images/ps5-1060x663.jpg',
+	'/images/16611831-1200-auto.jpg',
+];
 
 for (let i = 0; i < 50; i++) {
 	products.push({
 		name: faker.commerce.productName(),
-		image: faker.image.image(),
+		image: images[Math.floor(Math.random() * images.length)],
 		secondary_images: [
-			faker.image.image(),
-			faker.image.image(),
-			faker.image.image(),
+			images[Math.floor(Math.random() * images.length)],
+			images[Math.floor(Math.random() * images.length)],
+			images[Math.floor(Math.random() * images.length)],
 		],
 		brand: 'Samsung',
 		category: faker.commerce.department(),
@@ -110,6 +117,7 @@ for (let i = 0; i < 50; i++) {
 // 	},
 // 	{
 // 		name: 'Mouse',
+
 // 		image: '/images/16611831-1200-auto.jpg',
 // 		brand: 'Logitech',
 // 		category: 'Mice',

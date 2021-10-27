@@ -6,20 +6,19 @@ import {
 	PaginationItem,
 } from '@mui/material';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import Spinner from '../../src/components/Layout/Spinner';
-import MediaCard from '../../src/components/Products/Card';
+import MediaCard from '../../src/components/Products/Card.client';
 import { useGetProductsByPageQuery } from '../../src/services/productsApi';
 import styles from './Index.module.css';
 
-const Index = ({ pageNumber, category }) => {
+function Items() {
 	const router = useRouter();
-	const [page, setPage] = useState(pageNumber);
+	const [page, setPage] = useState(1);
 	const { data, isLoading, error } = useGetProductsByPageQuery({
-		page,
-		category,
+		page: 1,
+		category: '',
 	});
-
 
 	const handlePaginationChange = (e, value) => {
 		e.preventDefault();
@@ -29,15 +28,17 @@ const Index = ({ pageNumber, category }) => {
 
 	return (
 		<Container>
-			{error && <p>Something went wrong. Try again later.</p>}
-			{isLoading && <Spinner />}
+			{/* {error && <p>Something went wrong. Try again later.</p>}
+			{isLoading && <Spinner />} */}
 			{!isLoading && !error && (
 				<>
 					<Grid container className={styles.main}>
 						{data.docs.map((item) => (
-							<div key={item._id} className={styles.card}>
-								<MediaCard {...item}></MediaCard>
-							</div>
+							<Suspense key={item._id} fallback={<Spinner />}>
+								<div key={item._id} className={styles.card}>
+									<MediaCard {...item}></MediaCard>
+								</div>
+							</Suspense>
 						))}
 					</Grid>
 					<div className={styles.pagination}>
@@ -62,18 +63,23 @@ const Index = ({ pageNumber, category }) => {
 			)}
 		</Container>
 	);
-};
-
-export default Index;
-
-export async function getServerSideProps(req) {
-	const pageNumber = req.query.page ?? 1;
-	const category = req.query.category ?? '';
-
-	return {
-		props: {
-			pageNumber,
-			category,
-		},
-	};
 }
+
+export default function Index() {
+	return (
+		<Suspense fallback={<Spinner />}>
+			<Items />
+		</Suspense>
+	);
+}
+// export async function getServerSideProps(req) {
+// 	const pageNumber = req.query.page ?? 1;
+// 	const category = req.query.category ?? '';
+
+// 	return {
+// 		props: {
+// 			pageNumber,
+// 			category,
+// 		},
+// 	};
+// }

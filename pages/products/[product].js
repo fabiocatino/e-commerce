@@ -36,6 +36,8 @@ const Product = () => {
 					<Grid item xs={12} sm={12} md={4} lg={5} className={styles.left}>
 						<div className={styles.gallery}>
 							<ImageGallery
+								originalAlt="product"
+								thumbnailAlt="product"
 								showBullets={true}
 								showFullscreenButton={false}
 								showNav={true}
@@ -43,6 +45,8 @@ const Product = () => {
 								items={data.secondary_images.map((image) => ({
 									original: image,
 									thumbnail: image,
+									originalWidth: 300,
+									originalHeight: 300,
 								}))}
 							></ImageGallery>
 						</div>
