@@ -5,7 +5,7 @@ let baseUrl;
 if (process.env.NODE_ENV !== 'production') {
 	baseUrl = 'http://127.0.0.1:3000/api/products';
 } else {
-	baseUrl = 'https://e-commerce-bay-nine.vercel.app/';
+	baseUrl = 'https://e-commerce-fabioc.vercel.app/api/products';
 }
 
 export const productsApi = createApi({

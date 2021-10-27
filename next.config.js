@@ -4,7 +4,7 @@ module.exports = {
 			'127.0.0.1',
 			'placeimg.com',
 			'flagcdn.com',
-			'https://e-commerce-bay-nine.vercel.app/',
+			'https://e-commerce-fabioc.vercel.app/',
 		],
 	},
 	experimental: {
