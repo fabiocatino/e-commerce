@@ -1,10 +1,11 @@
 .container {
 	text-align: center;
 	margin-top: 1rem;
-	height: 700px;
+	height: 500px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: rgba(35, 35, 35, 0.1);
 }
 
 .logo {
@@ -20,9 +21,37 @@
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
 }
-
 .link {
 	color: rgb(112, 76, 182);
+}
+
+.second-section {
+	padding-top: 2rem;
+	display: flex;
+	justify-content: center;
+	gap: 3rem;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.third-section-title {
+	padding-top: 5rem;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.third-section {
+	padding-top: 4rem;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -30,7 +59,6 @@
 		animation: logo-float infinite 3s ease-in-out;
 	}
 }
-
 @keyframes logo-float {
 	0% {
 		transform: translateY(0);

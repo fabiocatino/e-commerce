@@ -19,7 +19,7 @@ const MediaCard = (props) => {
 	};
 	return (
 		<Card elevation={1} className={styles.card}>
-			<CardMedia component="img" height="100" image={props.image} alt="img" />
+			<CardMedia component="img" height="250" image={props.image} alt="img" />
 			<CardContent className={styles.cardContent}>
 				<div className={styles.text}>
 					<Typography
@@ -31,7 +31,7 @@ const MediaCard = (props) => {
 						{props.name}
 					</Typography>
 					<Typography variant="body2" color="text.secondary">
-						{props.description.slice(0, 100) + '...'}
+						{props.description?.slice(0, 100) + '...'}
 					</Typography>
 				</div>
 				<div className={styles.price}>
@@ -41,13 +41,12 @@ const MediaCard = (props) => {
 					</Typography>
 				</div>
 				<div className={styles.buttons}>
-
-				<Link passHref={true} href={`/products/${props._id}`}>
-					<Button size="small">Learn More</Button>
-				</Link>
-				<Button onClick={addToCartHandler} size="small">
-					ADD TO CART
-				</Button>
+					<Link passHref={true} href={`/products/${props._id}`}>
+						<Button size="small">Learn More</Button>
+					</Link>
+					<Button onClick={addToCartHandler} size="small">
+						ADD TO CART
+					</Button>
 				</div>
 			</CardContent>
 		</Card>

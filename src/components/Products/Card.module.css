@@ -1,6 +1,7 @@
 .card {
 	min-height: 322.71px;
-	max-height: 350px;
+	height: 481px;
+	width: 322px;
 	position: relative;
 }
 
@@ -12,9 +13,6 @@
 	padding-bottom: 0.3rem;
 }
 
-.text {
-	max-height: 100px;
-}
 .price {
 	margin-top: 1rem;
 	height: 50px;

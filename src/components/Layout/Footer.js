@@ -3,14 +3,15 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
+import React from 'react';
+import styles from './Footer.module.css';
 
 function Copyright() {
 	return (
 		<Typography variant="body2" color="text.secondary">
 			{'Copyright © '}
-			<Link color="inherit" href="https://material-ui.com/">
-				Your Website
+			<Link color="inherit" href="https://www.linkedin.com/in/fabio-catino/">
+				Fabio Catino
 			</Link>{' '}
 			{new Date().getFullYear()}
 			{'.'}
@@ -20,13 +21,7 @@ function Copyright() {
 
 export default function StickyFooter() {
 	return (
-		<Box
-			sx={{
-				display: 'flex',
-				flexDirection: 'column',
-				minHeight: '100vh',
-			}}
-		>
+		<Box className={styles.main}>
 			<CssBaseline />
 			<Container
 				component="main"
@@ -35,6 +30,7 @@ export default function StickyFooter() {
 			></Container>
 			<Box
 				component="footer"
+				className={styles.footer}
 				sx={{
 					py: 3,
 					px: 2,

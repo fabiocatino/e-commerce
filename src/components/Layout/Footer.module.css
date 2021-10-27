@@ -1,0 +1,10 @@
+.main {
+	display: flex;
+	flex-direction: column;
+    min-height: 80vh;
+}
+
+.footer {
+	padding: 7rem 5rem;
+	margin-top: 'auto';
+}

@@ -1,10 +1,13 @@
 import PersonIcon from '@mui/icons-material/Person';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
 	Button,
 	Link as MLink,
 	Menu,
 	MenuItem,
-	Typography
+	Typography,
+	useMediaQuery,
+	useTheme,
 } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -13,10 +16,23 @@ import CustomizedBadges from '../Products/Badge';
 import CategoriesMenu from './CategoriesMenu';
 import styles from './Navbar.module.css';
 import SearchBar from './SearchBar';
+import Image from 'next/image';
 
 const Navbar = () => {
 	const { data: session, status } = useSession();
 	const [anchorEl, setAnchorEl] = useState(null);
+	const [menu, setMenu] = useState(null);
+
+	const theme = useTheme();
+	const matches = useMediaQuery(theme.breakpoints.up('lg'));
+
+	const handleMenuList = (event) => {
+		setMenu(event.currentTarget);
+	};
+
+	const handleMenuListClose = () => {
+		setMenu(null);
+	};
 
 	const handleMenu = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -34,29 +50,80 @@ const Navbar = () => {
 		<nav className={styles.navbar}>
 			<div className={styles.leftSide}>
 				<Link href="/" passHref={true}>
-					<MLink variant="h5" underline="hover" color="#fff">
-						SHOP
+					<MLink variant="body1" underline="hover">
+						<Image
+							layout="fixed"
+							alt="product"
+							src="/images/d6f8b88c7ede480cabccbecaf5203237.png"
+							height="200"
+							width="200"
+						></Image>
 					</MLink>
 				</Link>
-				<CategoriesMenu></CategoriesMenu>
-				<Link href="/" passHref={true}>
-					<MLink variant="body1" underline="hover" color="#fff">
-						<strong>Contact Us</strong>
-					</MLink>
-				</Link>
-			</div>
+				{matches && (
+					<>
+						<CategoriesMenu></CategoriesMenu>
+						<Link href="/" passHref={true}>
+							<MLink variant="body1" underline="hover" color="inherit">
+								Contact Us
+							</MLink>
+						</Link>
+					</>
+				)}
 
+				{!matches && (
+					<div className={styles.hamburger}>
+						<Button
+							disableElevation={true}
+							color="inherit"
+							onClick={handleMenuList}
+						>
+							<Typography className={styles['account-button']} variant="body1">
+								<MenuIcon />
+							</Typography>
+						</Button>
+						<Menu
+							sx={{ marginTop: 7 }}
+							id="menu-appbar"
+							anchorEl={menu}
+							anchorOrigin={{
+								vertical: 'top',
+								horizontal: 'right',
+							}}
+							keepMounted
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'right',
+							}}
+							open={Boolean(menu)}
+							onClose={handleMenuListClose}
+						>
+							<MenuItem>
+								<CategoriesMenu></CategoriesMenu>
+							</MenuItem>
+							<MenuItem>
+								<Link href="/" passHref={true}>
+									<MLink variant="body1" underline="hover" color="inherit">
+										Contact Us
+									</MLink>
+								</Link>
+							</MenuItem>
+						</Menu>
+					</div>
+				)}
+			</div>
 			<div className={styles.searchbar}>
 				<SearchBar />
 			</div>
+
 			<ul className={styles['navbar-items']}>
 				{!session && status !== 'loading' && (
 					<Link href="/user/login" passHref={true}>
 						<MLink
 							className={styles.login}
-							variant="h6"
+							variant="body1"
 							underline="hover"
-							color="#fff"
+							color="inherit"
 						>
 							<PersonIcon /> Login
 						</MLink>

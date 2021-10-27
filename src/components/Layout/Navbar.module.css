@@ -1,11 +1,9 @@
 .navbar {
-	background-color: #0090f0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0px 15px;
-	height: 100px;
-	color: white;
+	height: 82px;
 }
 
 .leftSide {
@@ -13,12 +11,22 @@
 	gap: 2rem;
 	align-items: center;
 }
+
+.leftSide a:first-child {
+	margin-top: 18px;
+}
+
 .navbar-items {
 	list-style-type: none;
 	display: flex;
 	gap: 20px;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.searchbar {
+	display: flex;
+	justify-content: center;
 }
 
 .login {
@@ -35,8 +43,19 @@
 	text-decoration: underline;
 }
 
+.hamburger {
+	margin-right: 2rem;
+}
+
 @media all and (min-width: 0px) and (max-width: 480px) {
 	.leftSide {
 		width: 300px;
+	}
+}
+
+@media all and (max-width: 1200px) {
+	.leftSide {
+		width: 300px;
+		gap: 0rem;
 	}
 }

@@ -6,18 +6,18 @@ import {
 	PaginationItem,
 } from '@mui/material';
 import { useRouter } from 'next/router';
-import React, { useState, Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import Spinner from '../../src/components/Layout/Spinner';
-import MediaCard from '../../src/components/Products/Card.client';
+import MediaCard from '../../src/components/Products/Card';
 import { useGetProductsByPageQuery } from '../../src/services/productsApi';
 import styles from './Index.module.css';
 
-function Items() {
+const Index = ({ pageNumber, category }) => {
 	const router = useRouter();
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState(pageNumber);
 	const { data, isLoading, error } = useGetProductsByPageQuery({
-		page: 1,
-		category: '',
+		page,
+		category,
 	});
 
 	const handlePaginationChange = (e, value) => {
@@ -26,19 +26,21 @@ function Items() {
 		router.push(`/products?page=${value}`);
 	};
 
+	useEffect(() => {
+		setPage(1);
+	}, [router.query.category]);
+
 	return (
 		<Container>
-			{/* {error && <p>Something went wrong. Try again later.</p>}
-			{isLoading && <Spinner />} */}
+			{error && <p>Something went wrong. Try again later.</p>}
+			{isLoading && <Spinner />}
 			{!isLoading && !error && (
 				<>
 					<Grid container className={styles.main}>
 						{data.docs.map((item) => (
-							<Suspense key={item._id} fallback={<Spinner />}>
-								<div key={item._id} className={styles.card}>
-									<MediaCard {...item}></MediaCard>
-								</div>
-							</Suspense>
+							<div key={item._id} className={styles.card}>
+								<MediaCard {...item}></MediaCard>
+							</div>
 						))}
 					</Grid>
 					<div className={styles.pagination}>
@@ -63,23 +65,18 @@ function Items() {
 			)}
 		</Container>
 	);
-}
+};
 
-export default function Index() {
-	return (
-		<Suspense fallback={<Spinner />}>
-			<Items />
-		</Suspense>
-	);
-}
-// export async function getServerSideProps(req) {
-// 	const pageNumber = req.query.page ?? 1;
-// 	const category = req.query.category ?? '';
+export default Index;
 
-// 	return {
-// 		props: {
-// 			pageNumber,
-// 			category,
-// 		},
-// 	};
-// }
+export async function getServerSideProps(req) {
+	const pageNumber = req.query.page ?? 1;
+	const category = req.query.category ?? '';
+
+	return {
+		props: {
+			pageNumber,
+			category,
+		},
+	};
+}

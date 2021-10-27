@@ -2,29 +2,48 @@ import React from 'react';
 import ImageGallery from 'react-image-gallery';
 import styles from './ImageCarousel.module.css';
 import 'react-image-gallery/styles/css/image-gallery.css';
+import { Button, Typography } from '@mui/material';
+import Link from 'next/link';
 
 const images = [
 	{
 		original: '/images/ps5-1060x663.jpg',
+		originalHeight: 400,
 	},
 	{
-		original: '/images/three-dimensional-image-computer_53876-1610.jpg',
+		original: '/images/4177FAVpp2L._AC_.jpg',
+		originalHeight: 400,
 	},
 ];
 
 const ImageCarousel = () => {
 	return (
 		<div className={styles.container}>
-			<ImageGallery
-				className={styles.carousel}
-				showBullets={true}
-				showFullscreenButton={false}
-				showNav={false}
-				items={images}
-				showPlayButton={false}
-				autoPlay={true}
-				slideDuration={500}
-			/>
+			<div className={styles.transition}>
+				<Typography>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
+					cupiditate totam praesentium adipisci natus fuga repellendus et
+					consectetur inventore corrupti.
+				</Typography>
+				<Link href="/products" passHref={true}>
+					<Button className={styles.button} variant="contained">
+						Shop now
+					</Button>
+				</Link>
+			</div>
+			<div className={styles['image-gallery']}>
+				<ImageGallery
+					className={styles.carousel}
+					showBullets={false}
+					showFullscreenButton={false}
+					showNav={false}
+					items={images}
+					showPlayButton={false}
+					autoPlay={true}
+					slideDuration={500}
+					slideInterval={8000}
+				/>
+			</div>
 		</div>
 	);
 };

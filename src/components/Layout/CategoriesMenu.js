@@ -14,7 +14,7 @@ export default function CategoriesMenu() {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [filteredCategories, setFilteredCategories] = useState([]);
 	const open = Boolean(anchorEl);
-	const categories = useGetProductCategoriesQuery();
+	const { data: categories, isLoading, error } = useGetProductCategoriesQuery();
 
 	const handleClick = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -25,55 +25,63 @@ export default function CategoriesMenu() {
 	};
 
 	const categoryChoiceHandler = (index) => (e) => {
-		router.push(`/products?category=${index}`)
+		router.push(`/products?category=${index}`);
 	};
 
 	useEffect(() => {
 		let temp = [];
-		categories.data?.map((item) => {
+
+		categories?.map((item) => {
 			temp.push(item.category);
 			setFilteredCategories([...new Set(temp)].sort());
 		});
-	}, [categories]);
+	}, [categories, isLoading]);
 
 	return (
-		<div>
-			<Button
-				id="basic-button"
-				aria-controls="basic-menu"
-				aria-haspopup="true"
-				aria-expanded={open ? 'true' : undefined}
-				onClick={handleClick}
-				color="inherit"
-			>
-				<MenuIcon />
-				<Typography variant="body1">
-					<strong>ALL CATEGORIES</strong>
-				</Typography>
-			</Button>
-			<Menu
-				id="basic-menu"
-				anchorEl={anchorEl}
-				open={open}
-				onClose={handleClose}
-				classes={{ list: styles.menu}}
-				MenuListProps={{
-					'aria-labelledby': 'basic-button',
-				}}
-			>
-				<MenuItem divider={true}>
-					<Link href="/products" passHref={true}>
-						<MLink underline="none" color="none">
-							All Products
-						</MLink>
-					</Link>
-				</MenuItem>
-				{filteredCategories.map((category, index) => (
-					<MenuItem onClick={categoryChoiceHandler(category, index)} divider={true} key={category}>
-						{category}
-					</MenuItem>
-				))}
-			</Menu>
-		</div>
+		<>
+			{!isLoading && !error && (
+				<div>
+					<Button
+						id="basic-button"
+						aria-controls="basic-menu"
+						aria-haspopup="true"
+						aria-expanded={open ? 'true' : undefined}
+						onClick={handleClick}
+						color="inherit"
+						sx={{ textTransform: 'capitalize' }}
+					>
+						<Typography variant="body1">Category</Typography>
+					</Button>
+
+					<Menu
+						id="basic-menu"
+						anchorEl={anchorEl}
+						open={open}
+						onClose={handleClose}
+						classes={{ list: styles.menu }}
+						MenuListProps={{
+							'aria-labelledby': 'basic-button',
+						}}
+					>
+						<MenuItem divider={true}>
+							<Link href="/products" passHref={true}>
+								<MLink underline="none" color="none">
+									All Products
+								</MLink>
+							</Link>
+						</MenuItem>
+						{filteredCategories.map((category, index) => (
+							<MenuItem
+								onClick={categoryChoiceHandler(category, index)}
+								divider={true}
+								key={category}
+							>
+								{category}
+							</MenuItem>
+						))}
+					</Menu>
+				</div>
+			)}
+		</>
 	);
 }
