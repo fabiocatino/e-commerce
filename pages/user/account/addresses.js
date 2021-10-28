@@ -14,7 +14,7 @@ const Addresses = () => {
 
 	return (
 		<>
-			{isError && (
+			{!isLoading && isError && (
 				<Typography className={styles['error-message']} variant="h5">
 					Something went wrong. Please try again.
 				</Typography>
