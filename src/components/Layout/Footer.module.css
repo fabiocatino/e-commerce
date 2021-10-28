@@ -38,7 +38,7 @@
 }
 
 .footer svg {
-	color: #FD7915;
+	color: #FF2929;
 	font-size: 50px;
 }
 
@@ -122,7 +122,7 @@
 
 .input:focus {
 	outline: none;
-	border: 1px solid #FD7915;
+	border: 1px solid #FF2929;
 }
 
 .copyright {

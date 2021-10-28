@@ -21,6 +21,7 @@
 	border-radius: 50px;
 	display: flex;
 	align-self: start;
+	background: linear-gradient(to right, #40008f, #005ef5);
 }
 
 .subtitle {

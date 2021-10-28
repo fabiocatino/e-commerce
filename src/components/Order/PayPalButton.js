@@ -125,7 +125,7 @@ const PayPalButton = () => {
 			{isResolved && (
 				<div style={{ width: '262.98px' }}>
 					<PayPalButtons
-						style={{ shape: 'pill', height: 42 }}
+						style={{  color: "blue", shape: 'pill', height: 42 }}
 						createOrder={createOrder}
 						onShippingChange={onShippingChange}
 						onApprove={onApprove}

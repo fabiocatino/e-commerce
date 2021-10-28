@@ -12,6 +12,7 @@ import { checkoutAction } from '../../services/checkoutSlice';
 import { useAddOrderMutation } from '../../services/ordersApi';
 import { orderAction } from '../../services/orderSlice';
 import Spinner from '../Layout/Spinner';
+import { useSession } from 'next-auth/react';
 
 const CardPaymentButton = () => {
 	const router = useRouter();
@@ -25,18 +26,7 @@ const CardPaymentButton = () => {
 	const shippingInfo = useSelector(
 		(state) => state.checkout.shippingInfo.shippingInfo
 	);
-
-	const {
-		firstName,
-		lastName,
-		address,
-		address2,
-		city,
-		postCode,
-		country,
-		email,
-		phoneNumber,
-	} = shippingInfo;
+	const { data: session, status } = useSession();
 
 	useEffect(() => {
 		dispatchPayPal({
@@ -46,54 +36,82 @@ const CardPaymentButton = () => {
 	}, [error, dispatchPayPal]);
 
 	const createOrder = (data, actions) => {
-		return actions.order
-			.create({
-				intent: 'CAPTURE',
-				payer: {
-					name: {
-						given_name: firstName,
-						surname: lastName,
-					},
-					address: {
-						address_line_1: address,
-						address_line_2: address2 ?? '',
-						admin_area_2: city,
-						admin_area_1: '',
-						postal_code: postCode,
-						country_code: country === 'United Kingdom' ? 'GB' : 'IT',
-					},
-					email_address: email,
-					phone: {
-						phone_type: 'MOBILE',
-						phone_number: {
-							national_number: phoneNumber,
+		if (status === 'authenticated') {
+			const {
+				firstName,
+				lastName,
+				address,
+				address2,
+				city,
+				postCode,
+				country,
+				email,
+				phoneNumber,
+			} = shippingInfo;
+
+			return actions.order
+				.create({
+					intent: 'CAPTURE',
+					payer: {
+						name: {
+							given_name: firstName,
+							surname: lastName,
 						},
-					},
-				},
-				purchase_units: [
-					{
-						amount: {
-							value: totalPrice,
-							currency_code: 'GBP',
+						address: {
+							address_line_1: address,
+							address_line_2: address2 ?? '',
+							admin_area_2: city,
+							admin_area_1: '',
+							postal_code: postCode,
+							country_code: country === 'United Kingdom' ? 'GB' : 'IT',
 						},
-						shipping: {
-							address: {
-								address_line_1: address,
-								address_line_2: address2 ?? '',
-								admin_area_2: city,
-								admin_area_1: '',
-								postal_code: postCode,
-								country_code: country === 'United Kingdom' ? 'GB' : 'IT',
+						email_address: email,
+						phone: {
+							phone_type: 'MOBILE',
+							phone_number: {
+								national_number: phoneNumber,
 							},
 						},
 					},
-				],
-			})
-			.then((orderID) => {
-				return orderID;
-			});
+					purchase_units: [
+						{
+							amount: {
+								value: totalPrice,
+								currency_code: 'GBP',
+							},
+							shipping: {
+								address: {
+									address_line_1: address,
+									address_line_2: address2 ?? '',
+									admin_area_2: city,
+									admin_area_1: '',
+									postal_code: postCode,
+									country_code: country === 'United Kingdom' ? 'GB' : 'IT',
+								},
+							},
+						},
+					],
+				})
+				.then((orderID) => {
+					return orderID;
+				});
+		} else {
+			return actions.order
+				.create({
+					purchase_units: [
+						{
+							amount: {
+								value: totalPrice,
+								currency_code: 'GBP',
+							},
+						},
+					],
+				})
+				.then((orderID) => {
+					return orderID;
+				});
+		}
 	};
-
 	function onApprove(data, actions) {
 		dispatch(
 			cartActions.addItem({

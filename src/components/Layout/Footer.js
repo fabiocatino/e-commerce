@@ -237,7 +237,7 @@ export default function StickyFooter() {
 									<input
 										autoComplete="email"
 										required
-										id="email"
+										id="email-footer"
 										label="Email"
 										placeholder="Email"
 										type="email"

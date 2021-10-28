@@ -1,16 +1,25 @@
 import { Avatar, Button, Divider, NoSsr, Typography } from '@mui/material';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './OrderSummary.module.css';
 import PayPalButton from './PayPalButton';
+import { useSession } from 'next-auth/react';
+import { useDispatch } from 'react-redux';
+import { checkoutAction } from '../../services/checkoutSlice';
 
 const OrderSummary = (props) => {
 	const router = useRouter();
-
+	const { data: session, status } = useSession();
+	const dispatch = useDispatch();
 	const checkoutHandler = () => {
 		router.push('/order/checkout');
 	};
-	
+
+	const checkoutGuestHandler = () => {
+		router.push('/order/checkout');
+		dispatch(checkoutAction.nextStep(0 + 1));
+	};
+
 	return (
 		<>
 			{!props && 'loading'}
@@ -85,18 +94,53 @@ const OrderSummary = (props) => {
 								<ul className={styles['payment-section']}>
 									<li>
 										<div className={styles['payment-section']}>
-											<Typography variant="h6" sx={{ fontWeight: 600 }}>
+											<Typography
+												variant="h6"
+												sx={{ fontWeight: 600, paddingBottom: 2 }}
+											>
 												Payment method
 											</Typography>
-											<Button
-												sx={{ marginTop: 2, borderRadius: '23px' }}
-												size="large"
-												color="success"
-												variant="contained"
-												onClick={checkoutHandler}
-											>
-												PROCEED TO BILLING DETAILS
-											</Button>
+											{status === 'unauthenticated' && (
+												<>
+													Don&apos;t have an account yet?
+													<div className={styles.unauthenticated}>
+														<Button
+															sx={{
+																marginTop: 2,
+																borderRadius: '23px',
+																width: '262.97px',
+															}}
+															size="large"
+															className={styles.button}
+															variant="contained"
+															onClick={() => router.push('/user/signup')}
+														>
+															CREATE ONE
+														</Button>
+														<Divider>OR</Divider>
+														<Button
+															sx={{ marginTop: 2, borderRadius: '23px' }}
+															size="large"
+															className={styles.button}
+															variant="contained"
+															onClick={checkoutGuestHandler}
+														>
+															CHECK OUT AS A GUEST
+														</Button>
+													</div>
+												</>
+											)}
+											{status === 'authenticated' && (
+												<Button
+													sx={{ marginTop: 2, borderRadius: '23px' }}
+													size="large"
+													className={styles.button}
+													variant="contained"
+													onClick={checkoutHandler}
+												>
+													PROCEED TO BILLING DETAILS
+												</Button>
+											)}
 											<Divider sx={{ paddingTop: 2, paddingBottom: 2 }}>
 												<Typography
 													sx={{ fontWeight: 'bold' }}

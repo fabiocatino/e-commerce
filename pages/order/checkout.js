@@ -1,5 +1,6 @@
 import { Grid, NoSsr } from '@mui/material';
 import { getSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import CheckoutForm from '../../src/components/Order/CheckoutForm';
@@ -14,7 +15,7 @@ const Checkout = () => {
 	const step = useSelector((state) => state.checkout.currentStep);
 	const cartItems = useCartItems();
 	const totalPrice = useTotalPrice();
-	
+
 	return (
 		<NoSsr>
 			<div>
@@ -50,8 +51,10 @@ export default Checkout;
 
 export async function getServerSideProps(context) {
 	const session = await getSession({ req: context.req });
+	const isGuestCheckOut = context.req.headers.referer.endsWith('/cart');
+	const isGuestCheckOutDone = context.req.headers.referer.endsWith('/checkout');
 
-	if (!session) {
+	if (!session && !isGuestCheckOut && !isGuestCheckOutDone) {
 		return {
 			redirect: {
 				destination: '/user/login',

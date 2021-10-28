@@ -9,30 +9,40 @@ const handler = nc().use(Cors());
 
 handler.post(async (req, res) => {
 	const session = await getSession({ req });
-	if (session) {
-		//
-	} else {
-		console.log('Not authenticated.');
-		res.status(401);
-	}
-	const email = session.user.email;
+
 	if (req.method === 'POST') {
 		await db.connect();
-		const existingUser = await User.findOne({ email: email });
-		if (!existingUser) {
+
+		if (session) {
+			console.log('session');
+			const email = session.user.email;
+
+			const existingUser = await User.findOne({ email: email });
+			
+			if (!existingUser) {
+				throw new Error('No user associated with this email address.');
+			}
+			const _id = existingUser._id;
+
+			const newOrder = new Order({
+				...req.body,
+				user: _id,
+			});
+			const order = await newOrder.save();
+
+			await res.send(order);
+			res.end();
+
+		} else {
 		
-			throw new Error('No user associated with this email address.');
+			const newOrder = new Order({
+				...req.body,
+			});
+			const order = await newOrder.save();
+
+			await res.send(order);
+			res.end();
 		}
-
-		const _id = existingUser._id;
-		const newOrder = new Order({
-			...req.body,
-			user: _id,
-		});
-		const order = await newOrder.save();
-
-		await res.send(order);
-		res.end();
 	}
 });
 

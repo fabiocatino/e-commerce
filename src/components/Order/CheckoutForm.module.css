@@ -12,6 +12,7 @@
 	border-radius: 20px;
 	margin-top: 2rem;
 	width: 100%;
+	background: linear-gradient(to right, #FD1557, #FD7915);
 }
 
 .checkbox {

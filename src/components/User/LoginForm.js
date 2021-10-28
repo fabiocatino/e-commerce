@@ -63,7 +63,6 @@ const LoginForm = () => {
 				<Button
 					type="submit"
 					variant="contained"
-					sx={{backgroundColor:' #005EF5'}}
 					size="large"
 					className={styles.button}
 				>

@@ -9,6 +9,7 @@ import {
 	List,
 	ListItemButton,
 	ListItemText,
+	Button,
 } from '@mui/material';
 import ModifyDetailsForm from '../../../src/components/User/ModifyDetailsForm';
 import ModifyPasswordForm from '../../../src/components/User/ModifyPasswordForm';
@@ -44,33 +45,38 @@ export default function Details() {
 					component="nav"
 					aria-labelledby="nested-list-subheader"
 				>
-					<ListItemButton
+					<Button
 						onClick={changeInfoHandler}
-						color="success"
-						sx={{ backgroundColor: '#4F108A' }}
+						variant="contained"
+						sx={{ backgroundColor: '#4F108A', color: 'white' }}
 					>
 						<ListItemText
-							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold', color: 'white' }}
+							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold' }}
 							primary="EDIT YOUR ACCOUNT INFORMATION"
 						/>
 						{openAccountInfo ? <ExpandLess /> : <ExpandMore />}
-					</ListItemButton>
+					</Button>
 					<Collapse in={openAccountInfo} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
 							<ModifyDetailsForm onSubmit={() => setOpenAccountInfo(false)} />
 						</List>
 					</Collapse>
 
-					<ListItemButton
+					<Button
 						onClick={changePasswordHandler}
-						sx={{ backgroundColor: '#4F108A' }}
+						variant="contained"
+						sx={{ backgroundColor: '#4F108A', color: 'white' }}
 					>
 						<ListItemText
-							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold',  color: 'white' }}
+							primaryTypographyProps={{
+								variant: 'body1',
+								fontWeight: 'bold',
+								color: 'white',
+							}}
 							primary="CHANGE YOUR PASSWORD"
 						/>
 						{openChangePassword ? <ExpandLess /> : <ExpandMore />}
-					</ListItemButton>
+					</Button>
 					<Collapse in={openChangePassword} timeout="auto" unmountOnExit>
 						<List component="div" disablePadding>
 							<ModifyPasswordForm
