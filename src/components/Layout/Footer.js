@@ -34,10 +34,12 @@ function Copyright() {
 
 export default function StickyFooter() {
 	const [showAlert, setShowAlert] = useState(false);
+	const [email, setEmail] = useState('');
 
 	const submitHandler = (e) => {
 		e.preventDefault();
 		setShowAlert(true);
+		setEmail('')
 	};
 
 	return (
@@ -223,7 +225,7 @@ export default function StickyFooter() {
 							</div>
 							<div className={styles['fifth-column-form']}>
 								{showAlert && (
-									<div style={{paddingBottom: 15}}>
+									<div style={{ paddingBottom: 15 }}>
 										<Alert
 											className={styles.alert}
 											severity="success"
@@ -241,6 +243,8 @@ export default function StickyFooter() {
 										label="Email"
 										placeholder="Email"
 										type="email"
+										value={email}
+										onChange={(e) => setEmail(e.target.value)}
 										className={styles.input}
 									></input>
 									<Button type="submit" className={styles['input-button']}>

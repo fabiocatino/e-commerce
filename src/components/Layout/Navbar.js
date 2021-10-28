@@ -75,6 +75,7 @@ const Navbar = () => {
 				{!matches && (
 					<div className={styles.hamburger}>
 						<Button
+							onMouseOver={handleMenuList}
 							disableElevation={true}
 							color="inherit"
 							onClick={handleMenuList}
@@ -98,13 +99,14 @@ const Navbar = () => {
 							}}
 							open={Boolean(menu)}
 							onClose={handleMenuListClose}
+							MenuListProps={{ onMouseLeave: handleMenuListClose }}
 						>
 							<MenuItem>
 								<CategoriesMenu></CategoriesMenu>
 							</MenuItem>
 							<MenuItem>
 								<Link href="/" passHref={true}>
-									<MLink variant="body1" underline="hover">
+									<MLink color="#005EF5" variant="body1" underline="hover">
 										Contact Us
 									</MLink>
 								</Link>
@@ -137,8 +139,13 @@ const Navbar = () => {
 							disableElevation={true}
 							color="inherit"
 							onClick={handleMenu}
+							onMouseOver={handleMenu}
 						>
-							<Typography className={styles['account-button']} variant="body1" color='#005EF5'>
+							<Typography
+								className={styles['account-button']}
+								variant="body1"
+								color="#005EF5"
+							>
 								Hello, {session.user.name.split(' ')[0]}
 							</Typography>
 						</Button>
@@ -157,6 +164,7 @@ const Navbar = () => {
 							}}
 							open={Boolean(anchorEl)}
 							onClose={handleClose}
+							MenuListProps={{ onMouseLeave: handleClose }}
 						>
 							<MenuItem>
 								<Link href="/user/account/account"> My account</Link>

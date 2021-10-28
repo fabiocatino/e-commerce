@@ -46,19 +46,24 @@ export default function CategoriesMenu() {
 					aria-haspopup="true"
 					aria-expanded={open ? 'true' : undefined}
 					onClick={handleClick}
+					onMouseOver={handleClick}
 					color="inherit"
 					sx={{ textTransform: 'capitalize' }}
 				>
-					<Typography color='#005EF5' variant="body1">Category</Typography>
+					<Typography color="#005EF5" variant="body1">
+						Category
+					</Typography>
 				</Button>
 
 				<Menu
 					id="basic-menu"
 					anchorEl={anchorEl}
 					open={open}
+					onMouseLeave={handleClose}
 					onClose={handleClose}
 					classes={{ list: styles.menu }}
 					MenuListProps={{
+						onMouseLeave: handleClose,
 						'aria-labelledby': 'basic-button',
 					}}
 				>
