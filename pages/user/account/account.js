@@ -23,20 +23,22 @@ const Account = () => {
 		<Container>
 			{status === 'loading' && <Spinner />}
 			{status === 'authenticated' && (
-				<Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
-					{status === 'authenticated' && (
-						<Typography className={styles.title} variant="h4">
-							YOUR ACCOUNT, {session.user.name.toUpperCase()}
-						</Typography>
-					)}
+				<>
+					<div className={styles.title}>
+						{status === 'authenticated' && (
+							<Typography className={styles.title} variant="h4">
+								YOUR ACCOUNT, {session.user.name.toUpperCase()}
+							</Typography>
+						)}
+					</div>
 					<div className={styles.container}>
 						{cardInfo.map((card) => (
-							<Grid item key={card.title} xs={6} sm={6} md={4} lg={3}>
+							<div item key={card.title}>
 								<UserCard {...card}></UserCard>
-							</Grid>
+							</div>
 						))}
 					</div>
-				</Grid>
+				</>
 			)}
 		</Container>
 	);

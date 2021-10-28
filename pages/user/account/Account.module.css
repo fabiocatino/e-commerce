@@ -1,14 +1,28 @@
-.container {
-	padding-top: 3rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 6rem;
-	flex-wrap: wrap;
-}
-
 .title {
-	padding-top: 5rem;
+	padding-top: 3rem;
 	color: #40008f;
 	margin-left: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.container {
+	padding-top: 3rem;
+	display: grid;
+	grid-template-columns:
+		minmax(180px, 280px)
+		repeat(auto-fill, 280px);
+	justify-content: center;
+	gap: 8rem;
+}
+
+@media screen and (max-width: 852px) {
+	.container {
+		grid-template-columns: 250px;
+	}
+
+	.title {
+		font-size: 30px;
+	}
 }

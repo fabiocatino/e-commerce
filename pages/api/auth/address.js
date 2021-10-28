@@ -8,10 +8,6 @@ const handler = nc().use(Cors());
 handler.post(async (req, res) => {
 	const session = await getSession({ req });
 
-	// if (req.method !== 'POST') {
-	// 	return;
-	// }
-
 	if (req.method === 'POST') {
 		await db.connect();
 
