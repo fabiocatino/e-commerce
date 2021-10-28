@@ -104,7 +104,7 @@ const Navbar = () => {
 							</MenuItem>
 							<MenuItem>
 								<Link href="/" passHref={true}>
-									<MLink variant="body1" underline="hover" color="inherit">
+									<MLink variant="body1" underline="hover">
 										Contact Us
 									</MLink>
 								</Link>
@@ -138,7 +138,7 @@ const Navbar = () => {
 							color="inherit"
 							onClick={handleMenu}
 						>
-							<Typography className={styles['account-button']} variant="body1">
+							<Typography className={styles['account-button']} variant="body1" color='#005EF5'>
 								Hello, {session.user.name.split(' ')[0]}
 							</Typography>
 						</Button>

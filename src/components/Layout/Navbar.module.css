@@ -12,6 +12,10 @@
 	align-items: center;
 }
 
+.navbar a { 
+	color: #005EF5;
+}
+
 .leftSide a:first-child {
 	margin-top: 18px;
 }

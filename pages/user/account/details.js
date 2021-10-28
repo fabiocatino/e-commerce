@@ -47,10 +47,10 @@ export default function Details() {
 					<ListItemButton
 						onClick={changeInfoHandler}
 						color="success"
-						sx={{ backgroundColor: '#eb4e4c' }}
+						sx={{ backgroundColor: '#4F108A' }}
 					>
 						<ListItemText
-							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold' }}
+							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold', color: 'white' }}
 							primary="EDIT YOUR ACCOUNT INFORMATION"
 						/>
 						{openAccountInfo ? <ExpandLess /> : <ExpandMore />}
@@ -63,10 +63,10 @@ export default function Details() {
 
 					<ListItemButton
 						onClick={changePasswordHandler}
-						sx={{ backgroundColor: '#eb4e4c' }}
+						sx={{ backgroundColor: '#4F108A' }}
 					>
 						<ListItemText
-							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold' }}
+							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold',  color: 'white' }}
 							primary="CHANGE YOUR PASSWORD"
 						/>
 						{openChangePassword ? <ExpandLess /> : <ExpandMore />}
