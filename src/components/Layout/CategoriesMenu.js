@@ -46,7 +46,6 @@ export default function CategoriesMenu() {
 					aria-haspopup="true"
 					aria-expanded={open ? 'true' : undefined}
 					onClick={handleClick}
-					onMouseOver={handleClick}
 					color="inherit"
 					sx={{ textTransform: 'capitalize' }}
 				>

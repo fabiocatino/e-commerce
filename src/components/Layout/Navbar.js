@@ -75,7 +75,6 @@ const Navbar = () => {
 				{!matches && (
 					<div className={styles.hamburger}>
 						<Button
-							onMouseOver={handleMenuList}
 							disableElevation={true}
 							color="inherit"
 							onClick={handleMenuList}
@@ -139,7 +138,6 @@ const Navbar = () => {
 							disableElevation={true}
 							color="inherit"
 							onClick={handleMenu}
-							onMouseOver={handleMenu}
 						>
 							<Typography
 								className={styles['account-button']}
