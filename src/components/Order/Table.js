@@ -153,6 +153,7 @@ export default function EnhancedTable() {
 												padding="none"
 											>
 												<Image
+													loading="lazy"
 													alt={row.name}
 													src={row.image}
 													height={100}

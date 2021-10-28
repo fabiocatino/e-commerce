@@ -18,6 +18,10 @@
 	gap: 2rem;
 }
 
+.gallery {
+	width: 500px;
+}
+
 .bottom-section {
 	display: flex;
 	justify-content: center;

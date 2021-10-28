@@ -39,49 +39,47 @@ export default function CategoriesMenu() {
 
 	return (
 		<>
-			{!isLoading && !error && (
-				<div>
-					<Button
-						id="basic-button"
-						aria-controls="basic-menu"
-						aria-haspopup="true"
-						aria-expanded={open ? 'true' : undefined}
-						onClick={handleClick}
-						color="inherit"
-						sx={{ textTransform: 'capitalize' }}
-					>
-						<Typography variant="body1">Category</Typography>
-					</Button>
+			<div>
+				<Button
+					id="basic-button"
+					aria-controls="basic-menu"
+					aria-haspopup="true"
+					aria-expanded={open ? 'true' : undefined}
+					onClick={handleClick}
+					color="inherit"
+					sx={{ textTransform: 'capitalize' }}
+				>
+					<Typography variant="body1">Category</Typography>
+				</Button>
 
-					<Menu
-						id="basic-menu"
-						anchorEl={anchorEl}
-						open={open}
-						onClose={handleClose}
-						classes={{ list: styles.menu }}
-						MenuListProps={{
-							'aria-labelledby': 'basic-button',
-						}}
-					>
-						<MenuItem divider={true}>
-							<Link href="/products" passHref={true}>
-								<MLink underline="none" color="none">
-									All Products
-								</MLink>
-							</Link>
+				<Menu
+					id="basic-menu"
+					anchorEl={anchorEl}
+					open={open}
+					onClose={handleClose}
+					classes={{ list: styles.menu }}
+					MenuListProps={{
+						'aria-labelledby': 'basic-button',
+					}}
+				>
+					<MenuItem divider={true}>
+						<Link href="/products" passHref={true}>
+							<MLink underline="none" color="none">
+								All Products
+							</MLink>
+						</Link>
+					</MenuItem>
+					{filteredCategories.map((category, index) => (
+						<MenuItem
+							onClick={categoryChoiceHandler(category, index)}
+							divider={true}
+							key={category}
+						>
+							{category}
 						</MenuItem>
-						{filteredCategories.map((category, index) => (
-							<MenuItem
-								onClick={categoryChoiceHandler(category, index)}
-								divider={true}
-								key={category}
-							>
-								{category}
-							</MenuItem>
-						))}
-					</Menu>
-				</div>
-			)}
+					))}
+				</Menu>
+			</div>
 		</>
 	);
 }

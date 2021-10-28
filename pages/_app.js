@@ -2,11 +2,15 @@ import { CssBaseline } from '@mui/material';
 import { StyledEngineProvider } from '@mui/styled-engine';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { SessionProvider } from 'next-auth/react';
+import NProgress from 'nprogress';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import Layout from '../src/components/Layout/Layout';
 import store from '../src/store/store';
 import './globals.css';
+import './nprogress.css';
 
 export default function App({
 	Component,
@@ -18,6 +22,27 @@ export default function App({
 		intent: 'capture',
 		'buyer-country': 'GB',
 	};
+
+	const router = useRouter();
+
+	useEffect(() => {
+		const handleStart = () => {
+			NProgress.start();
+		};
+		const handleStop = () => {
+			NProgress.done();
+		};
+
+		router.events.on('routeChangeStart', handleStart);
+		router.events.on('routeChangeComplete', handleStop);
+		router.events.on('routeChangeError', handleStop);
+
+		return () => {
+			router.events.off('routeChangeStart', handleStart);
+			router.events.off('routeChangeComplete', handleStop);
+			router.events.off('routeChangeError', handleStop);
+		};
+	}, [router]);
 
 	return (
 		<StyledEngineProvider injectFirst>

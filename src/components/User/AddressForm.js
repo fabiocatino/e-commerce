@@ -253,7 +253,7 @@ export default function AddressForm(props) {
 							>
 								<div className={styles.image}>
 									<Image
-										loading="lazy"
+x										loading="lazy"
 										width={20}
 										height={20}
 										src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}

@@ -52,6 +52,7 @@ const Navbar = () => {
 				<Link href="/" passHref={true}>
 					<MLink variant="body1" underline="hover">
 						<Image
+							priority
 							layout="fixed"
 							alt="product"
 							src="/images/d6f8b88c7ede480cabccbecaf5203237.png"

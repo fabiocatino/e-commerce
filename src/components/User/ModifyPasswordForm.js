@@ -35,6 +35,7 @@ const ModifyPasswordForm = () => {
 					placeholder="Old Password"
 					variant="outlined"
 					type="password"
+					autoComplete="current-password"
 					className={styles.textfield}
 					onChange={(e) => setOldPassword(e.target.value)}
 				></TextField>
@@ -45,6 +46,7 @@ const ModifyPasswordForm = () => {
 					placeholder="New Password"
 					variant="outlined"
 					type="password"
+					autoComplete="new-password"
 					className={styles.textfield}
 					onChange={(e) => setPassword1(e.target.value)}
 					helperText={'Password must be at least 7 characters.'}

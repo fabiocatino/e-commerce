@@ -7,8 +7,9 @@ module.exports = {
 			'https://e-commerce-fabioc.vercel.app/',
 		],
 	},
-	experimental: {
-		concurrentFeatures: true,
-		serverComponents: true,
-	  },
+	// experimental: {
+	// 	concurrentFeatures: true,
+	// 	serverComponents: true,
+	// },
+	reactStrictMode: true,
 };
