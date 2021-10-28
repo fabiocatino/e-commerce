@@ -29,7 +29,7 @@ const Addresses = () => {
 						<AddressForm
 							onSubmit={(option) => setDisplayForm(option)}
 							className={styles.address}
-							onClose={() => setDisplayForm(false)}
+							onClose={() => setDisplayForm(!displayForm)}
 						/>
 					</div>
 
