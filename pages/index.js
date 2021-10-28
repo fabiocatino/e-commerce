@@ -77,7 +77,6 @@ const IndexPage = () => {
 export default IndexPage;
 
 export async function getStaticProps(context) {
-	console.log(context)
 	return {
 		props: {},
 		revalidate: 10,

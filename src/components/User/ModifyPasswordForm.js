@@ -28,6 +28,7 @@ const ModifyPasswordForm = () => {
 			<form onSubmit={submitHandler} className={styles.form}>
 				{error && <Alert severity="error">{error.data.message}</Alert>}
 				{data && isSuccess && <Alert severity="success">{data.message}</Alert>}
+				<input type="text" autoComplete="username" hidden />
 				<TextField
 					required
 					id="old-password"
@@ -65,7 +66,6 @@ const ModifyPasswordForm = () => {
 				<Button
 					type="submit"
 					variant="contained"
-					color="success"
 					size="large"
 					className={styles.button}
 				>

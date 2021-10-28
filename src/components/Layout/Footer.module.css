@@ -10,8 +10,7 @@
 }
 
 .footer-content {
-	height: 400px;
-	/* margin: 15px; */
+	min-height: 400px;
 	padding: 2rem 5rem;
 	display: grid;
 	min-width: 100%;
@@ -27,6 +26,7 @@
 		minmax(300px, 1fr)
 		repeat(auto-fill, 200px);
 	grid-template-rows: 250px;
+	grid-row-gap: 6rem;
 	justify-content: center;
 }
 
@@ -37,7 +37,7 @@
 	gap: 3rem;
 }
 
-.first-column svg {
+.footer svg {
 	color: #eb4e4c;
 	font-size: 50px;
 }
@@ -58,4 +58,74 @@
 	display: grid;
 	justify-content: center;
 	align-items: center;
+}
+
+.fifth-column {
+	display: grid;
+	height: 200px;
+	gap: 1rem;
+}
+
+.fifth-column-icon {
+	display: flex;
+	justify-content: center;
+}
+
+.fifth-column-text {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.alert {
+	height: 50px;
+}
+.alert svg {
+	color: green;
+}
+
+.fifth-column-social {
+	display: flex;
+	justify-content: center;
+}
+
+.fifth-column div svg {
+	font-size: 34px;
+}
+
+.fifth-column-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+
+.textfield {
+	border-radius: 4vmax;
+	background-color: white;
+}
+
+.input {
+	border-radius: 4vmax;
+	height: 40px;
+	width: 350px;
+	padding: 1rem;
+	border: 1px solid gray;
+}
+
+.input-button {
+	position: absolute;
+	margin-left: -55px;
+	height: 40px;
+	width: 50px;
+}
+
+.input:focus {
+	outline: none;
+	border: 1px solid #eb4d4b;
+}
+
+.copyright {
+	display: flex;
+	justify-content: center;
 }

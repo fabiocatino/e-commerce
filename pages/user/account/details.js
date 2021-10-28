@@ -46,7 +46,8 @@ export default function Details() {
 				>
 					<ListItemButton
 						onClick={changeInfoHandler}
-						sx={{ backgroundColor: '#0090f0' }}
+						color="success"
+						sx={{ backgroundColor: '#eb4e4c' }}
 					>
 						<ListItemText
 							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold' }}
@@ -62,7 +63,7 @@ export default function Details() {
 
 					<ListItemButton
 						onClick={changePasswordHandler}
-						sx={{ backgroundColor: '#0090f0' }}
+						sx={{ backgroundColor: '#eb4e4c' }}
 					>
 						<ListItemText
 							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold' }}

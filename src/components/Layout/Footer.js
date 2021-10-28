@@ -1,14 +1,23 @@
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
-import { Link as MLink } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import React from 'react';
-import styles from './Footer.module.css';
-import Link from 'next/link';
-import RoomIcon from '@mui/icons-material/Room';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import EmailIcon from '@mui/icons-material/Email';
+import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import MarkunreadOutlinedIcon from '@mui/icons-material/MarkunreadOutlined';
+import RoomIcon from '@mui/icons-material/Room';
+import SendIcon from '@mui/icons-material/Send';
+import {
+	Alert,
+	Box,
+	Button,
+	Container,
+	CssBaseline,
+	Link as MLink,
+	Typography,
+} from '@mui/material';
+import Link from 'next/link';
+import React, { useState } from 'react';
+import styles from './Footer.module.css';
 
 function Copyright() {
 	return (
@@ -24,6 +33,13 @@ function Copyright() {
 }
 
 export default function StickyFooter() {
+	const [showAlert, setShowAlert] = useState(false);
+
+	const submitHandler = (e) => {
+		e.preventDefault();
+		setShowAlert(true);
+	};
+
 	return (
 		<Box className={styles.main}>
 			<CssBaseline />
@@ -77,8 +93,6 @@ export default function StickyFooter() {
 									</div>
 								</MLink>
 							</Link>
-
-							<Copyright />
 						</div>
 
 						<div className={styles['second-column']}>
@@ -195,8 +209,74 @@ export default function StickyFooter() {
 								</MLink>
 							</Link>
 						</div>
+						<div className={styles['fifth-column']}>
+							<div className={styles['fifth-column-icon']}>
+								<MarkunreadOutlinedIcon
+									sx={{ fontSize: '50px !important' }}
+								></MarkunreadOutlinedIcon>
+							</div>
+							<div className={styles['fifth-column-text']}>
+								<Typography variant="h6">Newsletter</Typography>
+								<Typography color="text.secondary" variant="body1">
+									Enter your email to stay up to date.
+								</Typography>
+							</div>
+							<div className={styles['fifth-column-form']}>
+								{showAlert && (
+									<div style={{paddingBottom: 15}}>
+										<Alert
+											className={styles.alert}
+											severity="success"
+											onClose={() => setShowAlert(false)}
+										>
+											Signed up!
+										</Alert>
+									</div>
+								)}
+								<form onSubmit={submitHandler}>
+									<input
+										autoComplete="email"
+										required
+										id="email"
+										label="Email"
+										placeholder="Email"
+										type="email"
+										className={styles.input}
+									></input>
+									<Button type="submit" className={styles['input-button']}>
+										<SendIcon />
+									</Button>
+								</form>
+							</div>
+							<div className={styles['fifth-column-social']}>
+								<Link
+									href="https://www.linkedin.com/in/fabio-catino/"
+									passHref={true}
+								>
+									<MLink target="_blank" rel="noopener noreferrer">
+										<LinkedInIcon sx={{ color: '#2867B2 !important' }} />
+									</MLink>
+								</Link>
+								<Link href="https://www.facebook.com/r.riven" passHref={true}>
+									<MLink target="_blank" rel="noopener noreferrer">
+										<FacebookRoundedIcon sx={{ color: '#3b5999 !important' }} />
+									</MLink>
+								</Link>
+								<Link
+									href="https://www.instagram.com/fabiocatino/"
+									passHref={true}
+								>
+									<MLink target="_blank" rel="noopener noreferrer">
+										<InstagramIcon sx={{ color: '#cc2366 !important' }} />
+									</MLink>
+								</Link>
+							</div>
+						</div>
 					</div>
 				</Container>
+				<div className={styles.copyright}>
+					<Copyright />
+				</div>
 			</Box>
 		</Box>
 	);

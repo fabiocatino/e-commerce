@@ -1,10 +1,10 @@
 .card {
 	width: 360px;
-	border: 1px solid #0090f0;
+	border: 1px solid #eb4e4c;
 }
 
 .top-card {
-	background-color: #0090f0;
+	background-color: #eb4e4c;
 	height: 90px;
 	/* height: 100%; */
 	display: flex;
