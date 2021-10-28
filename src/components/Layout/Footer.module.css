@@ -129,3 +129,16 @@
 	display: flex;
 	justify-content: center;
 }
+
+
+@media screen and (max-width: 480px) {
+	.footer-grid {
+		display: grid;
+		grid-template-columns:
+			minmax(300px, 1fr)
+			repeat(auto-fill, 100px);
+		grid-template-rows: 250px;
+		grid-row-gap: 6rem;
+		justify-content: center;
+	}
+}
