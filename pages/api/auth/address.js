@@ -20,9 +20,8 @@ handler.post(async (req, res) => {
 			{ addresses: [...addresses, req.body] },
 			{ new: true }
 		);
-		console.log({ newAddresses, last: newAddresses.at(-1) });
 		await res.status(201).send({
-			newAddress: newAddresses.at(-1),
+			newAddress: newAddresses[newAddresses.length - 1],
 		});
 	}
 });
