@@ -26,3 +26,9 @@
 		font-size: 30px;
 	}
 }
+
+@media all and (max-width: 840px) {
+	.container {
+		gap: 2rem;
+	}
+}
