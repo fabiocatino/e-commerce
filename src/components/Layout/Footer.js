@@ -74,7 +74,7 @@ export default function StickyFooter() {
 								<ContactPhoneIcon />
 								<div>
 									<Typography variant="h6">Contact Us </Typography>
-									<Typography variant="body1">12345678</Typography>
+									<Typography variant="body1">+447593644112</Typography>
 								</div>
 							</div>
 
