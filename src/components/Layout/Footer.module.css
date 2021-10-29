@@ -133,10 +133,11 @@
 	.footer-grid {
 		display: grid;
 		grid-template-columns:
-			minmax(300px, 1fr)
-			repeat(auto-fill, 100px);
+			minmax(200px, 1fr)
+			repeat(auto-fill, 200px);
 		grid-template-rows: 250px;
 		grid-row-gap: 6rem;
+		grid-column-gap: 1rem;
 		justify-content: center;
 	}
 }

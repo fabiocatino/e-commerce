@@ -49,6 +49,7 @@
 	display: grid;
 	grid-template-columns: minmax(300px, 300px) repeat(auto-fit, 300px);
 	grid-column-gap: 4rem;
+	grid-row-gap: 2rem;
 	justify-content: center;
 	flex-wrap: wrap;
 }
