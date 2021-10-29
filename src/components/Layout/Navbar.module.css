@@ -4,6 +4,7 @@
 	align-items: center;
 	padding: 0px 15px;
 	height: 82px;
+	background: linear-gradient(to right, #46aef8, #1dd4e6);
 }
 
 .leftSide {
@@ -12,8 +13,8 @@
 	align-items: center;
 }
 
-.navbar a { 
-	color: #005EF5;
+.navbar a {
+	color: #005ef5;
 }
 
 .leftSide a:first-child {
@@ -50,7 +51,7 @@
 .hamburger {
 	margin-right: 2rem;
 }
-
+/* 
 @media all and (min-width: 0px) and (max-width: 480px) {
 	.leftSide {
 		width: 300px;
@@ -62,4 +63,4 @@
 		width: 300px;
 		gap: 0rem;
 	}
-}
+} */

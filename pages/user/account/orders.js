@@ -18,7 +18,7 @@ const Orders = () => {
 	}, [session, router, status]);
 
 	return (
-		<>
+		<Container>
 			{error && session && (
 				<p style={{ display: 'flex', justifyContent: 'center' }}>
 					Something went wrong. Please, try again.
@@ -37,7 +37,7 @@ const Orders = () => {
 					))}
 				</Container>
 			)}
-		</>
+		</Container>
 	);
 };
 

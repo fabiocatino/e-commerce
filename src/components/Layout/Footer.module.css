@@ -1,7 +1,7 @@
 .main {
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 }
 
 .footer {
@@ -38,7 +38,7 @@
 }
 
 .footer svg {
-	color: #FF2929;
+	color: #ff2929;
 	font-size: 50px;
 }
 
@@ -121,7 +121,7 @@
 
 .input:focus {
 	outline: none;
-	border: 1px solid #FF2929;
+	border: 1px solid #ff2929;
 }
 
 .copyright {

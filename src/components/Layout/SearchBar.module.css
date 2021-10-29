@@ -20,6 +20,6 @@
 
 @media all and (min-width: 0px) and (max-width: 480px) {
 	.main {
-		width: 100px;
+		width: 200px;
 	}
 }

@@ -1,6 +1,6 @@
 .card {
 	display: flex;
-	width: 918px;
+	max-width: 918px;
 }
 
 .card-content {
@@ -8,11 +8,11 @@
 }
 
 .top-card {
-	width: 918px;
+	max-width: 918px;
 	padding: 0px;
 	padding-bottom: 5rem;
 	padding-right: 2rem;
-	background-color: #002D45;
+	background-color: #002d45;
 	display: flex;
 	justify-content: space-between;
 	gap: 2rem;

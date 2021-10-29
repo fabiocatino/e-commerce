@@ -20,7 +20,7 @@ const Account = () => {
 	}, [status, router, session]);
 
 	return (
-		<Container>
+		<Container className={styles.main}>
 			{status === 'loading' && <Spinner />}
 			{status === 'authenticated' && (
 				<>
