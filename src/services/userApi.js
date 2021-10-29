@@ -17,17 +17,18 @@ export const userApi = createApi({
 			query: () => ({
 				url: `${baseUrl}/address`,
 			}),
-			providesTags: (result, error, arg) => {
-				console.log({ error });
-				console.log({ result });
-				console.log({ arg });
-				return result
-					? [
-							...result.map(({ address }) => ({ type: 'Addresses', address })),
-							'Addresses',
-					  ]
-					: ['Addresses'];
-			},
+			providesTags: ['Addresses'],
+			// providesTags: (result, error, arg) => {
+			// 	console.log({ error });
+			// 	console.log({ result });
+			// 	console.log({ arg });
+			// 	return result
+			// 		? [
+			// 				...result.map(({ id }) => ({ type: 'Addresses', id })),
+			// 				'Addresses',
+			// 		  ]
+			// 		: ['Addresses'];
+			// },
 		}),
 		addUser: build.mutation({
 			query: (body) => ({
@@ -42,8 +43,18 @@ export const userApi = createApi({
 				method: 'POST',
 				body,
 			}),
-			invalidatesTags: ['Addresses'],
+			async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
+				const {
+					data: { newAddress },
+				} = await queryFulfilled;
+				dispatch(
+					userApi.util.updateQueryData('getAddresses', id, (draft) => {
+						draft.push(newAddress);
+					})
+				);
+			},
 		}),
+
 		updateUserInfo: build.mutation({
 			query: (body) => ({
 				url: `${baseUrl}/updateUserInfo`,
@@ -77,6 +88,18 @@ export const userApi = createApi({
 				};
 			},
 			invalidatesTags: ['Addresses'],
+			async updateQueryData({ id, ...patch }, { dispatch, queryFulfilled }) {
+				const patchResult = dispatch(
+					api.util.addAddress('getAddresses', id, (draft) => {
+						Object.assign(draft, patch);
+					})
+				);
+				try {
+					await queryFulfilled;
+				} catch {
+					patchResult.undo();
+				}
+			},
 		}),
 	}),
 });

@@ -33,7 +33,7 @@ const Account = () => {
 					</div>
 					<div className={styles.container}>
 						{cardInfo.map((card) => (
-							<div item key={card.title}>
+							<div key={card.title}>
 								<UserCard {...card}></UserCard>
 							</div>
 						))}

@@ -6,89 +6,24 @@ import { getSession } from 'next-auth/react';
 
 const handler = nc().use(Cors());
 handler.post(async (req, res) => {
-	const session = await getSession({ req });
+	const {
+		user: { email },
+	} = await getSession({ req });
+
+	const { addresses } = await User.findOne({ email });
 
 	if (req.method === 'POST') {
 		await db.connect();
 
-		const {
-			firstName,
-			lastName,
-			address,
-			address2,
-			city,
-			postCode,
-			country,
-			phoneNumber,
-			email,
-		} = req.body;
-
-		const existingUser = await User.findOne({ email: session.user.email });
-		const addresses = existingUser.addresses;
-
-		if (addresses.length === 0) {
-			const user = await User.findOneAndUpdate(
-				{ email: session.user.email },
-
-				{
-					addresses: [
-						{
-							firstName,
-							lastName,
-							address,
-							address2,
-							city,
-							postCode,
-							country,
-							phoneNumber,
-							email,
-							isDefault: true,
-						},
-					],
-				}
-			);
-
-			await res.send({
-				user,
-			});
-
-			await user.save();
-
-			res.status(201).json({ message: 'Address added.' });
-			res.end('Address added.');
-		}
-
-		if (addresses.length > 0) {
-			const user = await User.findOneAndUpdate(
-				{ email: session.user.email },
-
-				{
-					addresses: [
-						...addresses,
-						{
-							firstName,
-							lastName,
-							address,
-							address2,
-							city,
-							postCode,
-							country,
-							phoneNumber,
-							email,
-						},
-					],
-				}
-			);
-
-			await res.send({
-				user,
-			});
-
-			await user.save();
-
-			res.status(201).json({ message: 'Address added.' });
-			res.end('Address added.');
-		}
+		const { addresses: newAddresses } = await User.findOneAndUpdate(
+			{ email },
+			{ addresses: [...addresses, req.body] },
+			{ new: true }
+		);
+		console.log({ newAddresses, last: newAddresses.at(-1) });
+		await res.status(201).send({
+			newAddress: newAddresses.at(-1),
+		});
 	}
 });
 
@@ -116,7 +51,7 @@ handler.patch(async (req, res) => {
 
 			await user.save();
 
-			res.status(201).json({ message: 'Address updated.' });
+			res.status(201).send({ message: 'Address updated.' });
 		} else {
 			const {
 				firstName,
@@ -147,7 +82,7 @@ handler.patch(async (req, res) => {
 
 			await user.save();
 
-			res.status(201).json({ message: 'Address updated.' });
+			res.status(201).send({ message: 'Address updated.' });
 		}
 	}
 });
@@ -170,9 +105,9 @@ handler.delete(async (req, res) => {
 		const user = await User.findOne({ email });
 		await user.addresses.id(req.body._id).remove();
 
-		res.status(201).json({ message: 'Address deleted.' });
+		res.status(201).send({ message: 'Address deleted.' });
 		await user.save();
-		res.end('Address deleted.');
+		// res.end('Address deleted.');
 	}
 });
 

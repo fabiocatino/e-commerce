@@ -53,3 +53,11 @@
 	justify-content: center;
 	flex-wrap: wrap;
 }
+
+
+
+@media all and (max-width: 920px) {
+	.container {
+		padding-right: 3rem;
+	}
+}

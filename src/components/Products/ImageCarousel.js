@@ -20,7 +20,7 @@ const ImageCarousel = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.transition}>
-				<Typography>
+				<Typography color='white'>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
 					cupiditate totam praesentium adipisci natus fuga repellendus et
 					consectetur inventore corrupti.
