@@ -253,7 +253,6 @@ export default function AddressForm(props) {
 							>
 								<div className={styles.image}>
 									<Image
-										x
 										loading="lazy"
 										width={20}
 										height={20}

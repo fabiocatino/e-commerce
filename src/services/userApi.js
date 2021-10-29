@@ -11,20 +11,23 @@ if (process.env.NODE_ENV !== 'production') {
 export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: fetchBaseQuery({ baseUrl }),
-	tagTypes: ['User'],
-	refetchOnFocus: true,
+	tagTypes: ['User', 'Addresses'],
 	endpoints: (build) => ({
 		getAddresses: build.query({
 			query: () => ({
 				url: `${baseUrl}/address`,
 			}),
-			// providesTags: (result, error, arg) => {
-			// 	console.log({ error });
-			// 	console.log({ result })
-			// 	return result
-			// 		? [...result.map(({ _id }) => ({ type: 'User', _id })), 'User']
-			// 		: ['User'];
-			// },
+			providesTags: (result, error, arg) => {
+				console.log({ error });
+				console.log({ result });
+				console.log({ arg });
+				return result
+					? [
+							...result.map(({ address }) => ({ type: 'Addresses', address })),
+							'Addresses',
+					  ]
+					: ['Addresses'];
+			},
 		}),
 		addUser: build.mutation({
 			query: (body) => ({
@@ -39,7 +42,7 @@ export const userApi = createApi({
 				method: 'POST',
 				body,
 			}),
-			// invalidatesTags: ['User'],
+			invalidatesTags: ['Addresses'],
 		}),
 		updateUserInfo: build.mutation({
 			query: (body) => ({
@@ -63,7 +66,7 @@ export const userApi = createApi({
 				method: 'PATCH',
 				body,
 			}),
-			// invalidatesTags: ['User'],
+			invalidatesTags: ['Addresses'],
 		}),
 		deleteAddress: build.mutation({
 			query: (body) => {
@@ -73,7 +76,7 @@ export const userApi = createApi({
 					body,
 				};
 			},
-			// invalidatesTags: ['User'],
+			invalidatesTags: ['Addresses'],
 		}),
 	}),
 });
