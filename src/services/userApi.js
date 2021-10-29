@@ -23,7 +23,7 @@ export const userApi = createApi({
 				console.log({ arg });
 				return result
 					? [...result.map(({ _id }) => ({ type: 'User', _id })), 'User']
-					: ['User'];
+					: [''];
 			},
 		}),
 		addUser: build.mutation({
