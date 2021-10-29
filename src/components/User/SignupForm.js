@@ -93,7 +93,6 @@ const SignupForm = () => {
 				<Button
 					type="submit"
 					variant="contained"
-					color="success"
 					size="large"
 					className={styles.button}
 				>

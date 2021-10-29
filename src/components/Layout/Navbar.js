@@ -101,11 +101,15 @@ const Navbar = () => {
 							MenuListProps={{ onMouseLeave: handleMenuListClose }}
 						>
 							<MenuItem>
-								<CategoriesMenu></CategoriesMenu>
+								<CategoriesMenu color="black"></CategoriesMenu>
 							</MenuItem>
 							<MenuItem>
 								<Link href="/" passHref={true}>
-									<MLink variant="body1" underline="hover">
+									<MLink
+										sx={{ color: 'black' }}
+										variant="body1"
+										underline="hover"
+									>
 										Contact Us
 									</MLink>
 								</Link>

@@ -14,7 +14,7 @@
 }
 
 .navbar a {
-	color: #FFF;
+	color: #fff;
 }
 
 .leftSide a:first-child {
@@ -51,16 +51,3 @@
 .hamburger {
 	margin-right: 2rem;
 }
-/* 
-@media all and (min-width: 0px) and (max-width: 480px) {
-	.leftSide {
-		width: 300px;
-	}
-}
-
-@media all and (max-width: 1200px) {
-	.leftSide {
-		width: 300px;
-		gap: 0rem;
-	}
-} */

@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { useGetProductCategoriesQuery } from '../../services/productsApi';
 import styles from './CategoriesMenu.module.css';
 
-export default function CategoriesMenu() {
+export default function CategoriesMenu(props) {
 	const router = useRouter();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [filteredCategories, setFilteredCategories] = useState([]);
@@ -49,7 +49,7 @@ export default function CategoriesMenu() {
 					color="inherit"
 					sx={{ textTransform: 'capitalize' }}
 				>
-					<Typography color="#FFFF" variant="body1">
+					<Typography color={props.color ?? "#FFFF"} variant="body1">
 						Category
 					</Typography>
 				</Button>
