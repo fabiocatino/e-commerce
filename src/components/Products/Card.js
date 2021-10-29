@@ -42,12 +42,12 @@ const MediaCard = (props) => {
 				</div>
 				<div className={styles.buttons}>
 					<Link passHref={true} href={`/products/${props._id}`}>
-						<Button sx={{ color: '#4F10A8' }} size="small">
+						<Button sx={{ color: '#1878b9' }} size="small">
 							Learn More
 						</Button>
 					</Link>
 					<Button
-						sx={{ color: '#4F10A8' }}
+						sx={{ color: '#1878b9' }}
 						onClick={addToCartHandler}
 						size="small"
 					>

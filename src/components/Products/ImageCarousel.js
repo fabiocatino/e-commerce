@@ -7,11 +7,11 @@ import Link from 'next/link';
 
 const images = [
 	{
-		original: '/images/ps5-1060x663.jpg',
+		original: '/images/-11598236451d0gwytkgrv.png',
 		originalHeight: 400,
 	},
 	{
-		original: '/images/4177FAVpp2L._AC_.jpg',
+		original: '/images/4177FAVpp2L._AC_.png',
 		originalHeight: 400,
 	},
 ];
@@ -42,6 +42,7 @@ const ImageCarousel = () => {
 					autoPlay={true}
 					slideDuration={500}
 					slideInterval={8000}
+					disableSwipe={true}
 				/>
 			</div>
 		</div>

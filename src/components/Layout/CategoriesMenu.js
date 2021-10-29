@@ -49,7 +49,7 @@ export default function CategoriesMenu() {
 					color="inherit"
 					sx={{ textTransform: 'capitalize' }}
 				>
-					<Typography color="#005EF5" variant="body1">
+					<Typography color="#FFFF" variant="body1">
 						Category
 					</Typography>
 				</Button>

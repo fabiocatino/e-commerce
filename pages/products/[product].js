@@ -69,7 +69,7 @@ const Product = () => {
 						<Stack direction="row" spacing={2}>
 							<Button
 								variant="contained"
-								color="success"
+								className={styles['add-to-cart-button']}
 								size="large"
 								sx={{ borderRadius: 50 }}
 								onClick={addToCartHandler}

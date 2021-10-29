@@ -48,7 +48,7 @@ export default function Details() {
 					<Button
 						onClick={changeInfoHandler}
 						variant="contained"
-						sx={{ backgroundColor: '#4F108A', color: 'white' }}
+						sx={{ backgroundColor: '#1878b9', color: 'white' }}
 					>
 						<ListItemText
 							primaryTypographyProps={{ variant: 'body1', fontWeight: 'bold' }}
@@ -65,7 +65,7 @@ export default function Details() {
 					<Button
 						onClick={changePasswordHandler}
 						variant="contained"
-						sx={{ backgroundColor: '#4F108A', color: 'white' }}
+						sx={{ backgroundColor: '#1878b9', color: 'white' }}
 					>
 						<ListItemText
 							primaryTypographyProps={{

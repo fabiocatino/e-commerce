@@ -1,10 +1,10 @@
 .card {
 	width: 360px;
-	border: 1px solid #005EF5;
+	border: 1px solid #1878b9;
 }
 
 .top-card {
-	background: linear-gradient(to right, #021129, #005EF5);
+	background-color: #1878b9;
 	height: 90px;
 	/* height: 100%; */
 	display: flex;

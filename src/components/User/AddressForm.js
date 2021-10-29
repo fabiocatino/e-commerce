@@ -253,7 +253,8 @@ export default function AddressForm(props) {
 							>
 								<div className={styles.image}>
 									<Image
-x										loading="lazy"
+										x
+										loading="lazy"
 										width={20}
 										height={20}
 										src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
@@ -342,18 +343,13 @@ x										loading="lazy"
 					<Button
 						type="submit"
 						variant="contained"
-						color="success"
+						sx={{ backgroundColor: '#1878b9' }}
 						size="large"
 						onClick={!props.isEditing ? () => props.onSubmit(false) : null}
 					>
 						Save changes
 					</Button>
-					<Button
-						variant="contained"
-						sx={{ backgroundColor: 'gray' }}
-						size="large"
-						onClick={() => props.onClose()}
-					>
+					<Button size="large" onClick={() => props.onClose()}>
 						Go Back
 					</Button>
 				</div>

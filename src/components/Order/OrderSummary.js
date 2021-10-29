@@ -1,11 +1,11 @@
 import { Avatar, Button, Divider, NoSsr, Typography } from '@mui/material';
-import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
-import styles from './OrderSummary.module.css';
-import PayPalButton from './PayPalButton';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { checkoutAction } from '../../services/checkoutSlice';
+import styles from './OrderSummary.module.css';
+import PayPalButton from './PayPalButton';
 
 const OrderSummary = (props) => {
 	const router = useRouter();

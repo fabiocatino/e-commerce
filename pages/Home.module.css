@@ -1,11 +1,9 @@
 .container {
 	text-align: center;
-	/* margin-top: 1rem; */
-	height: 500px;
+	height: 600px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(35, 35, 35, 0.1);
 	background: linear-gradient(to right, #46aef8, #1dd4e6);
 }
 
@@ -48,25 +46,9 @@
 
 .third-section {
 	padding-top: 4rem;
-	display: flex;
+	display: grid;
+	grid-template-columns: minmax(300px, 300px) repeat(auto-fit, 300px);
+	grid-column-gap: 4rem;
 	justify-content: center;
-	gap: 1rem;
 	flex-wrap: wrap;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.logo {
-		animation: logo-float infinite 3s ease-in-out;
-	}
-}
-@keyframes logo-float {
-	0% {
-		transform: translateY(0);
-	}
-	50% {
-		transform: translateY(10px);
-	}
-	100% {
-		transform: translateY(0px);
-	}
 }

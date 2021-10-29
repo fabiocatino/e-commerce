@@ -1,7 +1,7 @@
 .main {
 	display: flex;
 	flex-direction: column;
-	/* min-height: 100vh; */
+	min-height: 100vh;
 }
 
 .footer {
@@ -38,7 +38,7 @@
 }
 
 .footer svg {
-	color: #ff2929;
+	color: #fd1557;
 	font-size: 50px;
 }
 

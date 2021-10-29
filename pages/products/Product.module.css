@@ -22,6 +22,10 @@
 	width: 500px;
 }
 
+.add-to-cart-button {
+	background: linear-gradient(to right, #fd1557, #fd7915);
+}
+
 .bottom-section {
 	display: flex;
 	justify-content: center;

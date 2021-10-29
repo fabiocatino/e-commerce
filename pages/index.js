@@ -24,7 +24,7 @@ const IndexPage = () => {
 				<div>
 					<div className={styles.info}>
 						<LocalShippingIcon
-							sx={{ fontSize: 50, color: '#4F10A8', alignSelf: 'center' }}
+							sx={{ fontSize: 50, color: '#fd1557', alignSelf: 'center' }}
 						/>
 						<Typography variant="h6">Free Shipping</Typography>
 						<Typography color="text.secondary" variant="caption">
@@ -34,7 +34,7 @@ const IndexPage = () => {
 				</div>
 				<div>
 					<div className={styles.info}>
-						<CheckIcon sx={{ fontSize: 50, color: '#4F10A8' }} />
+						<CheckIcon sx={{ fontSize: 50, color: '#fd1557' }} />
 						<Typography variant="h6">Free Returns</Typography>
 						<Typography color="text.secondary" variant="caption">
 							Returns are free within 30 days
@@ -43,7 +43,7 @@ const IndexPage = () => {
 				</div>
 				<div>
 					<div className={styles.info}>
-						<PaymentIcon sx={{ fontSize: 50, color: '#4F10A8' }} />
+						<PaymentIcon sx={{ fontSize: 50, color: '#fd1557' }} />
 						<Typography variant="h6">100% Payment Secure</Typography>
 						<Typography color="text.secondary" variant="caption">
 							Your payment is safe with us
@@ -52,7 +52,7 @@ const IndexPage = () => {
 				</div>
 				<div>
 					<div className={styles.info}>
-						<LiveHelpIcon sx={{ fontSize: 50, color: '#4F10A8' }} />
+						<LiveHelpIcon sx={{ fontSize: 50, color: '#fd1557' }} />
 						<Typography variant="h6">Support 24/7</Typography>
 						<Typography color="text.secondary" variant="caption">
 							Contact us 24 hours a day
@@ -63,6 +63,7 @@ const IndexPage = () => {
 			<div className={styles['third-section-title']}>
 				<Typography variant="h4">Explore more items</Typography>
 			</div>
+
 			{!isLoading && !error && (
 				<Container className={styles['third-section']}>
 					{data?.docs.map((item) => (

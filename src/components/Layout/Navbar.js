@@ -105,7 +105,7 @@ const Navbar = () => {
 							</MenuItem>
 							<MenuItem>
 								<Link href="/" passHref={true}>
-									<MLink color="#005EF5" variant="body1" underline="hover">
+									<MLink variant="body1" underline="hover">
 										Contact Us
 									</MLink>
 								</Link>
@@ -142,7 +142,7 @@ const Navbar = () => {
 							<Typography
 								className={styles['account-button']}
 								variant="body1"
-								color="#005EF5"
+								color="#FFF"
 							>
 								Hello, {session.user.name.split(' ')[0]}
 							</Typography>
