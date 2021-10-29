@@ -17,10 +17,14 @@ export const userApi = createApi({
 			query: () => ({
 				url: `${baseUrl}/address`,
 			}),
-			providesTags: (result, error, arg) =>
-				result
+			providesTags: (result, error, arg) => {
+				console.log({error})
+				console.log({result})
+				console.log({arg})
+				return result
 					? [...result.map(({ _id }) => ({ type: 'User', _id })), 'User']
-					: [{type: 'User', _id}],
+					: [{ type: 'User', _id }];
+			},
 		}),
 		addUser: build.mutation({
 			query: (body) => ({
