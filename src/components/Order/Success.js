@@ -73,7 +73,7 @@ const Success = () => {
 									new Date(data.createdAt).getFullYear()}
 							</Typography>
 						</div>
-						<div style={{ width: 1000 }}>
+						<div style={{ width: '100%' }}>
 							<OrderSummary
 								totalPrice={data.totalPrice}
 								cartItems={data.orderItems}

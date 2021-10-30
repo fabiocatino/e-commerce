@@ -28,7 +28,7 @@ const Product = () => {
 	};
 
 	return (
-		<Container maxWidth="lg">
+		<Container maxWidth="lg" >
 			{error && <p>Something went wrong. Try again later.</p>}
 			{isLoading && <Spinner />}
 			{!isLoading && !error && (

@@ -27,3 +27,20 @@
 	margin: 1rem 0rem;
 	border-radius: 10%;
 }
+
+.products-title {
+	padding-top: 5rem;
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.products {
+	padding-top: 4rem;
+	display: grid;
+	grid-template-columns: minmax(300px, 300px) repeat(auto-fit, 300px);
+	grid-column-gap: 4rem;
+	grid-row-gap: 2rem;
+	justify-content: center;
+	flex-wrap: wrap;
+}

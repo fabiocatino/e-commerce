@@ -5,7 +5,7 @@ import { getSession } from 'next-auth/react';
 
 const Login = () => {
 	return (
-		<Container>
+		<Container sx={{height: '100vh'}}>
 			<LoginForm></LoginForm>
 		</Container>
 	);

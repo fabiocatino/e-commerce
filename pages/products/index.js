@@ -31,7 +31,7 @@ const Index = ({ pageNumber, category }) => {
 	}, [router.query.category]);
 
 	return (
-		<Container>
+		<Container sx={{height: '100vh'}}>
 			{error && <p>Something went wrong. Try again later.</p>}
 			{isLoading && <Spinner />}
 			{!isLoading && !error && (

@@ -1,18 +1,16 @@
 import React from 'react';
-import Navbar from './Navbar';
 import StickyFooter from './Footer';
 import styles from './Layout.module.css';
-import SearchBar from './SearchBar';
+import Navbar from './Navbar';
 
 const Layout = (props) => {
 	return (
 		<div className={styles.layout}>
 			<Navbar />
-			<div className={styles.searchbar}>
-				{/* <SearchBar></SearchBar> */}
-			</div>
 			{props.children}
+			<div className={styles.footer}>
 			<StickyFooter></StickyFooter>
+			</div>
 		</div>
 	);
 };

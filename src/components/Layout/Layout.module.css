@@ -1,11 +1,9 @@
 .layout {
 	width: 100vmax;
+	height: 100vh;
 }
 
-@media all and (max-width: 480px)  {
-	/* .searchbar {
-		display: flex;
-	} */
+@media all and (max-width: 480px) {
 	.leftSide {
 		display: flex;
 		gap: 0;
@@ -14,9 +12,6 @@
 }
 
 @media all and (min-width: 481px) {
-	/* .searchbar {
-		display: none;
-	} */
 	.leftSide {
 		display: flex;
 		gap: 0;

@@ -18,7 +18,7 @@ const Checkout = () => {
 
 	return (
 		<NoSsr>
-			<div>
+			<div style={{minHeight: '100vh' }}>
 				{cartItems.length > 0 || step === 2 ? (
 					<Grid container className={styles.container}>
 						<HorizontalLinearStepper></HorizontalLinearStepper>

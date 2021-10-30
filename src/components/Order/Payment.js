@@ -3,9 +3,9 @@ import CardPaymentButton from './CardPaymentButton';
 
 const Payment = () => {
 	return (
-		<>
+		<div  >
 			<CardPaymentButton></CardPaymentButton>
-		</>
+		</div>
 	);
 };
 

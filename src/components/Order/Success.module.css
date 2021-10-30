@@ -1,6 +1,6 @@
 .container {
 	padding-top: 1rem;
-	min-width: fit-content;
+	width: 100%;
 }
 
 .main {

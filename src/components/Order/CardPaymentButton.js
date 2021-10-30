@@ -192,10 +192,10 @@ const CardPaymentButton = () => {
 	}, [orderID, router, step, dispatch]);
 
 	return (
-		<>
+		<div>
 			{!isResolved && <Spinner />}
 			{isResolved && (
-				<div style={{ paddingTop: 100 }}>
+				<div style={{ paddingTop: 100}}>
 					{error && (
 						<Alert
 							sx={{ marginBottom: 5 }}
@@ -214,7 +214,7 @@ const CardPaymentButton = () => {
 					/>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };
 export default CardPaymentButton;
