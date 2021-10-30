@@ -1,6 +1,7 @@
 .main {
 	width: 400px;
 	background: linear-gradient(to right, #46aef8, #1dd4e6);
+	overflow: hidden;
 }
 .input {
 	border-radius: 20px;
@@ -21,12 +22,13 @@
 
 @media all and (min-width: 0px) and (max-width: 480px) {
 	.main {
-		width: 300px;
+		width: 200px;
 	}
 }
 
 @media all and (max-width: 480px) {
 	.main {
 		width: 100%;
+		padding-bottom: 2rem;
 	}
 }
