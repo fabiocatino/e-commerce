@@ -18,7 +18,7 @@ const IndexPage = () => {
 	return (
 		<div>
 			<div className={styles.container}>
-				{/* <ImageCarousel></ImageCarousel> */}
+				<ImageCarousel></ImageCarousel>
 			</div>
 			<Container className={styles['second-section']}>
 				<div>

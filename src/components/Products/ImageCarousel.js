@@ -42,7 +42,7 @@ const ImageCarousel = () => {
 					autoPlay={true}
 					slideDuration={500}
 					slideInterval={8000}
-					disableSwipe={true}
+					disableSwipe={false}
 				/>
 			</div>
 		</div>
