@@ -3,17 +3,27 @@
 	justify-content: center;
 	align-items: center;
 	gap: 5rem;
+	width: 100%;
+	/* flex-wrap: wrap; */
 }
 
 .transition {
+	/* display: flex; */
+	width: 10px;
+	margin-right: 5rem;
+	flex-wrap: wrap;
 	margin-left: 6rem;
-	width: 30%;
+	/* word-break: break-word; */
 	-webkit-animation-duration: 2;
 	animation-duration: 2s;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 	animation-name: fadein;
 	animation-delay: 0.3s;
+}
+
+.image-gallery {
+	width: 70%;
 }
 
 .button {
@@ -68,5 +78,11 @@
 	}
 	to {
 		opacity: 1;
+	}
+}
+
+@media all and (max-width: 300px) {
+	.button {
+		display: none;
 	}
 }

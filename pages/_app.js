@@ -55,7 +55,7 @@ export default function App({
 								<title>E-commerce</title>
 								<meta
 									name="viewport"
-									content="initial-scale=1, width=device-width"
+									content="initial-scale=1.0, width=device-width"
 								/>
 							</Head>
 

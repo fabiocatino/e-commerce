@@ -21,9 +21,7 @@ const ImageCarousel = () => {
 		<div className={styles.container}>
 			<div className={styles.transition}>
 				<Typography color='white'>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-					cupiditate totam praesentium adipisci natus fuga repellendus et
-					consectetur inventore corrupti.
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
 				</Typography>
 				<Link href="/products" passHref={true}>
 					<Button className={styles.button} variant="contained">
@@ -33,7 +31,6 @@ const ImageCarousel = () => {
 			</div>
 			<div className={styles['image-gallery']}>
 				<ImageGallery
-					className={styles.carousel}
 					showBullets={false}
 					showFullscreenButton={false}
 					showNav={false}

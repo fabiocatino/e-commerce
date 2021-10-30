@@ -16,8 +16,8 @@ const IndexPage = () => {
 	});
 
 	return (
-		<div>
-			<div className={styles.container}>
+		<div  className={styles.container}>
+			<div className={styles.carousel}>
 				<ImageCarousel></ImageCarousel>
 			</div>
 			<Container className={styles['second-section']}>

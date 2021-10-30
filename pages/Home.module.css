@@ -1,4 +1,10 @@
 .container {
+	width: 100%;
+}
+
+.carousel {
+	width: 100%;
+
 	text-align: center;
 	height: 600px;
 	display: flex;
@@ -25,9 +31,11 @@
 
 .second-section {
 	padding-top: 2rem;
-	display: flex;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
 	justify-content: center;
 	gap: 3rem;
+	overflow: hidden;
 }
 
 .info {
@@ -51,15 +59,13 @@
 	grid-column-gap: 4rem;
 	grid-row-gap: 2rem;
 	justify-content: center;
-	flex-wrap: wrap;
 }
 
 @media all and (max-width: 920px) {
-	.container {
+	/* .container {
 		padding-right: 3rem;
-	}
+	} */
 }
-
 
 @media all and (max-width: 568px) {
 	.third-section {

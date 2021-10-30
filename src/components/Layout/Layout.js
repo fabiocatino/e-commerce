@@ -9,7 +9,7 @@ const Layout = (props) => {
 			{/* <Navbar /> */}
 			{props.children}
 			<div className={styles.footer}>
-			<StickyFooter></StickyFooter>
+			{/* <StickyFooter></StickyFooter> */}
 			</div>
 		</div>
 	);
