@@ -23,9 +23,6 @@
 
 .footer-grid {
 	display: grid;
-	/* grid-template-columns:
-		minmax(300px, 1fr)
-		repeat(auto-fill, 280px); */
 	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 	grid-template-rows: 250px;
 	grid-row-gap: 6rem;
@@ -88,7 +85,6 @@
 
 .fifth-column {
 	width: 100%;
-	
 }
 
 .fifth-column-social {
@@ -141,10 +137,8 @@
 @media screen and (max-width: 568px) {
 	.footer-grid {
 		display: grid;
-		/* grid-template-columns:
-			minmax(200px, 200px)
-			repeat(auto-fill, 380px); */
-		grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
+
+		grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
 		grid-template-rows: 330px;
 		grid-row-gap: 6rem;
 		grid-column-gap: 4rem;
