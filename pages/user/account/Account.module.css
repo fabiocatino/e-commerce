@@ -1,3 +1,7 @@
+.main {
+	width: 100%;
+}
+
 .title {
 	padding-top: 3rem;
 	color: #1878b9;
@@ -19,9 +23,10 @@
 
 @media screen and (max-width: 852px) {
 	.container {
-		grid-template-columns: 250px;
-
-		gap: 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.title {

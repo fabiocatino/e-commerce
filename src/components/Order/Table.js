@@ -13,7 +13,6 @@ import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
 import Table from '@mui/material/Table';
 import Image from 'next/image';
-import { resetWarningCache } from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { cartActions, useCartItems } from '../../services/cartSlice';
@@ -27,7 +26,6 @@ export default function EnhancedTable() {
 	const [order, setOrder] = useState('asc');
 	const [orderBy, setOrderBy] = useState('Product');
 	const [selected, setSelected] = useState([]);
-	const [quantityNumber, setQuantityNumber] = useState(1);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(10);
 	const items = useCartItems();
@@ -128,6 +126,7 @@ export default function EnhancedTable() {
 
 									return (
 										<TableRow
+										sx={{}}
 											hover
 											role="checkbox"
 											aria-checked={isItemSelected}

@@ -1,5 +1,6 @@
 .layout {
 	height: 100vh;
+	max-width: 100vmax;
 }
 
 @media all and (max-width: 480px) {

@@ -1,6 +1,5 @@
 .container {
 	padding: 0 5rem;
-	
 }
 
 .title {
@@ -29,20 +28,28 @@
 	border-radius: 10%;
 }
 
-.products-title {
-	padding-top: 5rem;
+.no-items {
+	padding-top: 2rem;
 	display: flex;
-	justify-content: center;
-	gap: 1rem;
+	flex-direction: column;
+	align-items: center;
+}
+
+.products-title {
+	padding-top: 2rem;
 }
 
 .products {
-	padding-top: 4rem;
-	display: grid;
-	grid-template-columns: minmax(300px, 300px) repeat(auto-fit, 300px);
-	grid-column-gap: 4rem;
-	grid-row-gap: 2rem;
-	justify-content: center;
+	margin-top: 2rem;
+	gap: 2rem;
+	display: flex;
 	flex-wrap: wrap;
-	min-height: 100vh;
+	align-items: center;
+	justify-content: center;
+}
+
+@media all and (max-width: 870px) {
+	.container {
+		padding: 0;
+	}
 }

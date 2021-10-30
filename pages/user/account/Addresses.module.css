@@ -4,7 +4,6 @@
 	display: flex;
 	justify-content: center;
 	gap: 2rem;
-	height: 100vh;
 }
 
 .error-message {
@@ -40,7 +39,7 @@
 }
 
 .cards {
-	word-wrap:break-word;
+	word-wrap: break-word;
 	width: 277px;
 	min-height: 199.02px;
 }

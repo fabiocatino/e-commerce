@@ -4,6 +4,7 @@
 	padding: 5rem 5rem;
 	margin: 0;
 	flex-wrap: wrap;
+	width: 100%;
 }
 
 .left {
@@ -19,4 +20,10 @@
 
 .success {
 	width: 100%;
+}
+
+@media screen and (max-width: 550px) {
+	.container {
+		padding: 3rem 0;
+	}
 }

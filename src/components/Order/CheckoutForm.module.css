@@ -2,6 +2,7 @@
 	display: flex;
 	gap: 2rem;
 	margin-top: 5px;
+	width: 100%;
 }
 
 .select {
@@ -12,7 +13,7 @@
 	border-radius: 20px;
 	margin-top: 2rem;
 	width: 100%;
-	background: linear-gradient(to right, #FD1557, #FD7915);
+	background: linear-gradient(to right, #fd1557, #fd7915);
 }
 
 .checkbox {

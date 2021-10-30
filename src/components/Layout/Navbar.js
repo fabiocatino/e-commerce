@@ -57,7 +57,7 @@ const Navbar = () => {
 							alt="product"
 							src="/images/d6f8b88c7ede480cabccbecaf5203237.png"
 							height="200"
-							width="200"
+							width="150"
 						></Image>
 					</MLink>
 				</Link>
@@ -123,16 +123,18 @@ const Navbar = () => {
 
 			<ul className={styles['navbar-items']}>
 				{!session && status !== 'loading' && (
-					<Link href="/user/login" passHref={true}>
-						<MLink
-							className={styles.login}
-							variant="body1"
-							underline="hover"
-							color="inherit"
-						>
-							<PersonIcon /> Login
-						</MLink>
-					</Link>
+					<div className={styles.login}>
+						<Link href="/user/login" passHref={true}>
+							<MLink
+								className={styles.login}
+								variant="body1"
+								underline="hover"
+								color="inherit"
+							>
+								<PersonIcon /> Login
+							</MLink>
+						</Link>
+					</div>
 				)}
 
 				{session && (
@@ -145,7 +147,7 @@ const Navbar = () => {
 						>
 							{matches ? (
 								<Typography
-									sx={{ marginRight: 3}}
+									sx={{ marginRight: 3 }}
 									className={styles['account-button']}
 									variant="body1"
 									color="#FFF"

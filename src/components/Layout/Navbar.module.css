@@ -30,6 +30,11 @@
 	padding: 0;
 }
 
+.login {
+	display: flex;
+	flex-direction: column;
+	margin-right: 0.5rem;
+}
 .searchbar {
 	width: 100%;
 	display: flex;

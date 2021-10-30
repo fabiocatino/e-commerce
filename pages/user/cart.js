@@ -31,7 +31,7 @@ const Cart = () => {
 					<Button onClick={() => router.back()}>Go back</Button>
 				</section>
 				{itemsQuantity === 0 && (
-					<>
+					<div className={styles['no-items']}>
 						<Typography variant="h3">Your basket is empty.</Typography>
 
 						<div className={styles['products-title']}>
@@ -45,7 +45,7 @@ const Cart = () => {
 								))}
 							</Container>
 						)}
-					</>
+					</div>
 				)}
 
 				{itemsQuantity >= 1 && (
@@ -53,7 +53,14 @@ const Cart = () => {
 						<Grid item xs={12} sm={12} md={12} lg={7}>
 							<EnhancedTable sx={{ maxWidth: 500 }}></EnhancedTable>
 						</Grid>
-						<Grid sx={{ width: 500 }} item xs={8} sm={8} md={8} lg={4}>
+						<Grid
+							sx={{ display: 'flex', justifyContent: 'center' }}
+							item
+							xs={12}
+							sm={12}
+							md={8}
+							lg={4}
+						>
 							<OrderSummary
 								totalPrice={totalPrice}
 								cartItems={cartItems}

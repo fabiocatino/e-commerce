@@ -2,6 +2,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
 }
 
 .form {
@@ -28,4 +29,10 @@
 	display: flex;
 	align-self: start;
 	gap: 10px;
+}
+
+@media screen and (max-width: 550px) {
+	.textfield {
+		width: 100%;
+	}
 }

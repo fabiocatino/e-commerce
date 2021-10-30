@@ -125,6 +125,7 @@ const Success = () => {
 							<div>{data.shippingInfo.city}</div>
 							<div>{data.shippingInfo.postCode}</div>
 							<div>{data.shippingInfo.country}</div>
+
 							<Typography variant="h5" sx={{ marginTop: 2 }}>
 								Shipping Method
 							</Typography>

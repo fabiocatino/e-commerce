@@ -2,6 +2,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	
 }
 
 .form {
@@ -14,7 +15,7 @@
 }
 
 .textfield {
-	width: 500px;
+	width: 200%;
 }
 
 .button {
@@ -28,4 +29,10 @@
 	display: flex;
 	align-self: start;
 	gap: 10px;
+}
+
+@media screen and (max-width: 550px) {
+	.textfield {
+		width: 100%;
+	}
 }
