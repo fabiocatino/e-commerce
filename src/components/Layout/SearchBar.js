@@ -65,7 +65,8 @@ export default function SearchBar() {
 						endAdornment: (
 							<React.Fragment>
 								{loading ? (
-									<CircularProgress color="inherit" size={20} />
+									'Loading'
+									// <CircularProgress color="inherit" size={20} />
 								) : null}
 								{params.InputProps.endAdornment}
 							</React.Fragment>

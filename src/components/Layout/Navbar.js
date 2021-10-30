@@ -118,9 +118,9 @@ const Navbar = () => {
 					</div>
 				)}
 			</div>
-			{/* <div className={styles.searchbar}>
+			<div className={styles.searchbar}>
 				<SearchBar />
-			</div> */}
+			</div>
 
 			<ul className={styles['navbar-items']}>
 				{!session && status !== 'loading' && (
