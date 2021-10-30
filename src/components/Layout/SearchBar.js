@@ -41,14 +41,15 @@ export default function SearchBar() {
 
 	return (
 		<Autocomplete
-			classes={{ root: styles.main, inputRoot: styles.input }}
+			classes={{ root: styles.main, inputRoot: styles.input, paper: styles.paper }}
 			id="autocomplete"
-			open={open}
+			open={true}
 			onOpen={() => setOpen(true)}
 			onClose={() => setOpen(false)}
 			getOptionLabel={(option) => option.name}
 			options={options}
 			loading={loading}
+			loadingText=""
 			renderOption={(props, option) => (
 				<Link passHref={true} key={option._id} href={`/products/${option._id}`}>
 					<li {...props}>{option.name}</li>
@@ -65,8 +66,7 @@ export default function SearchBar() {
 						endAdornment: (
 							<React.Fragment>
 								{loading ? (
-									'Loading'
-									// <CircularProgress color="inherit" size={20} />
+									<CircularProgress color="inherit" size={20} />
 								) : null}
 								{params.InputProps.endAdornment}
 							</React.Fragment>
