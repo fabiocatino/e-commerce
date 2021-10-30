@@ -44,7 +44,7 @@ export default function SearchBar() {
 			classes={{ root: styles.main, inputRoot: styles.input }}
 			id="autocomplete"
 			open={open}
-			// onOpen={() => setOpen(true)}
+			onOpen={() => setOpen(true)}
 			onClose={() => setOpen(false)}
 			getOptionLabel={(option) => option.name}
 			options={options}
