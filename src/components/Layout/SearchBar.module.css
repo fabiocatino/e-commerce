@@ -1,11 +1,12 @@
 .main {
 	width: 400px;
 	background: linear-gradient(to right, #46aef8, #1dd4e6);
-	overflow: hidden;
 }
 .input {
 	border-radius: 20px;
 	background-color: white;
+	overflow: hidden;
+
 }
 
 @media all and (min-width: 320px) and (max-width: 480px) {
