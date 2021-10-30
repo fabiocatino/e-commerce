@@ -25,10 +25,9 @@
 .navbar-items {
 	list-style-type: none;
 	display: flex;
-	gap: 10px;
 	align-items: center;
 	justify-content: space-between;
-	margin-right: 2rem;
+	padding: 0;
 }
 
 .searchbar {
@@ -51,11 +50,17 @@
 	text-decoration: underline;
 }
 
+.button-root {
+	min-width: 0;
+	padding: 0;
+	color: white;
+}
+
 .hamburger {
 	margin-right: 2rem;
 }
 
-@media all and (max-width: 480px)  {
+@media all and (max-width: 480px) {
 	/* .searchbar {
 		display: none;
 	} */

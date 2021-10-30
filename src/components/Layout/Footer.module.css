@@ -14,7 +14,7 @@
 	min-height: 400px;
 	padding: 2rem 5rem;
 	display: grid;
-	min-width: 100%;
+	width: 100%;
 }
 
 .footer-content h6 {
@@ -23,9 +23,10 @@
 
 .footer-grid {
 	display: grid;
-	grid-template-columns:
+	/* grid-template-columns:
 		minmax(300px, 1fr)
-		repeat(auto-fill, 280px);
+		repeat(auto-fill, 280px); */
+	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 	grid-template-rows: 250px;
 	grid-row-gap: 6rem;
 	justify-content: center;
@@ -69,6 +70,7 @@
 .fifth-column-icon {
 	display: flex;
 	justify-content: center;
+	width: 100%;
 }
 
 .fifth-column-text {
@@ -82,6 +84,11 @@
 }
 .alert svg {
 	color: green;
+}
+
+.fifth-column {
+	width: 100%;
+	
 }
 
 .fifth-column-social {
@@ -108,7 +115,8 @@
 .input {
 	border-radius: 4vmax;
 	height: 40px;
-	width: 350px;
+	min-width: 250px;
+	max-width: 350px;
 	padding: 1rem;
 	border: 1px solid gray;
 }
@@ -133,12 +141,13 @@
 @media screen and (max-width: 568px) {
 	.footer-grid {
 		display: grid;
-		grid-template-columns:
+		/* grid-template-columns:
 			minmax(200px, 200px)
-			repeat(auto-fill, 380px);
+			repeat(auto-fill, 380px); */
+		grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
 		grid-template-rows: 330px;
 		grid-row-gap: 6rem;
-		grid-column-gap: 1rem;
+		grid-column-gap: 4rem;
 		justify-content: center;
 	}
 }

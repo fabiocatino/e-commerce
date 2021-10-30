@@ -4,7 +4,6 @@
 
 .carousel {
 	width: 100%;
-
 	text-align: center;
 	height: 600px;
 	display: flex;
@@ -55,26 +54,19 @@
 .third-section {
 	padding-top: 4rem;
 	display: grid;
-	grid-template-columns: minmax(300px, 300px) repeat(auto-fit, 300px);
-	grid-column-gap: 4rem;
+	grid-template-columns: repeat(auto-fit, minmax(13rem, 300px));
+	grid-column-gap: 10rem;
 	grid-row-gap: 2rem;
 	justify-content: center;
-}
-
-@media all and (max-width: 920px) {
-	/* .container {
-		padding-right: 3rem;
-	} */
 }
 
 @media all and (max-width: 568px) {
 	.third-section {
 		padding-top: 4rem;
 		display: grid;
-		grid-template-columns: 350px;
-		grid-column-gap: 5rem;
+		grid-template-columns: repeat(auto-fit, minmax(5rem, 325px));
+		grid-column-gap: 15rem;
 		grid-row-gap: 2rem;
 		justify-content: center;
-		flex-wrap: wrap;
 	}
 }

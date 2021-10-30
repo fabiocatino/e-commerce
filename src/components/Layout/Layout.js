@@ -6,10 +6,10 @@ import Navbar from './Navbar';
 const Layout = (props) => {
 	return (
 		<div className={styles.layout}>
-			{/* <Navbar /> */}
+			<Navbar />
 			{props.children}
 			<div className={styles.footer}>
-			{/* <StickyFooter></StickyFooter> */}
+			<StickyFooter></StickyFooter>
 			</div>
 		</div>
 	);

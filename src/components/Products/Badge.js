@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import { useTotalQuantity } from '../../services/cartSlice';
+import styles from './Badge.module.css'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
 	'& .MuiBadge-badge': {
@@ -20,7 +21,7 @@ export default function CustomizedBadges() {
 
 	return (
 		<NoSsr>
-			<IconButton aria-label="cart">
+			<IconButton classes={{ root: styles.button }} aria-label="cart">
 				<StyledBadge badgeContent={totalQuantity} color="secondary">
 					<ShoppingCartIcon />
 				</StyledBadge>

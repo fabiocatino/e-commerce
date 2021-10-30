@@ -75,6 +75,7 @@ const Navbar = () => {
 				{!matches && (
 					<div className={styles.hamburger}>
 						<Button
+							classes={{ root: styles['button-root'] }}
 							disableElevation={true}
 							color="inherit"
 							onClick={handleMenuList}
@@ -118,9 +119,7 @@ const Navbar = () => {
 					</div>
 				)}
 			</div>
-			<div className={styles.searchbar}>
-				<SearchBar />
-			</div>
+			<div className={styles.searchbar}>{/* <SearchBar /> */}</div>
 
 			<ul className={styles['navbar-items']}>
 				{!session && status !== 'loading' && (
@@ -139,17 +138,23 @@ const Navbar = () => {
 				{session && (
 					<>
 						<Button
+							classes={{ root: styles['button-root'] }}
 							disableElevation={true}
 							color="inherit"
 							onClick={handleMenu}
 						>
-							<Typography
-								className={styles['account-button']}
-								variant="body1"
-								color="#FFF"
-							>
-								Hello, {session.user.name.split(' ')[0]}
-							</Typography>
+							{matches ? (
+								<Typography
+									sx={{ marginRight: 3}}
+									className={styles['account-button']}
+									variant="body1"
+									color="#FFF"
+								>
+									Hello, {session.user.name.split(' ')[0]}
+								</Typography>
+							) : (
+								<PersonIcon />
+							)}
 						</Button>
 						<Menu
 							sx={{ marginTop: 7 }}
