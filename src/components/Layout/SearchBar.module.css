@@ -1,6 +1,7 @@
 .main {
 	width: 400px;
 	background: linear-gradient(to right, #46aef8, #1dd4e6);
+	overflow: hidden;
 }
 .input {
 	border-radius: 20px;
