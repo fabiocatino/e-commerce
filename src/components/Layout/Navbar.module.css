@@ -55,8 +55,7 @@
 	margin-right: 2rem;
 }
 
-@media all and (min-width: 0px) and (max-width: 485px) {
-
+@media all and (max-width: 359px)  {
 	.searchbar {
 		display: none;
 	}
@@ -64,8 +63,5 @@
 		display: flex;
 		gap: 0;
 		align-items: center;
-	}
-	.navbar-items {
-		margin-right: 12rem;
 	}
 }
