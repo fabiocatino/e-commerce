@@ -56,9 +56,9 @@
 }
 
 @media all and (max-width: 480px)  {
-	.searchbar {
+	/* .searchbar {
 		display: none;
-	}
+	} */
 	.leftSide {
 		display: flex;
 		gap: 0;

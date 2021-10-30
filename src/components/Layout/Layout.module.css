@@ -3,9 +3,9 @@
 }
 
 @media all and (max-width: 480px)  {
-	.searchbar {
+	/* .searchbar {
 		display: flex;
-	}
+	} */
 	.leftSide {
 		display: flex;
 		gap: 0;
@@ -14,9 +14,9 @@
 }
 
 @media all and (min-width: 481px) {
-	.searchbar {
+	/* .searchbar {
 		display: none;
-	}
+	} */
 	.leftSide {
 		display: flex;
 		gap: 0;
