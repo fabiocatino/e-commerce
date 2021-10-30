@@ -5,6 +5,7 @@
 	padding: 0px 15px;
 	height: 82px;
 	background: linear-gradient(to right, #46aef8, #1dd4e6);
+	width: 100%;
 }
 
 .leftSide {
@@ -24,12 +25,14 @@
 .navbar-items {
 	list-style-type: none;
 	display: flex;
-	gap: 20px;
+	gap: 10px;
 	align-items: center;
 	justify-content: space-between;
+	margin-right: 2rem;
 }
 
 .searchbar {
+	max-width: 100%;
 	display: flex;
 	justify-content: center;
 }
@@ -50,4 +53,19 @@
 
 .hamburger {
 	margin-right: 2rem;
+}
+
+@media all and (min-width: 0px) and (max-width: 485px) {
+
+	.searchbar {
+		display: none;
+	}
+	.leftSide {
+		display: flex;
+		gap: 0;
+		align-items: center;
+	}
+	.navbar-items {
+		margin-right: 12rem;
+	}
 }

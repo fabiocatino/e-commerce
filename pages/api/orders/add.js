@@ -31,7 +31,6 @@ handler.post(async (req, res) => {
 			const order = await newOrder.save();
 
 			await res.send(order);
-			res.end();
 
 		} else {
 		
@@ -41,7 +40,6 @@ handler.post(async (req, res) => {
 			const order = await newOrder.save();
 
 			await res.send(order);
-			res.end();
 		}
 	}
 });

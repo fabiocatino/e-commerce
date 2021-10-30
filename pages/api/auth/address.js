@@ -106,7 +106,6 @@ handler.delete(async (req, res) => {
 
 		res.status(201).send({ message: 'Address deleted.' });
 		await user.save();
-		// res.end('Address deleted.');
 	}
 });
 

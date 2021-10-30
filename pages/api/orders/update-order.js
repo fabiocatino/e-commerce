@@ -15,7 +15,7 @@ handler.patch(async (req, res) => {
 		const update = { name: req.body.name, email: req.body.email };
 
 		if (!email || !email.includes('@')) {
-			res.status(422).json({ message: 'Invalid email address.' });
+			res.status(422).send({ message: 'Invalid email address.' });
 			return;
 		}
 
@@ -30,7 +30,7 @@ handler.patch(async (req, res) => {
 
 		const existingUser = await User.findOneAndUpdate(filter, update);
 
-		res.status(201).json({ message: 'Name and/or password updated.' });
+		res.status(201).send({ message: 'Name and/or password updated.' });
 	}
 });
 

@@ -54,10 +54,21 @@
 	flex-wrap: wrap;
 }
 
-
-
 @media all and (max-width: 920px) {
 	.container {
 		padding-right: 3rem;
+	}
+}
+
+
+@media all and (max-width: 568px) {
+	.third-section {
+		padding-top: 4rem;
+		display: grid;
+		grid-template-columns: 350px;
+		grid-column-gap: 5rem;
+		grid-row-gap: 2rem;
+		justify-content: center;
+		flex-wrap: wrap;
 	}
 }

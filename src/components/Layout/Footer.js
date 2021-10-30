@@ -39,7 +39,7 @@ export default function StickyFooter() {
 	const submitHandler = (e) => {
 		e.preventDefault();
 		setShowAlert(true);
-		setEmail('')
+		setEmail('');
 	};
 
 	return (
