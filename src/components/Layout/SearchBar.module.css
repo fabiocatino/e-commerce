@@ -1,34 +1,40 @@
 .main {
 	width: 400px;
+	padding: 0;
 	background: linear-gradient(to right, #46aef8, #1dd4e6);
 }
 .input {
 	border-radius: 20px;
 	background-color: white;
 	overflow: hidden;
-
+	padding: 0;
 }
 
 @media all and (min-width: 320px) and (max-width: 480px) {
 	.main {
+		padding: 0;
+
 		max-width: 200px;
 	}
 }
 
 @media all and (min-width: 480px) and (max-width: 768px) {
 	.main {
+		padding: 0;
 		max-width: 200px;
 	}
 }
 
 @media all and (min-width: 769px) and (max-width: 1024px) {
 	.main {
+		padding: 0;
 		max-width: 300px;
 	}
 }
 
 @media all and (min-width: 1025px) and (max-width: 1200px) {
 	.main {
+		padding: 0;
 		max-width: 400px;
 	}
 }
