@@ -41,15 +41,18 @@ export default function SearchBar() {
 
 	return (
 		<Autocomplete
-			classes={{ root: styles.main, inputRoot: styles.input, paper: styles.paper }}
+			classes={{
+				root: styles.main,
+				inputRoot: styles.input,
+				paper: styles.paper,
+			}}
 			id="autocomplete"
-			open={true}
+			open={open}
 			onOpen={() => setOpen(true)}
 			onClose={() => setOpen(false)}
 			getOptionLabel={(option) => option.name}
 			options={options}
 			loading={loading}
-			loadingText=""
 			renderOption={(props, option) => (
 				<Link passHref={true} key={option._id} href={`/products/${option._id}`}>
 					<li {...props}>{option.name}</li>
