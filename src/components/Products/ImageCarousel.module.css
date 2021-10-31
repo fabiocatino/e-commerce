@@ -30,6 +30,19 @@
 	width: 107.44px;
 }
 
+@media screen and (max-width: 550px) {
+	.container {
+		padding-top: 2rem;
+		flex-direction: column;
+		align-items: space-between;
+		gap: 1rem;
+	}
+	.transition {
+		padding: 0 2rem;
+		width: 100%;
+	}
+}
+
 @keyframes fadein {
 	from {
 		opacity: 0;
