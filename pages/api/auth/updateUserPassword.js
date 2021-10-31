@@ -9,6 +9,7 @@ const handler = nc().use(Cors());
 
 handler.patch(async (req, res) => {
 	if (req.method === 'PATCH') {
+		await db.connect();
 		const session = await getSession({ req });
 		const email = session.user.email;
 		const { oldPassword, password1 } = req.body;
@@ -20,7 +21,6 @@ handler.patch(async (req, res) => {
 			return;
 		}
 
-		await db.connect();
 		const existingUser = await User.findOne({ email });
 
 		const isValid = await verifyPassword(oldPassword, existingUser.password);
@@ -36,9 +36,7 @@ handler.patch(async (req, res) => {
 			{ password: hashedPassword }
 		);
 
-		res.status(200).json({ message: 'Password updated.' });
-
-		res.end();
+		res.status(200).send({ message: 'Password updated.' });
 	}
 });
 

@@ -8,6 +8,7 @@ const handler = nc().use(Cors());
 
 handler.patch(async (req, res) => {
 	if (req.method === 'PATCH') {
+		await db.connect();
 		const session = await getSession({ req });
 		const { email } = session.user;
 
@@ -19,7 +20,6 @@ handler.patch(async (req, res) => {
 			return;
 		}
 
-		await db.connect();
 
 		const existingEmail = await User.findOne({ email: email });
 
@@ -30,7 +30,7 @@ handler.patch(async (req, res) => {
 
 		const existingUser = await User.findOneAndUpdate(filter, update);
 
-		res.status(201).json({ message: 'Name and/or password updated.' });
+		res.status(201).send({ message: 'Name and/or password updated.' });
 	}
 });
 
