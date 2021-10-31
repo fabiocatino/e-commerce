@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import { useAddUserMutation } from '../../services/userApi';
 import styles from './SignupForm.module.css';
 import { signIn } from 'next-auth/react';
+import Spinner from '../Layout/Spinner';
 
 const SignupForm = () => {
 	const [name, setName] = useState('');
@@ -20,7 +21,7 @@ const SignupForm = () => {
 	const [password2, setPassword2] = useState(undefined);
 	const router = useRouter();
 
-	const [addUser, { isError, error , isLoading}] = useAddUserMutation();
+	const [addUser, { isError, error, isLoading }] = useAddUserMutation();
 
 	async function submitHandler(e) {
 		e.preventDefault();
@@ -43,10 +44,15 @@ const SignupForm = () => {
 		}
 	}
 
+	console.log({ isLoading });
+
 	return (
 		<Container className={styles.main}>
+			{isLoading && <Spinner />}
 			<form onSubmit={submitHandler} className={styles.form}>
-				{/* {!isLoading && isError && <Alert severity="error">{error.data.message}</Alert>} */}
+				{!isLoading && isError && (
+					<Alert severity="error">{error.data.message}</Alert>
+				)}
 				<TextField
 					autoComplete="given-name"
 					required
