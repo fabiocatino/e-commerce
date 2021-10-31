@@ -50,7 +50,6 @@ handler.post(async (req, res) => {
 		await user.save();
 
 		res.status(201).json({ message: 'User created.' });
-		res.end('User created');
 	}
 });
 
