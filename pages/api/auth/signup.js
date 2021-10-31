@@ -8,6 +8,7 @@ const handler = nc().use(Cors());
 
 handler.post(async (req, res) => {
 	if (req.method === 'POST') {
+		await db.connect();
 		const { email, password1, password2 } = req.body;
 
 		if (!email || !email.includes('@')) {
@@ -22,8 +23,6 @@ handler.post(async (req, res) => {
 			res.status(422).json({ message: 'Passwords do not match.' });
 			return;
 		}
-
-		await db.connect();
 
 		const existingUser = await User.findOne({ email: email });
 
