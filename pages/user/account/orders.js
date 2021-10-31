@@ -33,7 +33,9 @@ const Orders = () => {
 						</Typography>
 					)}
 					{orders.map((order) => (
-						<OrderCard key={order._id} {...order}></OrderCard>
+						<div key={order._id} className={styles.card}>
+							<OrderCard {...order}></OrderCard>
+						</div>
 					))}
 				</Container>
 			)}

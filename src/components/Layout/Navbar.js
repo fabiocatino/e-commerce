@@ -1,24 +1,23 @@
-import PersonIcon from '@mui/icons-material/Person';
 import MenuIcon from '@mui/icons-material/Menu';
+import PersonIcon from '@mui/icons-material/Person';
 import {
 	Button,
 	Link as MLink,
 	Menu,
-	MenuItem,
-	Typography,
+	MenuItem, Typography,
 	useMediaQuery,
-	useTheme,
+	useTheme
 } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import CustomizedBadges from '../Products/Badge';
 import CategoriesMenu from './CategoriesMenu';
 import styles from './Navbar.module.css';
 import SearchBar from './SearchBar';
-import Image from 'next/image';
 
-const Navbar = () => {
+const Navbar = (props) => {
 	const { data: session, status } = useSession();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [menu, setMenu] = useState(null);

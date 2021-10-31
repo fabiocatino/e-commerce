@@ -24,11 +24,13 @@ const Product = () => {
 	};
 
 	const addToCartHandler = () => {
-		dispatch(cartActions.addItem({ ...data, quantity: quantity }));
+		dispatch(
+			cartActions.addItem({ ...data, quantity: quantity === 0 ? 1 : quantity })
+		);
 	};
 
 	return (
-		<Container maxWidth="lg" >
+		<Container maxWidth="lg">
 			{error && <p>Something went wrong. Try again later.</p>}
 			{isLoading && <Spinner />}
 			{!isLoading && !error && (

@@ -5,7 +5,7 @@
 .footer-content {
 	display: grid;
 	min-height: 400px;
-	grid-template-columns: repeat(6, minmax(0, 1fr));
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 	grid-template-rows: 1fr;
 	grid-row-gap: 6rem;
 	padding: 2rem 5rem;
@@ -37,11 +37,12 @@
 	grid-column: span 1.5;
 }
 
+
 .fourth-column {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: flex-cent;
+	align-items: flex-start;
 	gap: 3rem;
 }
 
@@ -99,7 +100,7 @@
 .input {
 	border-radius: 4vmax;
 	height: 40px;
-	min-width: 250px;
+	min-width: 230px;
 	max-width: 350px;
 	padding: 1rem;
 	border: 1px solid gray;
@@ -120,6 +121,12 @@
 .copyright {
 	display: flex;
 	justify-content: center;
+}
+
+@media screen and (min-width: 12001px) {
+	.fourth-column {
+		grid-column: span 2;
+	}
 }
 
 @media screen and (max-width: 1200px) {

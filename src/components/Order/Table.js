@@ -42,36 +42,6 @@ export default function EnhancedTable() {
 		setOrderBy(property);
 	};
 
-	const handleSelectAllClick = (event) => {
-		if (event.target.checked) {
-			const newSelecteds = rows.map((n) => n.name);
-			setSelected(newSelecteds);
-
-			return;
-		}
-		setSelected([]);
-	};
-
-	const handleClick = (event, row) => {
-		const selectedIndex = selected.indexOf(row);
-
-		let newSelected = [];
-
-		if (selectedIndex === -1) {
-			newSelected = newSelected.concat(selected, row);
-		} else if (selectedIndex === 0) {
-			newSelected = newSelected.concat(selected.slice(1));
-		} else if (selectedIndex === selected.length - 1) {
-			newSelected = newSelected.concat(selected.slice(0, -1));
-		} else if (selectedIndex > 0) {
-			newSelected = newSelected.concat(
-				selected.slice(0, selectedIndex),
-				selected.slice(selectedIndex + 1)
-			);
-		}
-
-		setSelected(newSelected);
-	};
 	const handleChangePage = (event, newPage) => {
 		setPage(newPage);
 	};
@@ -79,8 +49,6 @@ export default function EnhancedTable() {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
-
-	const isSelected = (row) => selected.indexOf(row) !== -1;
 
 	const changeQuantityHandler = (index) => (e) => {
 		dispatch(
@@ -101,10 +69,7 @@ export default function EnhancedTable() {
 	return (
 		<Box sx={{ width: '100%' }}>
 			<Paper sx={{ width: '100%', mb: 2 }}>
-				<EnhancedTableToolbar
-					selectedItems={selected}
-					numSelected={selected.length}
-				/>
+				<EnhancedTableToolbar />
 
 				<TableContainer>
 					<Table sx={{ maxWidth: 1000 }} aria-labelledby="tableTitle">
@@ -112,7 +77,6 @@ export default function EnhancedTable() {
 							numSelected={selected.length}
 							order={order}
 							orderBy={orderBy}
-							onSelectAllClick={handleSelectAllClick}
 							onRequestSort={handleRequestSort}
 							rowCount={rows.length}
 						/>
@@ -121,33 +85,17 @@ export default function EnhancedTable() {
 							{stableSort(rows, getComparator(order, orderBy))
 								.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 								.map((row, index) => {
-									const isItemSelected = isSelected(row);
 									const labelId = `enhanced-table-checkbox-${index}`;
-
 									return (
 										<TableRow
-										sx={{}}
 											hover
 											role="checkbox"
-											aria-checked={isItemSelected}
 											tabIndex={-1}
 											key={row.name}
-											selected={isItemSelected}
 										>
-											<TableCell padding="checkbox">
-												<Checkbox
-													onClick={(event) => handleClick(event, row, index)}
-													color="primary"
-													checked={isItemSelected}
-													inputProps={{
-														'aria-labelledby': labelId,
-													}}
-												/>
-											</TableCell>
-
 											<TableCell
 												component="th"
-												id={labelId}
+												id={row._id}
 												scope="row"
 												padding="none"
 											>

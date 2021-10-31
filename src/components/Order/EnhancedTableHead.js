@@ -1,10 +1,4 @@
-import {
-	Checkbox,
-	TableCell,
-	TableHead,
-	TableRow,
-	TableSortLabel,
-} from '@mui/material/';
+import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material/';
 import Box from '@mui/material/Box';
 import { visuallyHidden } from '@mui/utils';
 import PropTypes from 'prop-types';
@@ -72,14 +66,7 @@ const headCells = [
 ];
 
 export default function EnhancedTableHead(props) {
-	const {
-		onSelectAllClick,
-		order,
-		orderBy,
-		numSelected,
-		rowCount,
-		onRequestSort,
-	} = props;
+	const { order, orderBy, onRequestSort } = props;
 	const createSortHandler = (property) => (event) => {
 		onRequestSort(event, property);
 	};
@@ -87,19 +74,9 @@ export default function EnhancedTableHead(props) {
 	return (
 		<TableHead>
 			<TableRow>
-				<TableCell padding="checkbox">
-					<Checkbox
-						color="primary"
-						indeterminate={numSelected > 0 && numSelected < rowCount}
-						checked={rowCount > 0 && numSelected === rowCount}
-						onChange={onSelectAllClick}
-						inputProps={{
-							'aria-label': 'select all Images',
-						}}
-					/>
-				</TableCell>
 				{headCells.map((headCell) => (
 					<TableCell
+						sx={{ paddingLeft: 2 }}
 						key={headCell.id}
 						align={headCell.numeric ? 'right' : 'left'}
 						padding={headCell.disablePadding ? 'none' : 'normal'}
@@ -123,14 +100,5 @@ export default function EnhancedTableHead(props) {
 		</TableHead>
 	);
 }
-
-EnhancedTableHead.propTypes = {
-	numSelected: PropTypes.number.isRequired,
-	onRequestSort: PropTypes.func.isRequired,
-	onSelectAllClick: PropTypes.func.isRequired,
-	order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-	orderBy: PropTypes.string.isRequired,
-	rowCount: PropTypes.number.isRequired,
-};
 
 export { descendingComparator, getComparator, stableSort };
