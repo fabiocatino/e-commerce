@@ -32,12 +32,12 @@ const SignupForm = () => {
 				password1,
 				password2,
 			}).unwrap();
-			// await signIn('credentials', {
-			// 	callbackUrl: '/',
-			// 	redirect: true,
-			// 	email,
-			// 	password: password1,
-			// });
+			await signIn('credentials', {
+				callbackUrl: '/',
+				redirect: true,
+				email,
+				password: password1,
+			});
 		} catch (error) {
 			console.log(error);
 		}
