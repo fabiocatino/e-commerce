@@ -7,6 +7,10 @@ import db from '../../../src/utils/db';
 const handler = nc().use(Cors());
 
 handler.post(async (req, res) => {
+	if (req.method === 'GET') {
+		await db.connect()
+		console.log('we')
+	}
 	if (req.method === 'POST') {
 		await db.connect();
 	
