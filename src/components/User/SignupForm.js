@@ -34,7 +34,7 @@ const SignupForm = () => {
 			}).unwrap();
 			await signIn('credentials', {
 				callbackUrl: '/',
-				redirect: true,
+				// redirect: true,
 				email,
 				password: password1,
 			});
