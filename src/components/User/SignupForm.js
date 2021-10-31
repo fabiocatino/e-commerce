@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAddUserMutation } from '../../services/userApi';
 import styles from './SignupForm.module.css';
 import { signIn } from 'next-auth/react';
@@ -43,12 +43,27 @@ const SignupForm = () => {
 			console.log(error);
 		}
 	}
-	console.log({isLoading})
+
+	async function loginAfterSignginIn() {
+		try {
+			await signIn('credentials', {
+				callbackUrl: '/',
+				redirect: true,
+				email,
+				password: password1,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	useEffect(() => {
+		loginAfterSignginIn();
+	}, [isLoading, error]);
 
 	return (
 		<Container className={styles.main}>
 			<form onSubmit={submitHandler} className={styles.form}>
-		
 				{isLoading && <Spinner />}
 				{!isLoading && isError && (
 					<Alert severity="error">{error.data.message}</Alert>
