@@ -1,10 +1,15 @@
-import { TextField } from '@mui/material';
-import Autocomplete from '@mui/material/Autocomplete';
-import CircularProgress from '@mui/material/CircularProgress';
+import {
+	TextField,
+	useMediaQuery,
+	Autocomplete,
+	useTheme,
+	CircularProgress,
+} from '@mui/material';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useGetProductByNameQuery } from '../../services/productsApi';
 import styles from './SearchBar.module.css';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function SearchBar() {
 	const [open, setOpen] = useState(false);
@@ -12,6 +17,8 @@ export default function SearchBar() {
 	const [productName, setProductName] = useState('');
 	const [search, setSearch] = useState('');
 	const loading = open && options.length === 0;
+	const theme = useTheme();
+	const matches = useMediaQuery(theme.breakpoints.up('lg'));
 
 	const {
 		data: products,

@@ -65,10 +65,10 @@
 	margin-right: 2rem;
 }
 
-@media all and (max-width: 480px) {
-	/* .searchbar {
+@media all and (max-width: 640px) {
+	.searchbar {
 		display: none;
-	} */
+	}
 	.leftSide {
 		display: flex;
 		gap: 0;

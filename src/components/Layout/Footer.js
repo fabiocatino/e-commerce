@@ -61,8 +61,118 @@ export default function StickyFooter() {
 				}}
 			>
 				<Container className={styles['footer-content']}>
-					<div className={styles['footer-grid']}>
-						<div className={styles['first-column']}>
+					<div className={styles['first-column']}>
+						<Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+							Your Account
+						</Typography>
+						<Link href="/user/account/details/" target="_blank" passHref={true}>
+							<MLink
+								target="_blank"
+								rel="noopener noreferrer"
+								underline="hover"
+								color="inherit"
+								variant="subtitle2"
+							>
+								Personal info
+							</MLink>
+						</Link>
+						<Link href="/user/account/orders/" passHref={true}>
+							<MLink
+								underline="hover"
+								target="_blank"
+								rel="noopener noreferrer"
+								color="inherit"
+								variant="subtitle2"
+							>
+								Orders
+							</MLink>
+						</Link>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								Credit slips
+							</MLink>
+						</Link>
+						<Link href="/user/account/addresses/" passHref={true}>
+							<MLink
+								underline="hover"
+								target="_blank"
+								rel="noopener noreferrer"
+								color="inherit"
+								variant="subtitle2"
+							>
+								Addresses
+							</MLink>
+						</Link>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								My Wishlists
+							</MLink>
+						</Link>
+					</div>
+					<div className={styles['second-column']}>
+						<Typography variant="h6">Information</Typography>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								Delivery
+							</MLink>
+						</Link>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								About Us
+							</MLink>
+						</Link>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								Secure Payment
+							</MLink>
+						</Link>
+						<Link href="mailto:fabivs9@gmail.com" passHref={true}>
+							<MLink
+								target="_blank"
+								rel="noopener noreferrer"
+								underline="hover"
+								color="inherit"
+								variant="subtitle2"
+							>
+								Contact Us
+							</MLink>
+						</Link>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								Legal Notice
+							</MLink>
+						</Link>
+					</div>
+					<div className={styles['third-column']}>
+						<Typography variant="h6">Product</Typography>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								Price Drops
+							</MLink>
+						</Link>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								New Products
+							</MLink>
+						</Link>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								Best Sales
+							</MLink>
+						</Link>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								Returns
+							</MLink>
+						</Link>
+						<Link href="#" passHref={true}>
+							<MLink underline="hover" color="inherit" variant="subtitle2">
+								Stores
+							</MLink>
+						</Link>
+					</div>
+					<div className={styles['fourth-column-container']}>
+						<div className={styles['fourth-column']}>
 							<div style={{ display: 'flex', gap: 10 }}>
 								<RoomIcon />
 								<div>
@@ -96,185 +206,70 @@ export default function StickyFooter() {
 								</MLink>
 							</Link>
 						</div>
-
-						<div className={styles['second-column']}>
-							<Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-								Your Account
+					</div>
+					<div className={styles['fifth-column']}>
+						<div className={styles['fifth-column-icon']}>
+							<MarkunreadOutlinedIcon
+								sx={{ fontSize: '50px !important' }}
+							></MarkunreadOutlinedIcon>
+						</div>
+						<div className={styles['fifth-column-text']}>
+							<Typography variant="h6">Newsletter</Typography>
+							<Typography color="text.secondary" variant="body1">
+								Enter your email to stay up to date.
 							</Typography>
+						</div>
+						<div className={styles['fifth-column-form']}>
+							{showAlert && (
+								<div style={{ paddingBottom: 15 }}>
+									<Alert
+										className={styles.alert}
+										severity="success"
+										onClose={() => setShowAlert(false)}
+									>
+										Signed up!
+									</Alert>
+								</div>
+							)}
+							<form onSubmit={submitHandler}>
+								<input
+									autoComplete="email"
+									required
+									id="email-footer"
+									label="Email"
+									placeholder="Email"
+									type="email"
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									className={styles.input}
+								></input>
+								<Button type="submit" className={styles['input-button']}>
+									<SendIcon />
+								</Button>
+							</form>
+						</div>
+						<div className={styles['fifth-column-social']}>
 							<Link
-								href="/user/account/details/"
-								target="_blank"
+								href="https://www.linkedin.com/in/fabio-catino/"
 								passHref={true}
 							>
-								<MLink
-									target="_blank"
-									rel="noopener noreferrer"
-									underline="hover"
-									color="inherit"
-									variant="subtitle2"
-								>
-									Personal info
+								<MLink target="_blank" rel="noopener noreferrer">
+									<LinkedInIcon sx={{ color: '#2867B2 !important' }} />
 								</MLink>
 							</Link>
-							<Link href="/user/account/orders/" passHref={true}>
-								<MLink
-									underline="hover"
-									target="_blank"
-									rel="noopener noreferrer"
-									color="inherit"
-									variant="subtitle2"
-								>
-									Orders
+							<Link href="https://www.facebook.com/r.riven" passHref={true}>
+								<MLink target="_blank" rel="noopener noreferrer">
+									<FacebookRoundedIcon sx={{ color: '#3b5999 !important' }} />
 								</MLink>
 							</Link>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									Credit slips
+							<Link
+								href="https://www.instagram.com/fabiocatino/"
+								passHref={true}
+							>
+								<MLink target="_blank" rel="noopener noreferrer">
+									<InstagramIcon sx={{ color: '#cc2366 !important' }} />
 								</MLink>
 							</Link>
-							<Link href="/user/account/addresses/" passHref={true}>
-								<MLink
-									underline="hover"
-									target="_blank"
-									rel="noopener noreferrer"
-									color="inherit"
-									variant="subtitle2"
-								>
-									Addresses
-								</MLink>
-							</Link>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									My Wishlists
-								</MLink>
-							</Link>
-						</div>
-						<div className={styles['third-column']}>
-							<Typography variant="h6">Information</Typography>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									Delivery
-								</MLink>
-							</Link>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									About Us
-								</MLink>
-							</Link>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									Secure Payment
-								</MLink>
-							</Link>
-							<Link href="mailto:fabivs9@gmail.com" passHref={true}>
-								<MLink
-									target="_blank"
-									rel="noopener noreferrer"
-									underline="hover"
-									color="inherit"
-									variant="subtitle2"
-								>
-									Contact Us
-								</MLink>
-							</Link>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									Legal Notice
-								</MLink>
-							</Link>
-						</div>
-						<div className={styles['fourth-column']}>
-							<Typography variant="h6">Product</Typography>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									Price Drops
-								</MLink>
-							</Link>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									New Products
-								</MLink>
-							</Link>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									Best Sales
-								</MLink>
-							</Link>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									Returns
-								</MLink>
-							</Link>
-							<Link href="#" passHref={true}>
-								<MLink underline="hover" color="inherit" variant="subtitle2">
-									Stores
-								</MLink>
-							</Link>
-						</div>
-						<div className={styles['fifth-column']}>
-							<div className={styles['fifth-column-icon']}>
-								<MarkunreadOutlinedIcon
-									sx={{ fontSize: '50px !important' }}
-								></MarkunreadOutlinedIcon>
-							</div>
-							<div className={styles['fifth-column-text']}>
-								<Typography variant="h6">Newsletter</Typography>
-								<Typography color="text.secondary" variant="body1">
-									Enter your email to stay up to date.
-								</Typography>
-							</div>
-							<div className={styles['fifth-column-form']}>
-								{showAlert && (
-									<div style={{ paddingBottom: 15 }}>
-										<Alert
-											className={styles.alert}
-											severity="success"
-											onClose={() => setShowAlert(false)}
-										>
-											Signed up!
-										</Alert>
-									</div>
-								)}
-								<form onSubmit={submitHandler}>
-									<input
-										autoComplete="email"
-										required
-										id="email-footer"
-										label="Email"
-										placeholder="Email"
-										type="email"
-										value={email}
-										onChange={(e) => setEmail(e.target.value)}
-										className={styles.input}
-									></input>
-									<Button type="submit" className={styles['input-button']}>
-										<SendIcon />
-									</Button>
-								</form>
-							</div>
-							<div className={styles['fifth-column-social']}>
-								<Link
-									href="https://www.linkedin.com/in/fabio-catino/"
-									passHref={true}
-								>
-									<MLink target="_blank" rel="noopener noreferrer">
-										<LinkedInIcon sx={{ color: '#2867B2 !important' }} />
-									</MLink>
-								</Link>
-								<Link href="https://www.facebook.com/r.riven" passHref={true}>
-									<MLink target="_blank" rel="noopener noreferrer">
-										<FacebookRoundedIcon sx={{ color: '#3b5999 !important' }} />
-									</MLink>
-								</Link>
-								<Link
-									href="https://www.instagram.com/fabiocatino/"
-									passHref={true}
-								>
-									<MLink target="_blank" rel="noopener noreferrer">
-										<InstagramIcon sx={{ color: '#cc2366 !important' }} />
-									</MLink>
-								</Link>
-							</div>
 						</div>
 					</div>
 				</Container>

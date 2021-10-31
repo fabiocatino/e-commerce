@@ -1,7 +1,7 @@
 .card {
 	min-height: 322.71px;
 	height: 481px;
-	width: 322px;
+	max-width: 322px;
 	position: relative;
 }
 

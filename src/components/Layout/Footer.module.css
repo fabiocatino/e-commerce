@@ -1,19 +1,15 @@
-.main {
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	width: 100%;
-}
-
 .footer {
 	margin-top: auto;
-	display: grid;
 }
 
 .footer-content {
-	min-height: 400px;
-	padding: 2rem 5rem;
 	display: grid;
+	min-height: 400px;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	/* column-gap: 5rem; */
+	grid-template-rows: 1fr;
+	grid-row-gap: 6rem;
+	padding: 2rem 5rem;
 	width: 100%;
 }
 
@@ -21,46 +17,50 @@
 	font-weight: bold;
 }
 
-.footer-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-	grid-template-rows: 250px;
-	grid-row-gap: 6rem;
-	justify-content: center;
-}
-
-.first-column {
-	display: grid;
-	justify-content: center;
-	align-items: center;
-	gap: 3rem;
-}
-
 .footer svg {
 	color: #fd1557;
 	font-size: 50px;
 }
 
+.first-column {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
 .second-column {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
 .third-column {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
 
-.fourth-column {
-	display: grid;
+.fourth-column-container {
+	display: flex;
 	justify-content: center;
-	align-items: center;
+	grid-column: span 1.5;
+}
+
+.fourth-column {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-cent;
+	gap: 3rem;
 }
 
 .fifth-column {
 	display: grid;
+	grid-column: -2 / -1;
+	grid-column: span 1.5;
 	height: 300px;
 }
 
@@ -134,14 +134,20 @@
 	justify-content: center;
 }
 
-@media screen and (max-width: 568px) {
-	.footer-grid {
-		display: grid;
+@media screen and (max-width: 1200px) {
+	.footer-content {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
 
-		grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-		grid-template-rows: 330px;
-		grid-row-gap: 6rem;
-		grid-column-gap: 4rem;
-		justify-content: center;
+@media screen and (max-width: 740px) {
+	.footer-content {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@media screen and (max-width: 568px) {
+	.footer-content {
+		grid-template-columns: minmax(1, fr);
 	}
 }
