@@ -21,7 +21,8 @@ const SignupForm = () => {
 	const [password2, setPassword2] = useState(undefined);
 	const router = useRouter();
 
-	const [addUser, { isError, error, isLoading }] = useAddUserMutation();
+	const [addUser, { data, isError, error, isLoading, isSuccess }] =
+		useAddUserMutation();
 
 	async function submitHandler(e) {
 		e.preventDefault();
@@ -43,23 +44,6 @@ const SignupForm = () => {
 			console.log(error);
 		}
 	}
-
-	async function loginAfterSignginIn() {
-		try {
-			await signIn('credentials', {
-				callbackUrl: '/',
-				redirect: true,
-				email,
-				password: password1,
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	}
-
-	useEffect(() => {
-		loginAfterSignginIn();
-	}, [isLoading, error]);
 
 	return (
 		<Container className={styles.main}>
