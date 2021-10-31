@@ -46,7 +46,7 @@ const SignupForm = () => {
 	return (
 		<Container className={styles.main}>
 			<form onSubmit={submitHandler} className={styles.form}>
-				{!isLoading && isError && <Alert severity="error">{error.data.message}</Alert>}
+				{/* {!isLoading && isError && <Alert severity="error">{error.data.message}</Alert>} */}
 				<TextField
 					autoComplete="given-name"
 					required
