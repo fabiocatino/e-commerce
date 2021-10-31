@@ -43,10 +43,12 @@ const SignupForm = () => {
 			console.log(error);
 		}
 	}
+	console.log({isLoading})
 
 	return (
 		<Container className={styles.main}>
 			<form onSubmit={submitHandler} className={styles.form}>
+		
 				{isLoading && <Spinner />}
 				{!isLoading && isError && (
 					<Alert severity="error">{error.data.message}</Alert>
