@@ -44,7 +44,7 @@ export default function SearchBar() {
 				inputRoot: styles.input,
 				paper: styles.paper,
 			}}
-			id="autocomplete"
+			id="autocomplete1"
 			open={open}
 			onOpen={() => setOpen(true)}
 			onClose={() => setOpen(false)}
