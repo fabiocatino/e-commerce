@@ -46,7 +46,7 @@ const SignupForm = () => {
 	return (
 		<Container className={styles.main}>
 			<form onSubmit={submitHandler} className={styles.form}>
-				{error && <Alert severity="error">{error.data.message}</Alert>}
+				{/* {error && <Alert severity="error">{error.data.message}</Alert>} */}
 				<TextField
 					autoComplete="given-name"
 					required
