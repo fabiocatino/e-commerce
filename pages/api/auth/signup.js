@@ -12,15 +12,15 @@ handler.post(async (req, res) => {
 		const { email, password1, password2 } = req.body;
 
 		if (!email || !email.includes('@')) {
-			res.status(422).json({ message: 'Invalid email address.' });
+			res.status(422).json({ ciao: 'Invalid email address.' });
 			return;
 		} else if (!password1 || password1.trim().length < 7) {
 			res
 				.status(422)
-				.json({ message: 'Password should be at least 7 characters.' });
+				.json({ ciao: 'Password should be at least 7 characters.' });
 			return;
 		} else if (password1 !== password2) {
-			res.status(422).json({ message: 'Passwords do not match.' });
+			res.status(422).json({ ciao: 'Passwords do not match.' });
 			return;
 		}
 
@@ -29,7 +29,7 @@ handler.post(async (req, res) => {
 		const existingUser = await User.findOne({ email: email });
 
 		if (existingUser) {
-			res.status(422).json({ message: 'User already exists.' });
+			res.status(422).json({ ciao: 'User already exists.' });
 			return;
 		}
 
@@ -49,7 +49,7 @@ handler.post(async (req, res) => {
 
 		await user.save();
 
-		res.status(201).json({ message: 'User created.' });
+		res.status(201).json({ ciao: 'User created.' });
 		res.end('User created');
 	}
 });
