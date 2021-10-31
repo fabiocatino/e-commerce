@@ -34,6 +34,7 @@ const SignupForm = () => {
 				password1,
 				password2,
 			}).unwrap();
+			console.log({email}, {password1})
 			await signIn('credentials', {
 				callbackUrl: '/',
 				redirect: true,

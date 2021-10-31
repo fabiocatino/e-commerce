@@ -8,12 +8,12 @@ const handler = nc().use(Cors());
 
 handler.post(async (req, res) => {
 	if (req.method === 'GET') {
-		await db.connect()
-		console.log('we')
+		await db.connect();
+		console.log('we');
 	}
 	if (req.method === 'POST') {
 		await db.connect();
-	
+
 		const { email, password1, password2 } = req.body;
 
 		if (!email || !email.includes('@')) {
@@ -22,18 +22,17 @@ handler.post(async (req, res) => {
 		} else if (!password1 || password1.trim().length < 7) {
 			res
 				.status(422)
-				.json({ message: 'Password should be at least 7 characters.' });
+				.send({ message: 'Password should be at least 7 characters.' });
 			return;
 		} else if (password1 !== password2) {
-			res.status(422).json({ message: 'Passwords do not match.' });
+			res.status(422).send({ message: 'Passwords do not match.' });
 			return;
 		}
-
 
 		const existingUser = await User.findOne({ email: email });
 
 		if (existingUser) {
-			res.status(422).json({ message: 'User already exists.' });
+			res.status(422).send({ message: 'User already exists.' });
 			return;
 		}
 
@@ -44,7 +43,7 @@ handler.post(async (req, res) => {
 			isAdmin: false,
 		});
 
-		await res.send({
+		res.status(201).send({
 			_id: user._id,
 			name: user.name,
 			email: user.email,
@@ -52,8 +51,6 @@ handler.post(async (req, res) => {
 		});
 
 		await user.save();
-
-		res.status(201).json({ message: 'User created.' });
 	}
 });
 
