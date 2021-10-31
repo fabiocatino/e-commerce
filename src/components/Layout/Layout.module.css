@@ -7,6 +7,7 @@
 	display: flex;
 	justify-content: center;
 	background: linear-gradient(to right, #46aef8, #1dd4e6);
+	padding-bottom: 1rem;
 }
 
 @media all and (min-width: 640px) {
