@@ -20,7 +20,7 @@ const SignupForm = () => {
 	const [password2, setPassword2] = useState(undefined);
 	const router = useRouter();
 
-	const [addUser, { error }] = useAddUserMutation();
+	const [addUser, { isError, error }] = useAddUserMutation();
 
 	async function submitHandler(e) {
 		e.preventDefault();
@@ -46,7 +46,7 @@ const SignupForm = () => {
 	return (
 		<Container className={styles.main}>
 			<form onSubmit={submitHandler} className={styles.form}>
-				{/* {error && <Alert severity="error">{error.data.message}</Alert>} */}
+				{isError && <Alert severity="error">{error.data.message}</Alert>}
 				<TextField
 					autoComplete="given-name"
 					required
