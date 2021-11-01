@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import {
-	Container,
-	Collapse,
-	List,
-	ListItemButton,
-	ListItemText,
-	Button,
+	Button, Collapse, Container, List, ListItemText
 } from '@mui/material';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import Spinner from '../../../src/components/Layout/Spinner';
 import ModifyDetailsForm from '../../../src/components/User/ModifyDetailsForm';
 import ModifyPasswordForm from '../../../src/components/User/ModifyPasswordForm';
 import styles from './Details.module.css';
-import Spinner from '../../../src/components/Layout/Spinner';
 
 export default function Details() {
 	const [openAccountInfo, setOpenAccountInfo] = useState(true);

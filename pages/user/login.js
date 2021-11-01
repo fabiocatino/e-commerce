@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
+import { getSession } from 'next-auth/react';
 import React from 'react';
 import LoginForm from '../../src/components/User/LoginForm';
-import { getSession } from 'next-auth/react';
 
 const Login = () => {
 	return (

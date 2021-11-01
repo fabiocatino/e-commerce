@@ -1,5 +1,5 @@
 import HomeIcon from '@mui/icons-material/Home';
-import { Button, Card, Container, Grid, Typography } from '@mui/material';
+import { Button, Card, Container, Typography } from '@mui/material';
 import { getSession } from 'next-auth/react';
 import React, { useState } from 'react';
 import Spinner from '../../../src/components/Layout/Spinner';
