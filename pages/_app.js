@@ -3,6 +3,7 @@ import { StyledEngineProvider } from '@mui/styled-engine';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
+import Script from 'next/script';
 import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
 import { useEffect } from 'react';
@@ -45,25 +46,39 @@ export default function App({
 	}, [router]);
 
 	return (
-		<StyledEngineProvider injectFirst>
-			<SessionProvider session={session}>
-				<Provider store={store}>
-					<PayPalScriptProvider deferLoading={true} options={initialOptions}>
-						<CssBaseline />
-						<Layout>
-							<Head>
-								<title>E-commerce</title>
-								<meta
-									name="viewport"
-									content="initial-scale=1.0, width=device-width"
-								/>
-							</Head>
+		<>
+			<Script
+				strategy="lazyOnLoad"
+				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA}`}
+			/>
+			<Script>
+				{`  window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
 
-							<Component {...pageProps} />
-						</Layout>
-					</PayPalScriptProvider>
-				</Provider>
-			</SessionProvider>
-		</StyledEngineProvider>
+					gtag('config', ${process.env.NEXT_PUBLIC_GA});`}
+			</Script>
+
+			<StyledEngineProvider injectFirst>
+				<SessionProvider session={session}>
+					<Provider store={store}>
+						<PayPalScriptProvider deferLoading={true} options={initialOptions}>
+							<CssBaseline />
+							<Layout>
+								<Head>
+									<title>E-commerce</title>
+									<meta
+										name="viewport"
+										content="initial-scale=1.0, width=device-width"
+									/>
+								</Head>
+
+								<Component {...pageProps} />
+							</Layout>
+						</PayPalScriptProvider>
+					</Provider>
+				</SessionProvider>
+			</StyledEngineProvider>
+		</>
 	);
 }
