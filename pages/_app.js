@@ -57,7 +57,7 @@ export default function App({
 					function gtag(){dataLayer.push(arguments);}
 					gtag('js', new Date());
 
-					gtag('config', '${process.env.NEXT_PUBLIC_GA})'`}
+					gtag('config', '${process.env.NEXT_PUBLIC_GA}')`}
 			</Script>
 
 			<StyledEngineProvider injectFirst>
