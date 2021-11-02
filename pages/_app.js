@@ -49,17 +49,22 @@ export default function App({
 		<>
 			<Script
 				id="ga"
-				strategy="lazyOnLoad"
+				strategy="lazyOnload"
 				src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA}`}
 			/>
-			<Script id="ga1">
-				{`  window.dataLayer = window.dataLayer || [];
-					function gtag(){dataLayer.push(arguments);}
-					gtag('js', new Date());
 
-					gtag('config', '${process.env.NEXT_PUBLIC_GA}')`}
+			<Script id="ga1" strategy="lazyOnload">
+				{`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA}', {
+              page_path: window.location.pathname,
+            });
+                `}
 			</Script>
 
+			
 			<StyledEngineProvider injectFirst>
 				<SessionProvider session={session}>
 					<Provider store={store}>
