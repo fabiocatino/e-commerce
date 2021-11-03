@@ -13,7 +13,7 @@ import {
 	Container,
 	CssBaseline,
 	Link as MLink,
-	Typography,
+	Typography
 } from '@mui/material';
 import Link from 'next/link';
 import React, { useState } from 'react';
